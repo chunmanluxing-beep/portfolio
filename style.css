@@ -103,6 +103,48 @@ h1.brand > span {
 .cap i { display: block; color: var(--dimmer); font-size: 12.5px; margin-top: 4px; }
 .hero .note { font-size: 13px; color: var(--dimmer); margin: 0; }
 
+/* ═══════════ 第 2 屏 · 应用场景 ═══════════ */
+.whoprob { max-width: 880px; margin: 0 0 6px; }
+.whoprob p { font-size: 15px; line-height: 1.85; color: var(--dim); margin: 0 0 14px; }
+.whoscale {
+  margin: 18px 0 0; padding: 14px 16px; font-size: 12.5px; line-height: 1.75; color: var(--dimmer);
+  border: 1px dashed var(--line); border-radius: 10px; background: rgba(255,255,255,.015);
+}
+
+/* ─── 配图 1 · 四类使用者 ─── */
+.roles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.role {
+  padding: 18px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--card);
+}
+.role h4 { margin: 0 0 10px; font-size: 15px; font-weight: 600; }
+.r-pain, .r-gain { font-size: 12.5px; line-height: 1.7; margin: 0; }
+.r-pain { color: var(--dimmer); padding-bottom: 9px; margin-bottom: 9px; border-bottom: 1px solid var(--line-soft); }
+.r-gain { color: var(--accent-2); }
+
+/* 四个角色图标(纯 CSS) */
+.rico { position: relative; display: block; width: 40px; height: 40px; margin: 0 0 12px; }
+.rico span { position: absolute; display: block; }
+/* 负责人 · 后台看板 */
+.rico-boss span:nth-child(1) { left: 2px;  top: 4px;  width: 36px; height: 26px; border: 1.5px solid var(--accent-2); border-radius: 3px; }
+.rico-boss span:nth-child(2) { left: 8px;  top: 18px; width: 4px;  height: 8px;  background: var(--accent-2); }
+.rico-boss span:nth-child(3) { left: 16px; top: 12px; width: 4px;  height: 14px; background: var(--accent-2); }
+.rico-boss span:nth-child(4) { left: 13px; top: 33px; width: 14px; height: 2px;  border-radius: 1px; background: var(--dim); }
+/* 摄影师 · 相机 */
+.rico-shoot span:nth-child(1) { left: 2px;  top: 10px; width: 36px; height: 24px; border: 1.5px solid var(--accent-2); border-radius: 4px; }
+.rico-shoot span:nth-child(2) { left: 12px; top: 5px;  width: 12px; height: 6px;  border: 1.5px solid var(--accent-2); border-bottom: none; border-radius: 3px 3px 0 0; }
+.rico-shoot span:nth-child(3) { left: 13px; top: 16px; width: 13px; height: 13px; border: 1.5px solid var(--accent-2); border-radius: 50%; }
+.rico-shoot span:nth-child(4) { left: 30px; top: 14px; width: 4px;  height: 4px;  border-radius: 50%; background: var(--accent-2); }
+/* 精修师 · 修图滑块 */
+.rico-retouch span:nth-child(1) { left: 2px;  top: 3px;  width: 27px; height: 22px; border: 1.5px solid var(--accent-2); border-radius: 3px; }
+.rico-retouch span:nth-child(2) { left: 8px;  top: 15px; width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-bottom: 9px solid var(--accent-2); }
+.rico-retouch span:nth-child(3) { left: 3px;  top: 32px; width: 34px; height: 2px; border-radius: 1px; background: var(--line); }
+.rico-retouch span:nth-child(4) { left: 22px; top: 29px; width: 8px;  height: 8px; border-radius: 50%; background: var(--accent-2); }
+/* 客人 · 人形与验收 */
+.rico-guest span:nth-child(1) { left: 6px;  top: 3px;  width: 13px; height: 13px; border: 1.5px solid var(--warn); border-radius: 50%; }
+.rico-guest span:nth-child(2) { left: 1px;  top: 20px; width: 23px; height: 15px; border: 1.5px solid var(--warn); border-bottom: none; border-radius: 12px 12px 0 0; }
+.rico-guest span:nth-child(3) { left: 25px; top: 17px; width: 13px; height: 7px; border-left: 2px solid var(--warn); border-bottom: 2px solid var(--warn); transform: rotate(-45deg); }
+.rico-guest span:nth-child(4) { left: 26px; top: 31px; width: 12px; height: 2px; border-radius: 1px; background: var(--warn-ln); }
+
 /* ═══════════ 配图通用 ═══════════ */
 .fig {
   margin: 34px 0 8px; padding: 26px 24px 20px;
@@ -232,33 +274,301 @@ figcaption {
 .shot-name { margin: 0 0 5px; font-size: 13.5px; font-weight: 600; color: var(--dim); }
 .shot-req  { margin: 0; font-size: 12px; color: var(--dimmer); }
 
-/* ─── 板块卡片网格 ─── */
-.mods { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+/* ─── 板块卡片网格(可展开手风琴 · 零 JS) ─── */
+.mods { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; align-items: start; }
+.modhint { font-size: 12.5px; color: var(--dimmer); margin: -8px 0 18px; }
 .mod {
   background: var(--card); border: 1px solid var(--line); border-radius: 11px;
-  padding: 22px 20px;
 }
-.mod.hi {
-  grid-column: span 1;
-  background: var(--accent-bg); border-color: var(--accent-ln);
+.mod.hi { background: var(--accent-bg); border-color: var(--accent-ln); }
+
+.mod > summary {
+  position: relative; display: block; list-style: none; cursor: pointer;
+  padding: 22px 48px 20px 20px; border-radius: 11px;
 }
+.mod > summary::-webkit-details-marker { display: none; }
+.mod > summary::marker { content: ""; }
+.mod > summary:hover { background: rgba(255,255,255,.025); }
+.mod > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.mod[open] > summary { border-radius: 11px 11px 0 0; }
+
 .mtag {
-  font-size: 11px; letter-spacing: .08em; color: var(--accent);
+  display: block; font-size: 11px; letter-spacing: .08em; color: var(--accent);
   margin: 0 0 8px; font-weight: 600;
 }
 .mod h4 { margin: 0 0 9px; font-size: 16.5px; font-weight: 600; }
-.mdesc { font-size: 13.5px; line-height: 1.7; color: var(--dim); margin: 0 0 12px; }
-.mod ul li {
-  font-size: 12.5px; color: var(--dimmer); padding-left: 13px; position: relative; line-height: 1.85;
+.mdesc { display: block; font-size: 13.5px; line-height: 1.7; color: var(--dim); margin: 0 0 12px; }
+.mlist { display: block; }
+.mlist span {
+  display: block; position: relative; padding-left: 13px;
+  font-size: 12.5px; color: var(--dimmer); line-height: 1.85;
 }
-.mod ul li::before {
+.mlist span::before {
   content: ""; position: absolute; left: 0; top: 11px;
   width: 4px; height: 4px; border-radius: 50%; background: var(--dimmer);
 }
-.mod.hi ul li::before { background: var(--accent); }
+.mod.hi .mlist span::before { background: var(--accent); }
+
+/* 展开指示符 + / − */
+.mplus {
+  position: absolute; right: 18px; top: 24px; width: 15px; height: 15px;
+  transition: transform .22s ease;
+}
+.mplus::before, .mplus::after {
+  content: ""; position: absolute; background: var(--dim); border-radius: 1px;
+  transition: transform .22s ease, opacity .22s ease;
+}
+.mplus::before { left: 0; top: 6.5px; width: 15px; height: 2px; }
+.mplus::after { left: 6.5px; top: 0; width: 2px; height: 15px; }
+.mod[open] .mplus { transform: rotate(180deg); }
+.mod[open] .mplus::after { transform: scaleY(0); opacity: 0; }
+.mod > summary:hover .mplus::before,
+.mod > summary:hover .mplus::after { background: var(--accent-2); }
+
+.mhint { display: block; margin-top: 12px; font-size: 11.5px; color: var(--accent); }
+.mhint::before { content: "点击展开图文详情"; }
+.mod[open] .mhint::before { content: "收起详情"; }
+
+/* ─── 板块展开区 ─── */
+.mdet {
+  padding: 18px 20px 22px; border-top: 1px dashed var(--line);
+  background: rgba(255,255,255,.012); border-radius: 0 0 11px 11px;
+}
+.md-lead { margin: 0 0 12px; font-size: 14px; font-weight: 600; line-height: 1.7; }
+.md-pts { margin: 0 0 18px; }
+.md-pts li {
+  position: relative; padding-left: 18px; font-size: 13px; line-height: 1.9; color: var(--dim);
+}
+.md-pts li::before {
+  content: ""; position: absolute; left: 1px; top: 9px; width: 9px; height: 5px;
+  border-left: 1.5px solid var(--accent-2); border-bottom: 1.5px solid var(--accent-2);
+  transform: rotate(-45deg);
+}
+.dg-cap { margin: 10px 0 0; font-size: 11.5px; line-height: 1.6; color: var(--dimmer); }
+.shot-in { min-height: 148px; margin-top: 16px; padding: 16px; }
+.shot-in::before { width: 30px; height: 22px; margin-bottom: 10px; }
+.shot-in .shot-name { font-size: 12.5px; }
+.shot-in .shot-req { font-size: 11.5px; }
+
+/* ═══════════ 十二张板块配图(纯 CSS) ═══════════ */
+.dg {
+  padding: 16px 14px; border: 1px solid var(--line-soft); border-radius: 10px;
+  background: var(--bg-deep); overflow: hidden;
+}
+
+/* 1 订单管理 · 文本 → 结构化字段 */
+.dg-parse { display: flex; align-items: center; gap: 10px; }
+.pz-raw {
+  flex: 1 1 0; min-width: 0; padding: 10px; border: 1px dashed var(--line); border-radius: 7px;
+}
+.pz-raw i { display: block; height: 4px; border-radius: 2px; background: rgba(255,255,255,.16); margin-bottom: 6px; }
+.pz-raw i:last-child { margin-bottom: 0; }
+.pz-raw i:nth-child(1) { width: 96%; }
+.pz-raw i:nth-child(2) { width: 61%; }
+.pz-raw i:nth-child(3) { width: 84%; }
+.pz-raw i:nth-child(4) { width: 44%; }
+.pz-raw i:nth-child(5) { width: 72%; }
+.pz-ar { flex: 0 0 auto; width: 0; height: 0; border: 6px solid transparent; border-left-color: var(--accent); }
+.pz-form { flex: 1 1 0; min-width: 0; padding: 8px 10px; border: 1px solid var(--accent-ln); border-radius: 7px; background: var(--accent-bg); }
+.pz-form i { display: flex; align-items: center; gap: 6px; padding: 4px 0; }
+.pz-form i + i { border-top: 1px solid var(--line-soft); }
+.pz-form b { flex: 0 0 auto; font-size: 10.5px; font-weight: 500; color: var(--dim); }
+.pz-form em { flex: 1 1 auto; height: 4px; border-radius: 2px; background: var(--accent-ln); }
+
+/* 2 派单调度 · 四道门槛漏斗 */
+.dg-funnel { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.fn {
+  text-align: center; padding: 6px 8px; font-size: 11.5px; color: var(--dim);
+  border: 1px solid var(--accent-ln); border-radius: 6px; background: rgba(94,106,210,.07);
+}
+.fn:nth-child(1) { width: 100%; }
+.fn:nth-child(2) { width: 86%; }
+.fn:nth-child(3) { width: 72%; }
+.fn:nth-child(4) { width: 58%; }
+.fn-out {
+  width: 78%; margin-top: 4px; text-align: center; padding: 7px 8px; font-size: 11.5px;
+  font-weight: 600; color: var(--accent-2); border: 1px solid var(--accent); border-radius: 20px;
+  background: rgba(94,106,210,.16);
+}
+
+/* 3 摄影师端 · 三态屏幕 */
+.dg-three { display: flex; gap: 10px; }
+.tp { flex: 1 1 0; min-width: 0; text-align: center; }
+.tp b { display: block; margin-top: 7px; font-size: 11px; font-weight: 500; color: var(--dim); }
+.tp-scr {
+  display: block; height: 92px; padding: 7px; border: 1px solid var(--accent-ln);
+  border-radius: 8px; background: var(--bg);
+}
+.tp-scr.cal { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; align-content: start; }
+.tp-scr.cal i { display: block; height: 14px; border-radius: 2px; background: rgba(255,255,255,.07); }
+.tp-scr.cal i:nth-child(3), .tp-scr.cal i:nth-child(6), .tp-scr.cal i:nth-child(11) { background: var(--accent); }
+.tp-scr.hall i { display: block; height: 33px; border-radius: 5px; border: 1px solid var(--line); margin-bottom: 6px; }
+.tp-scr.hall i:first-child { border-color: var(--accent); background: rgba(94,106,210,.16); }
+.tp-scr.bill i { display: block; height: 5px; border-radius: 3px; background: rgba(255,255,255,.12); margin-bottom: 9px; }
+.tp-scr.bill i:nth-child(1) { width: 100%; }
+.tp-scr.bill i:nth-child(2) { width: 72%; }
+.tp-scr.bill i:nth-child(3) { width: 56%; background: var(--accent-2); }
+
+/* 4 订单公开页 · 三方指向同一页 */
+.dg-hub { display: grid; grid-template-columns: 1fr 1.25fr 1fr; gap: 10px 14px; align-items: center; }
+.hb, .hb-core {
+  position: relative; text-align: center; padding: 9px 6px; border-radius: 8px;
+  font-size: 12px; font-weight: 600; border: 1px solid var(--line); background: var(--card);
+}
+.hb i, .hb-core i { display: block; margin-top: 2px; font-size: 10.5px; font-weight: 400; color: var(--dimmer); }
+.hb-core {
+  grid-column: 2; grid-row: 1; border-color: var(--accent); color: var(--accent-2);
+  background: rgba(94,106,210,.14); padding: 14px 8px;
+}
+.hb.h1 { grid-column: 1; grid-row: 1; }
+.hb.h2 { grid-column: 3; grid-row: 1; }
+.hb.h3 { grid-column: 2; grid-row: 2; }
+.hb.h1::after, .hb.h2::after, .hb.h3::after {
+  content: ""; position: absolute; border: 5px solid transparent;
+}
+.hb.h1::after { right: -12px; top: 50%; margin-top: -5px; border-left-color: var(--dimmer); }
+.hb.h2::after { left: -12px; top: 50%; margin-top: -5px; border-right-color: var(--dimmer); }
+.hb.h3::after { top: -12px; left: 50%; margin-left: -5px; border-bottom-color: var(--dimmer); }
+
+/* 5 邮件自动化 · 触发点时间轴 */
+.dg-track { position: relative; display: flex; justify-content: space-between; padding: 22px 4px 6px; }
+.dg-track::before {
+  content: ""; position: absolute; left: 6%; right: 6%; top: 27px; height: 1px; background: var(--line);
+}
+.tk {
+  position: relative; flex: 1 1 0; text-align: center; font-size: 11px; color: var(--dim);
+}
+.tk i {
+  display: block; width: 9px; height: 9px; margin: 0 auto 9px; border-radius: 50%;
+  background: var(--accent); box-shadow: 0 0 0 3px var(--bg-deep);
+}
+
+/* 6 推送体系 · 一发多落点 */
+.dg-push { display: flex; align-items: center; gap: 0; }
+.ps-src {
+  flex: 0 0 auto; padding: 9px 12px; font-size: 12px; font-weight: 600; color: var(--accent-2);
+  border: 1px solid var(--accent); border-radius: 8px; background: rgba(94,106,210,.14);
+}
+.ps-fan {
+  flex: 0 0 22px; height: 74%; margin-left: 10px;
+  border-left: 1px solid var(--accent-ln); border-top: 1px solid var(--accent-ln);
+  border-bottom: 1px solid var(--accent-ln); border-radius: 8px 0 0 8px;
+}
+.ps-list { flex: 1 1 auto; display: grid; gap: 6px; }
+.ps-list i {
+  position: relative; padding: 6px 10px; font-size: 11.5px; color: var(--dim);
+  border: 1px solid var(--line); border-radius: 6px; background: var(--card);
+}
+.ps-list i::before {
+  content: ""; position: absolute; left: -11px; top: 50%; width: 10px; height: 1px; background: var(--accent-ln);
+}
+
+/* 7 气象预警 · 城市与影响半径 */
+.dg-geo { position: relative; height: 152px; }
+.gzone {
+  position: absolute; left: 8%; top: 6px; width: 132px; height: 132px; border-radius: 50%;
+  border: 1px dashed var(--warn-ln); background: rgba(198,166,110,.07);
+}
+.gcity {
+  position: absolute; padding: 3px 8px; font-size: 11px; color: var(--dimmer);
+  border: 1px solid var(--line); border-radius: 20px; background: var(--bg);
+}
+.gcity.hit { color: var(--warn); border-color: var(--warn-ln); background: rgba(198,166,110,.12); }
+.gcity.c1 { left: 74%; top: 18%; }
+.gcity.c2 { left: 20%; top: 22%; }
+.gcity.c3 { left: 34%; top: 50%; }
+.gcity.c4 { left: 14%; top: 72%; }
+.gcity.c5 { left: 66%; top: 66%; }
+.gtag {
+  position: absolute; right: 4px; bottom: 2px; font-size: 10.5px; color: var(--warn);
+}
+
+/* 8 交付与精修 · 四棒接力 */
+.dg-relay4 { display: flex; gap: 6px; }
+.r4 {
+  flex: 1 1 0; min-width: 0; padding: 12px 4px 10px; text-align: center; border-radius: 7px;
+  font-size: 12px; font-weight: 600; background: var(--card); position: relative;
+}
+.r4::before {
+  content: ""; position: absolute; left: 8px; right: 8px; top: 5px; height: 3px;
+  border-radius: 2px; background: var(--accent);
+}
+.r4.last::before { background: rgba(255,255,255,.14); }
+.r4 i { display: block; margin-top: 3px; font-size: 10.5px; font-weight: 400; color: var(--dimmer); }
+
+/* 9 结算体系 · 六级取价阶梯 */
+.dg-steps { display: flex; flex-direction: column; gap: 5px; }
+.st {
+  padding: 6px 10px; font-size: 11.5px; color: var(--dimmer);
+  border: 1px solid var(--line); border-left: 2px solid var(--line); border-radius: 6px;
+  background: var(--card);
+}
+.st b { font-size: 12px; margin-right: 8px; }
+.st i { color: var(--dimmer); font-size: 10.5px; }
+.st.top { border-color: var(--accent-ln); border-left: 2px solid var(--accent); background: rgba(94,106,210,.12); }
+.st.top b { color: var(--accent-2); }
+.st:nth-child(2) { margin-left: 7%; }
+.st:nth-child(3) { margin-left: 14%; }
+.st:nth-child(4) { margin-left: 21%; }
+.st:nth-child(5) { margin-left: 28%; }
+.st:nth-child(6) { margin-left: 35%; }
+
+/* 10 人员与评分 · 分层放号 */
+.dg-arc { display: flex; align-items: center; gap: 16px; }
+.ac-stage { position: relative; flex: 0 0 128px; height: 132px; }
+.ac { position: absolute; left: 50%; bottom: 6px; border-radius: 50%; border: 2px solid transparent; }
+.ac.a1 { width: 46px;  height: 46px;  margin-left: -23px; border-top-color: var(--accent); }
+.ac.a2 { width: 84px;  height: 84px;  margin-left: -42px; border-top-color: var(--accent-ln); }
+.ac.a3 { width: 122px; height: 122px; margin-left: -61px; border-top-color: rgba(255,255,255,.14); }
+.ac-core {
+  position: absolute; left: 50%; bottom: 0; transform: translateX(-50%);
+  padding: 3px 10px; font-size: 11px; color: var(--accent-2); white-space: nowrap;
+  border: 1px solid var(--accent-ln); border-radius: 20px; background: var(--bg);
+}
+.ac-legend { flex: 1 1 auto; display: grid; gap: 7px; }
+.ac-legend i { position: relative; padding-left: 16px; font-size: 11.5px; color: var(--dim); }
+.ac-legend i::before {
+  content: ""; position: absolute; left: 0; top: 6px; width: 9px; height: 3px; border-radius: 2px;
+}
+.ac-legend .l1::before { background: var(--accent); }
+.ac-legend .l2::before { background: var(--accent-ln); }
+.ac-legend .l3::before { background: rgba(255,255,255,.2); }
+
+/* 11 监控告警 · 巡检雷达 */
+.dg-scan { position: relative; height: 152px; }
+.sc { position: absolute; left: 50%; top: 50%; border-radius: 50%; border: 1px solid var(--line); transform: translate(-50%,-50%); }
+.sc.r1 { width: 44px;  height: 44px;  border-color: var(--accent-ln); }
+.sc.r2 { width: 92px;  height: 92px; }
+.sc.r3 { width: 140px; height: 140px; }
+.sd {
+  position: absolute; width: 8px; height: 8px; border-radius: 50%; background: var(--dim);
+}
+.sd.alert { background: var(--warn); box-shadow: 0 0 0 4px rgba(198,166,110,.16); }
+.sd.d1 { left: 30%; top: 22%; }
+.sd.d2 { left: 62%; top: 18%; }
+.sd.d3 { left: 74%; top: 46%; }
+.sd.d4 { left: 44%; top: 38%; }
+.sd.d5 { left: 26%; top: 62%; }
+.sd.d6 { left: 56%; top: 74%; }
+.sd.d7 { left: 68%; top: 60%; }
+.sc-tag { position: absolute; left: 0; bottom: 0; font-size: 10.5px; color: var(--dimmer); }
+
+/* 12 AI 能力 · 四步流水线 */
+.dg-flow4 { display: flex; align-items: stretch; }
+.f4 {
+  flex: 1 1 0; min-width: 0; padding: 10px 6px; text-align: center; border-radius: 7px;
+  font-size: 11.5px; font-weight: 600; border: 1px solid var(--line); background: var(--card);
+}
+.f4 i { display: block; margin-top: 3px; font-size: 10.5px; font-weight: 400; color: var(--dimmer); }
+.f4.gate { border-color: var(--warn-ln); background: rgba(198,166,110,.10); color: var(--warn); }
+.f4a { flex: 0 0 14px; position: relative; }
+.f4a::after {
+  content: ""; position: absolute; top: 50%; left: 50%;
+  border: 4px solid transparent; border-left-color: var(--dimmer); transform: translate(-50%,-50%);
+}
 
 /* ═══════════ 十二个板块图标(纯 CSS,无图片/无图标字体) ═══════════ */
-.ico { position: relative; width: 56px; height: 56px; margin: 0 0 14px; }
+.ico { position: relative; display: block; width: 56px; height: 56px; margin: 0 0 14px; }
 .ico span { position: absolute; display: block; }
 
 /* 订单管理 · 文档层叠 */
@@ -518,6 +828,7 @@ figcaption {
   margin: 12px 0 0; padding-top: 11px; border-top: 1px solid var(--line-soft);
   font-size: 12.5px; color: var(--dimmer);
 }
+.df .wo::before { content: "没有这个会怎样:"; color: var(--warn); }
 .appnote {
   margin-top: 26px; padding: 16px 18px; font-size: 13.5px; color: var(--dim);
   background: var(--card); border: 1px solid var(--line); border-radius: 10px;
@@ -741,8 +1052,46 @@ footer .disc { font-size: 12.5px; color: var(--dimmer); margin: 0; }
   .shot { min-height: 200px; padding: 20px 16px; }
   .shot-req { font-size: 12px; }
 
+  /* 应用场景屏 */
+  .whoprob p { font-size: 14.5px; }
+  .roles { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .role { padding: 14px 12px; }
+  .r-pain, .r-gain { font-size: 12px; }
+  .whoscale { font-size: 12px; }
+
   .mods { grid-template-columns: 1fr; }
   .mod.hi { grid-column: span 1; }
+  .mod > summary { padding: 18px 44px 18px 16px; }
+  .mdet { padding: 16px; }
+  .md-pts li, .mhint, .dg-cap, .modhint { font-size: 12px; }
+  .dg { padding: 14px 12px; }
+
+  /* 板块配图:横向转纵向 */
+  .dg-parse { flex-direction: column; align-items: stretch; gap: 8px; }
+  .pz-ar { align-self: center; border: 6px solid transparent; border-top-color: var(--accent); border-left-color: transparent; }
+  .fn, .fn-out, .tk, .ps-list i, .st, .ac-legend i, .gcity, .gtag, .sc-tag, .f4, .f4 i,
+  .tp b, .hb, .hb-core, .hb i, .hb-core i, .r4, .r4 i, .st i, .pz-form b { font-size: 12px; }
+  .dg-three { gap: 7px; }
+  .tp-scr { height: 84px; }
+  .dg-hub { grid-template-columns: 1fr; gap: 22px; }
+  .hb.h1, .hb.h2, .hb.h3, .hb-core { grid-column: 1; }
+  .hb.h1 { grid-row: 1; } .hb-core { grid-row: 2; } .hb.h2 { grid-row: 3; } .hb.h3 { grid-row: 4; }
+  .hb.h1::after { right: 50%; top: auto; bottom: -16px; margin: 0 -5px 0 0; border-left-color: transparent; border-top-color: var(--dimmer); }
+  .hb.h2::after { left: 50%; top: -16px; margin-left: -5px; border-right-color: transparent; border-bottom-color: var(--dimmer); }
+  .hb.h3::after { top: -16px; }
+  .dg-track { flex-direction: column; align-items: flex-start; gap: 10px; padding: 6px 4px; }
+  .dg-track::before { left: 8px; right: auto; top: 10px; bottom: 10px; width: 1px; height: auto; }
+  .tk { display: flex; align-items: center; gap: 10px; text-align: left; width: 100%; }
+  .tk i { margin: 0; }
+  .dg-relay4 { flex-wrap: wrap; }
+  .r4 { flex: 1 1 44%; }
+  .dg-arc { flex-direction: column; align-items: stretch; gap: 12px; }
+  .ac-stage { flex: 0 0 auto; margin: 0 auto; }
+  .dg-flow4 { flex-direction: column; }
+  .f4a { flex: 0 0 14px; height: 14px; }
+  .f4a::after { border-left-color: transparent; border-top-color: var(--dimmer); }
+  .gzone { width: 118px; height: 118px; }
+  .dg-geo { height: 158px; }
 
   /* 配图2:上下堆叠 */
   .vs { grid-template-columns: 1fr; gap: 14px; }
