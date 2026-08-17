@@ -386,12 +386,6 @@ figcaption {
 .rule h4 { margin: 0 0 10px; font-size: 15px; font-weight: 600; color: var(--accent-2); }
 .rule p { font-size: 13.5px; line-height: 1.8; color: var(--dim); margin: 0; }
 
-/* ─── 第 8 屏 · 还在解决的问题(低调处理) ─── */
-section.todo { padding: 52px 0; }
-.todo-title { font-size: 13px; font-weight: 600; color: var(--dimmer); margin: 0 0 10px; letter-spacing: .04em; }
-.todo-body { font-size: 13px; line-height: 1.85; color: var(--dimmer); max-width: 940px; }
-.todo-body b { color: var(--dim); font-weight: 600; }
-
 /* ─── 页脚 ─── */
 footer { border-top: 1px solid var(--line); padding: 46px 0 60px; }
 footer .proj { font-size: 14px; margin: 0 0 12px; color: var(--dim); }
@@ -507,7 +501,6 @@ footer .disc { font-size: 12.5px; color: var(--dimmer); margin: 0; }
   .bv { grid-column: 1 / -1; grid-row: 2; text-align: left; font-size: 11.5px; padding-left: 72px; }
 
   .thesis { font-size: 15.5px; }
-  .todo-body { font-size: 12.5px; }
 }
 
 @media (max-width: 380px) {
