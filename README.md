@@ -45,7 +45,7 @@
 
 ## 可展开的图文详情
 
-全站共 30 处原生 `<details>`,零 JavaScript:
+全站共 30 处原生 `<details>`,展开收起不依赖任何脚本:
 
 - 十一张管理端能力卡(摄影师端 App 那块改为指向专章的指引卡,不重复展开)
 - 十二格 App 差异化能力
@@ -87,45 +87,33 @@ Hero 那个记得加 `class="logoimg big"`。
 
 > **完整清单见 [`images/README.md`](images/README.md)** ——每一处占位对应哪个文件名、放什么截图、在哪一屏、建议尺寸、必须打码什么,都列好了,并按优先级分成「第一优先 4 张 / 第二优先 6 张 / 其余 15 张」。页面上每个占位框的第二行也直接写着它对应的文件名。
 
-### 批量替换(推荐)
+### 放图即显示(不需要改任何代码)
 
-1. 照着 `images/README.md` 的文件名,把打好码的截图放进仓库根目录的 `images/` 文件夹。
-2. 放几张都行,不用凑齐,然后**告诉助手一句「images 里放了 X 张,替换一下」**。
-3. 由助手统一把对应的占位块换成 `<img>` 并补上样式,**你不需要手改 HTML**。
+页面里 27 处占位已经全部预接好 `<img>`:图片存在就显示图片,不存在就自动回落成虚线占位框。
 
-### 手动替换(想自己动手时)
+1. **先打码**——客人姓名、电话、邮箱、金额、订单号、网盘提取码等敏感信息必须处理干净再入库。图片一旦提交进 Git 并推上 GitHub,历史里就永远存在,删掉当前版本也没用。
+2. 照着 [`images/README.md`](images/README.md) 的文件名(全小写、连字符、`.png`),把图放进 `images/`。
+3. 刷新页面——**放进去就显示了,`index.html` 一行都不用改**。
+4. 想让它出现在线上,`git add images/xxx.png` 后提交推送即可。
 
-每一处占位该放哪张图、叫什么文件名,见 [`images/README.md`](images/README.md) 的三张分组表格,这里不再重复。
-
-替换步骤:
-
-1. **先打码**——截图里的客人姓名、电话、邮箱、金额、订单号等敏感信息必须先处理干净再入库。图片一旦提交到 Git 并推上 GitHub,历史记录里就会一直存在,删掉当前版本也没用。
-2. 把处理好的图片按清单里的文件名放进 `images/` 文件夹(目录已经建好)。
-3. 在 `index.html` 里找到对应的占位块,整块替换成 `img` 标签:
+回落机制(每处占位的实际结构):
 
 ```html
-<!-- 替换前(占位框第二行已经写好了它对应的文件名) -->
-<div class="shot">
-  <p class="shot-name">总控台订单列表页截图</p>
-  <p class="shot-req">建议文件名:console-orders-list.png ｜ 建议 1600×900 ｜ 需打码:客人姓名、电话、金额</p>
-</div>
-
-<!-- 替换后 -->
-<img class="shotimg" src="images/console-orders-list.png" alt="总控台订单列表页">
+<figure class="shotwrap">
+  <img class="shotimg" src="images/console-orders-list.png" alt="总控台订单列表页"
+       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+  <div class="shot">
+    <p class="shot-name">总控台订单列表页截图</p>
+    <p class="shot-req">建议文件名:console-orders-list.png ｜ 建议 1600×900 ｜ 需打码:客人姓名、电话、金额</p>
+  </div>
+</figure>
 ```
 
-4. 如果想给图片加上和占位块一致的圆角与边框,在 `style.css` 末尾补一条:
+- `.shotwrap > .shot` 在 CSS 里默认 `display:none`,只有 `onerror` 触发时才置回 `flex`
+- 图片加载失败时 `<img>` 自身立即 `display:none`,**不会出现浏览器默认的破图图标**
+- 卡片内的 23 处用 `.shotwrap-in`,图片最大高度 420px;主线 4 处 520px
 
-```css
-.shotimg { display: block; width: 100%; margin-top: 28px;
-           border: 1px solid var(--line); border-radius: 12px; }
-```
-
-板块内的十二处占位(`class="shot shot-in"`)替换方式完全相同,只是尺寸更小,建议给 `img` 加上 `margin-top: 16px`。
-
-占位块不替换也不影响观感——它本身是按设计元素处理的,留着即可。
-
-仓库里的 `images/` 目录目前只有清单文件 `README.md` 与占位用的 `.gitkeep`,没有任何图片素材。
+占位框不替换也不影响观感——它本身是按设计元素处理的,留着即可。
 
 ## 本地预览
 
@@ -141,12 +129,13 @@ python3 -m http.server 8000     # 或起本地服务,访问 http://localhost:800
 ```
 index.html    单页全部内容(十屏 + 二十三张 CSS 配图 + 二十八个 CSS 图标)
 style.css     暖色深色样式,响应式断点 1024px / 768px,含打印浅色适配
-images/       截图目录:README.md 是 27 处占位的完整清单,.gitkeep 占位
+images/       截图目录:按清单文件名放图即自动显示;README.md 是 27 处占位的完整清单
 .nojekyll     关闭 GitHub Pages 的 Jekyll 处理
 ```
 
-- 零 JavaScript:平滑滚动由 CSS `scroll-behavior` 实现,板块展开由原生 `<details>` 实现
-- 零外部资源:系统字体栈,无图片素材
+- **无外部 JS 文件;仅 27 处 `<img onerror>` 内联回退,用于截图缺失时显示占位框**
+- 平滑滚动由 CSS `scroll-behavior` 实现,板块展开由原生 `<details>` 实现
+- 零第三方资源:系统字体栈,不引任何 CDN;截图放进 `images/` 后即为本仓库自有图片
 - 支持打印导出 PDF
 
 ## 数据说明
