@@ -102,22 +102,38 @@
 
 ## 当前已放进目录的图
 
-目录里现有 **12 张**真实截图(全部 `.jpg`,单张均 ≤300 KB,已提交进 Git):
+目录里现有 **28 张**真实截图(全部 `.jpg`,单张均 ≤300 KB,已提交进 Git):
 
 - `app-grab-hall.jpg`(139 KB)——抢单大厅真机截图
 - `app-schedule-fill.jpg`(139 KB)——档期填报页真机截图
 - `app-calendar-weather.jpg`(139 KB)——日历天气底色页真机截图
+- `app-magic-link.jpg`(283 KB)——专属链接落地首屏
+- `app-income-bill.jpg`(266 KB)——个人收入账单页
+- `app-grey-card.jpg`(274 KB)——抢单大厅含灰卡(已结束灰显)视图
+- `app-self-register.jpg`(140 KB)——自注册资料表单页
+- `app-work-review.jpg`(261 KB)——作品审核空态界面
 - `console-orders-list.jpg`(196 KB)——总控台订单列表页
 - `console-order-edit.jpg`(206 KB)——订单编辑页
 - `console-ai-parse.jpg`(190 KB)——订单文本解析界面
 - `console-mail-templates.jpg`(157 KB)——邮件模板管理页
 - `console-push-center.jpg`(209 KB)——推送模板中心
+- `console-push-copy.jpg`(130 KB)——推送文案模板列表
 - `console-weather-alert.jpg`(158 KB)——预警详情弹层
 - `console-grab-stats.jpg`(176 KB)——抢单统计页(成交率)
 - `console-grab-timing.jpg`(195 KB)——抢单时长分布页
+- `console-grab-modal.jpg`(138 KB)——发起抢单弹窗
+- `console-tier-setting.jpg`(135 KB)——抢单弹窗阶梯发布(评分档位)设置
+- `console-orders-total.jpg`(181 KB)——订单总览统计
 - `console-locations.jpg`(161 KB)——拍摄地点管理页
+- `console-settlement-report.jpg`(253 KB)——结算中心报表
+- `console-photographer-profile.jpg`(107 KB)——摄影师档案页
+- `console-delivery-progress.jpg`(162 KB)——订单交付进度(交付内容)视图
+- `console-alert-board.jpg`(190 KB)——AI 紧急看板
+- `console-app-mirror.jpg`(195 KB)——双端真图并排合成(左:总控台订单列表 / 右:App 抢单大厅,均为已脱敏真实截图)
+- `guest-photo-select.jpg`(28 KB)——客人选片界面(客照已模糊)
+- `guest-delivery-page.jpg`(101 KB)——客人交付页(客照已模糊)
 
-管理端截图均已完成脱敏(姓名、电话、邮箱、金额、订单号等一律替换或遮盖)后才入库。
+管理端与客人端截图均已完成脱敏(姓名、电话、邮箱、金额、订单号等一律替换或遮盖;含客照页面另加图像模糊)后才入库。
 
 ## 尺寸怎么理解
 
