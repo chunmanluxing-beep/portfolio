@@ -47,12 +47,18 @@
             <span class="khint" aria-hidden="true"></span>
           </summary>
         <div class="kdet">
-          <p class="kd-q">这个数字是什么意思</p>
-          <p class="kd-a">发出去的抢单任务里,最后有多大比例是被摄影师自己点「抢」接走的。</p>
-          <p class="kd-q">怎么算的</p>
-          <p class="kd-a kd-formula">抢单成交率 = 被摄影师主动接走的抢单任务数 ÷ 已发起的抢单任务总数。统计范围:2026-05 至 2026-08 生产环境。<span class="kd-todo">分子分母的排除项(已取消 / 中途改手动指派的任务是否计入)待生产库核验后补全</span></p>
-          <p class="kd-q">为什么这个数字重要</p>
-          <p class="kd-a">它衡量的是「不用客服追人」的比例——每 4 个派单任务有 3 个自己走完了,客服只需发布一次。</p>
+          <p class="kd-q">传统模式的代价</p>
+          <p class="kd-a">传统派单是客服逐个私聊:问一个、等一次回复,回了还要核对档期。人越多,客服越是瓶颈——而且这个瓶颈靠加班解决不了。</p>
+          <p class="kd-a kd-hit"><b>74.7% 的派单任务,客服只做一个动作——发布。</b>剩下的由摄影师自己抢完:派单从「客服的工作量」变成「系统的吞吐量」。</p>
+          <div class="kpibar">
+            <div class="kb-row trad"><span class="kb-track"><i class="kb-fill" style="--w:86%"></i><span class="kb-txt">传统:1 单 = 3–8 轮私聊</span></span></div>
+            <div class="kb-row sys"><span class="kb-track"><i class="kb-fill" style="--w:26%"></i><span class="kb-txt">本系统:1 次发布 · 74.7% 无需第二步</span></span></div>
+            <span class="kb-note">条长示意沟通量方向,非精确比例</span>
+          </div>
+          <details class="kpi-cal">
+            <summary>统计口径<span class="kc-ar" aria-hidden="true"></span></summary>
+            <div class="kc-body"><p class="kd-a kd-formula">抢单成交率 = 被摄影师主动接走的抢单任务数 ÷ 已发起的抢单任务总数。统计范围:2026-05 至 2026-08 生产环境。<span class="kd-todo">分子分母的排除项(已取消 / 中途改手动指派的任务是否计入)待生产库核验后补全</span></p></div>
+          </details>
           <figure class="shotwrap shotwrap-in">
             <img class="shotimg" src="images/console-grab-stats.png" alt="抢单统计页(成交率)"
                  onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
@@ -73,12 +79,18 @@
             <span class="khint" aria-hidden="true"></span>
           </summary>
         <div class="kdet">
-          <p class="kd-q">这个数字是什么意思</p>
-          <p class="kd-a">从客服点「发布抢单」到有人接走,一半的订单用时不超过 2 分钟。</p>
-          <p class="kd-q">怎么算的</p>
-          <p class="kd-a kd-formula">取每个成交抢单任务的(接单时刻 − 发布时刻),对全部成交任务取<b>中位数</b>(不是平均数,避免个别长尾把数字拉高)。<span class="kd-todo">统计窗口起止、以及循环再推的场次如何计入,待生产库核验后补全</span></p>
-          <p class="kd-q">为什么这个数字重要</p>
-          <p class="kd-a">中位数比平均数更能反映常态。2 分钟意味着派单在体感上就是「即时」的。</p>
+          <p class="kd-q">传统模式的代价</p>
+          <p class="kd-a">传统模式的等待长什么样?本页派单调度屏的示意时间轴里:8 分钟未回复,23 分钟档期冲突,41 分钟仍在等。</p>
+          <p class="kd-a kd-hit"><b>一半的订单 2 分钟内被接走。</b>不是快了几倍,是把「等人回复」这个环节从流程里拿掉了。</p>
+          <div class="kpibar">
+            <div class="kb-row trad"><span class="kb-track"><i class="kb-fill" style="--w:88%"></i><span class="kb-txt">传统:41 分钟仍无着落</span></span></div>
+            <div class="kb-row sys"><span class="kb-track"><i class="kb-fill" style="--w:8%"></i><span class="kb-txt">本系统:2.0 分钟成交(中位数)</span></span></div>
+            <span class="kb-note">41 分钟出自本页传统模式示意时间轴,为典型场景示意、非统计均值;条长按时间方向示意</span>
+          </div>
+          <details class="kpi-cal">
+            <summary>统计口径<span class="kc-ar" aria-hidden="true"></span></summary>
+            <div class="kc-body"><p class="kd-a kd-formula">取每个成交抢单任务的(接单时刻 − 发布时刻),对全部成交任务取<b>中位数</b>(不是平均数,避免个别长尾把数字拉高)。<span class="kd-todo">统计窗口起止、以及循环再推的场次如何计入,待生产库核验后补全</span></p></div>
+          </details>
           <figure class="shotwrap shotwrap-in">
             <img class="shotimg" src="images/console-grab-timing.png" alt="抢单时长分布页"
                  onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
@@ -99,12 +111,18 @@
             <span class="khint" aria-hidden="true"></span>
           </summary>
         <div class="kdet">
-          <p class="kd-q">这个数字是什么意思</p>
-          <p class="kd-a">系统上线以来累计处理过的订单总数。</p>
-          <p class="kd-q">怎么算的</p>
-          <p class="kd-a kd-formula">订单表中的订单记录总数,覆盖海外 OTA 平台与自营双渠道。<span class="kd-todo">是否包含已取消 / 已退款订单,待生产库核验后补全</span></p>
-          <p class="kd-q">为什么这个数字重要</p>
-          <p class="kd-a">这是「真在跑」最直接的证据——不是 demo,是承载真实交易的生产系统。</p>
+          <p class="kd-q">传统模式的代价</p>
+          <p class="kd-a">作品集里的系统大多停在 demo;demo 和生产系统之间,隔着全部的工程难度。</p>
+          <p class="kd-a kd-hit"><b>481 笔真实订单、双渠道、横跨 2026.05–08 四个自然月</b>——这是承载真金白银交易的生产系统。</p>
+          <div class="kpibar">
+            <div class="kb-row trad"><span class="kb-track"><i class="kb-fill" style="--w:0%"></i><span class="kb-txt">典型 demo:0 笔真实订单</span></span></div>
+            <div class="kb-row sys"><span class="kb-track"><i class="kb-fill" style="--w:92%"></i><span class="kb-txt">本系统:481 笔生产订单</span></span></div>
+            <span class="kb-note">条长示意</span>
+          </div>
+          <details class="kpi-cal">
+            <summary>统计口径<span class="kc-ar" aria-hidden="true"></span></summary>
+            <div class="kc-body"><p class="kd-a kd-formula">订单表中的订单记录总数,覆盖海外 OTA 平台与自营双渠道。<span class="kd-todo">是否包含已取消 / 已退款订单,待生产库核验后补全</span></p></div>
+          </details>
           <figure class="shotwrap shotwrap-in">
             <img class="shotimg" src="images/console-orders-total.png" alt="订单总览统计"
                  onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
@@ -125,12 +143,18 @@
             <span class="khint" aria-hidden="true"></span>
           </summary>
         <div class="kdet">
-          <p class="kd-q">这个数字是什么意思</p>
-          <p class="kd-a">实际有拍摄点、派得出单的城市与地区数量。</p>
-          <p class="kd-q">怎么算的</p>
-          <p class="kd-a kd-formula">拍摄地点表中去重后的城市 / 地区数。当前九项:京都、东京、大阪、奈良、福冈、镰仓、富士山、札幌、小樽(富士山为地区而非市,故单位用「地」)。<span class="kd-todo">对应去重 SQL 的精确口径(是否含已停用地点)待生产库核验后补全</span></p>
-          <p class="kd-q">为什么这个数字重要</p>
-          <p class="kd-a">跨城市履约是这门生意最难的部分,城市数直接决定调度复杂度。</p>
+          <p class="kd-q">传统模式的代价</p>
+          <p class="kd-a">单城市履约靠人还盯得住;城市一多,微信群和记忆立刻失效。</p>
+          <p class="kd-a kd-hit"><b>9 个城市与地区同时调度,一个人管。</b>因为调度在系统里,不在脑子里。</p>
+          <div class="kpibar">
+            <div class="kb-row trad"><span class="kb-track"><i class="kb-fill" style="--w:24%"></i><span class="kb-txt">人工调度:随城市数急剧失控</span></span></div>
+            <div class="kb-row sys"><span class="kb-track"><i class="kb-fill" style="--w:92%"></i><span class="kb-txt">系统调度:9 地并行</span></span></div>
+            <span class="kb-note">条长示意;「急剧失控」为定性表述</span>
+          </div>
+          <details class="kpi-cal">
+            <summary>统计口径<span class="kc-ar" aria-hidden="true"></span></summary>
+            <div class="kc-body"><p class="kd-a kd-formula">拍摄地点表中去重后的城市 / 地区数。当前九项:京都、东京、大阪、奈良、福冈、镰仓、富士山、札幌、小樽(富士山为地区而非市,故单位用「地」)。<span class="kd-todo">对应去重 SQL 的精确口径(是否含已停用地点)待生产库核验后补全</span></p></div>
+          </details>
           <figure class="shotwrap shotwrap-in">
             <img class="shotimg" src="images/console-locations.png" alt="拍摄地点管理页"
                  onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
@@ -160,7 +184,7 @@
     <div class="qa3">
       <div class="qa">
         <p class="qa-q">这是什么</p>
-        <p class="qa-a">一套把旅拍订单从进单到结算全程自动流转的业务系统,由三个端组成:运营总控台、摄影师手机端、客人交付页。</p>
+        <p class="qa-a">一套把旅拍订单从进单到结算全程自动流转的业务系统,由三个端组成:运营总控台、榴档期 App、客人交付页。</p>
       </div>
       <div class="qa">
         <p class="qa-q">给谁用</p>
@@ -172,38 +196,53 @@
       </div>
     </div>
 
-    <!-- ─── 配图 0:系统全景(三层结构) ─── -->
+    <!-- ─── 配图 0:系统全景(节点-连线动画流程图) ─── -->
     <figure class="fig">
-      <div class="sysmap">
+      <div class="sysflow">
 
-        <div class="sm-layer sm-l1">
-          <span class="sm-lab">① 订单来源</span>
-          <div class="sm-row">
-            <span class="sm-src">海外 OTA 平台</span>
-            <span class="sm-src">自营渠道</span>
+        <div class="sf-srcs">
+          <span class="sf-src">海外 OTA 平台</span>
+          <span class="sf-src">自营渠道</span>
+        </div>
+
+        <div class="sf-in" aria-hidden="true">
+          <span class="sf-line"><i class="sf-dot"></i></span>
+          <span class="sf-inlab">订单流入</span>
+          <span class="sf-line"><i class="sf-dot d2"></i></span>
+        </div>
+
+        <div class="sf-ends">
+          <div class="sf-end e-ops">
+            <span class="sfico sfico-screen" aria-hidden="true"><i></i><i></i></span>
+            <b>运营总控台</b>
+            <i>运营角色 · 电脑或手机 App 均可进入</i>
+            <em>建单 · 派单 · 结算</em>
+          </div>
+          <div class="sf-end e-app">
+            <span class="sfico sfico-phone" aria-hidden="true"><i></i><i></i></span>
+            <b>榴档期 App</b>
+            <i>摄影师角色 · 随身接单工作台</i>
+            <em>填档期 · 抢单 · 传作品</em>
+          </div>
+          <div class="sf-end e-guest">
+            <span class="sfico sfico-web" aria-hidden="true"><i></i><i></i></span>
+            <b>客人交付页</b>
+            <i>客人 · 免登录</i>
+            <em>选片 · 验收 · 查进度</em>
           </div>
         </div>
 
-        <span class="sm-arrow" aria-hidden="true"></span>
-
-        <div class="sm-layer sm-l2">
-          <span class="sm-lab">② 三个端各管一段</span>
-          <div class="sm-row">
-            <span class="sm-end e-ops"><b>运营总控台</b><i>工作室 · 电脑浏览器</i><em>建单 · 派单 · 结算</em></span>
-            <span class="sm-end e-app"><b>摄影师端 App</b><i>摄影师 · 手机</i><em>填档期 · 抢单 · 传作品</em></span>
-            <span class="sm-end e-guest"><b>客人交付页</b><i>客人 · 免登录</i><em>选片 · 验收 · 查进度</em></span>
-          </div>
+        <div class="sf-out" aria-hidden="true">
+          <span class="sf-line up"><i class="sf-dot"></i></span>
+          <span class="sf-line up"><i class="sf-dot d2"></i></span>
+          <span class="sf-line up"><i class="sf-dot d3"></i></span>
+          <span class="sf-outlab">状态回写 · 实时同步</span>
         </div>
 
-        <span class="sm-arrow" aria-hidden="true"></span>
-
-        <div class="sm-layer sm-l3">
-          <span class="sm-lab">③ 共享数据底座</span>
-          <div class="sm-base">同一份订单数据 · 三端实时同步 · 没有任何人需要在两个系统之间转录</div>
-        </div>
+        <div class="sf-base"><span class="sf-baselab">共享数据底座</span>同一份订单数据 · 三端实时同步</div>
 
       </div>
-      <figcaption><b>图 0 · 系统全景</b>:订单从两个来源进来,由三个端分工承接,底下是同一份数据。三端不是三套系统,是同一套系统的三个视角。</figcaption>
+      <figcaption><b>图 0 · 系统全景</b>:订单从两个来源流入,三个端各管一段,底下是同一份数据——三端不是三套系统,是同一套系统按角色开的三个视角。</figcaption>
     </figure>
   </div>
 </section>
@@ -268,15 +307,15 @@
     <p class="kicker">系统构成</p>
     <h2>一套系统,两个入口</h2>
     <p class="screenlead">这一屏讲:两个端怎么分工,一条订单怎么走完</p>
-    <p class="dek">工作室在电脑上用管理端,摄影师在手机上用榴档期 App;两边共用同一批订单与档期数据,不需要来回同步。</p>
+    <p class="dek">同一套系统按角色开权限:运营角色登录看到总控台——电脑浏览器或手机上的榴档期 App 都能进入;摄影师角色登录看到接单工作台。两种视角共用同一批订单与档期数据,<b>设备不是边界,权限才是</b>。</p>
 
     <!-- ─── 配图 2:同一条订单的两端镜像视图 ─── -->
     <figure class="fig">
       <div class="mirror">
         <div class="mr-head">
-          <span class="mrh ops">总控台 · 工作室看到的</span>
+          <span class="mrh ops">总控台 · 运营角色看到的</span>
           <span class="mrh mid">字段映射</span>
-          <span class="mrh app">榴档期 App · 摄影师看到的</span>
+          <span class="mrh app">榴档期 App · 摄影师角色看到的</span>
         </div>
         <div class="mr-row">
           <span class="mrc ops">客人姓名<i>山田 花子</i></span>
@@ -325,7 +364,7 @@
         </div>
       </div>
 
-      <p class="mr-note"><b>同一份数据,两个视角。</b>摄影师看得到履约所需的一切——时间、地点、时长、报酬;看不到客人隐私与订单金额。<b>这是设计选择,不是技术限制</b>:字段是一条条决定要不要下发的,默认不给,要给必须有履约上的理由。</p>
+      <p class="mr-note"><b>同一份数据,两个视角——谁看到什么,由角色权限决定,不由设备决定。</b>摄影师角色看得到履约所需的一切——时间、地点、时长、报酬;看不到客人隐私与订单金额。<b>这是设计选择,不是技术限制</b>:字段是一条条决定要不要下发的,默认不给,要给必须有履约上的理由。</p>
 
       <span class="mr-tags"><i>管理端:建单报价 · 派单调度 · 交付跟进 · 结算对账 · 监控告警</i><i>App:填档期 · 抢单接单 · 传作品 · 收预警 · 查收入</i></span>
       <div class="ts-base">同一套订单 ｜ 同一份档期 ｜ 同一个报价</div>
@@ -359,65 +398,117 @@
     <figure class="fig">
       <div class="journey">
 
-        <div class="jn">
-          <span class="jn-i">1</span>
-          <b>客人下单</b>
-          <span class="jn-who guest">客人</span>
-          <i>从 OTA 平台或私域进来</i>
-        </div>
-        <span class="jn-a" aria-hidden="true"></span>
+        <details class="step">
+          <summary>
+            <span class="jn-i">1</span>
+            <b>客人下单</b>
+            <span class="jn-who guest">客人</span>
+            
+            <span class="st-desc">从 OTA 平台或私域进来</span>
+            <span class="st-ar" aria-hidden="true"></span>
+          </summary>
+          <div class="st-body">
+            <p>订单来自海外 OTA 平台与自营双渠道。渠道在进单时自动识别,并绑定后续的合规与门控策略——平台单和自营单从第一步起就走各自的规则。</p>
+            <div class="stepfig"><span class="jfbox">OTA 平台</span><span class="jfbox">自营渠道</span><span class="jfar"></span><span class="jfbox hi">进入系统</span></div>
+            <p class="st-more"><a href="#who">详细 →</a></p>
+          </div>
+        </details>
 
-        <div class="jn">
-          <span class="jn-i">2</span>
-          <b>建单</b>
-          <span class="jn-who ops">管理端</span>
-          <i>粘贴文本自动填表,人工核对</i>
-          <span class="jn-auto">半自动</span>
-        </div>
-        <span class="jn-a" aria-hidden="true"></span>
+        <details class="step">
+          <summary>
+            <span class="jn-i">2</span>
+            <b>建单</b>
+            <span class="jn-who ops">管理端</span>
+            <span class="jn-auto">半自动</span>
+            <span class="st-desc">粘贴文本自动填表,人工核对</span>
+            <span class="st-ar" aria-hidden="true"></span>
+          </summary>
+          <div class="st-body">
+            <p>整段订单文本粘贴进来,AI 自动解析成表单字段;人工核对确认——这是全流程唯一需要判断的一步;保存即自动发确认信、自动进派单池。建单环节全程 2–4 分钟。</p>
+            <div class="stepfig"><span class="jftxt"><i></i><i></i><i></i></span><span class="jfar"></span><span class="jfform"><i>订单号</i><i>时间</i><i>金额</i></span></div>
+            <p class="st-more"><a href="#system">详细 →</a></p>
+          </div>
+        </details>
 
-        <div class="jn core">
-          <span class="jn-i">3</span>
-          <b>派单</b>
-          <span class="jn-who ops">管理端</span>
-          <i>四道门槛圈人,一次推送</i>
-          <span class="jn-auto">自动</span>
-        </div>
-        <span class="jn-a" aria-hidden="true"></span>
+        <details class="step core">
+          <summary>
+            <span class="jn-i">3</span>
+            <b>派单</b>
+            <span class="jn-who ops">管理端</span>
+            <span class="jn-auto">自动</span>
+            <span class="st-desc">四道门槛圈人,一次推送</span>
+            <span class="st-ar" aria-hidden="true"></span>
+          </summary>
+          <div class="st-body">
+            <p>系统按四道硬门槛自动圈定候选人:覆盖该城市、当天有档期、该时段无冲突单、评分达标;一次推送到所有符合条件的人,并按评分梯队分层放号,最多可配 6 档。</p>
+            <div class="stepfig jf3"><span class="jffn" style="--fw:100%">覆盖城市</span><span class="jffn" style="--fw:76%">有档期 · 无冲突</span><span class="jffn hi" style="--fw:52%">评分达标 → 推送</span></div>
+            <p class="st-more"><a href="#dispatch">详细 →</a></p>
+          </div>
+        </details>
 
-        <div class="jn">
-          <span class="jn-i">4</span>
-          <b>摄影师接单</b>
-          <span class="jn-who app">榴档期 App</span>
-          <i>手机上先到先得,自动占档期</i>
-        </div>
-        <span class="jn-a" aria-hidden="true"></span>
+        <details class="step">
+          <summary>
+            <span class="jn-i">4</span>
+            <b>摄影师接单</b>
+            <span class="jn-who app">榴档期 App</span>
+            
+            <span class="st-desc">手机上先到先得,自动占档期</span>
+            <span class="st-ar" aria-hidden="true"></span>
+          </summary>
+          <div class="st-body">
+            <p>摄影师在手机上先到先得;多人同抢时系统保证恰好一人成功,其余人立即收到明确提示。抢到即自动占用档期、自动下架该单。</p>
+            <div class="stepfig"><span class="jfp">A</span><span class="jfp win">B ✓</span><span class="jfp">C</span><span class="jfnote">并发保证:恰好一人成功</span></div>
+            <p class="st-more"><a href="#app">详细 →</a></p>
+          </div>
+        </details>
 
-        <div class="jn">
-          <span class="jn-i">5</span>
-          <b>拍摄</b>
-          <span class="jn-who app">榴档期 App</span>
-          <i>开拍提醒、天气与安全预警</i>
-          <span class="jn-auto">自动</span>
-        </div>
-        <span class="jn-a" aria-hidden="true"></span>
+        <details class="step">
+          <summary>
+            <span class="jn-i">5</span>
+            <b>拍摄</b>
+            <span class="jn-who app">榴档期 App</span>
+            <span class="jn-auto">自动</span>
+            <span class="st-desc">开拍提醒、天气与安全预警</span>
+            <span class="st-ar" aria-hidden="true"></span>
+          </summary>
+          <div class="st-body">
+            <p>开拍前系统自动提醒;暴雨、台风、地震等灾种按城市定向预警,当天有拍摄的摄影师还会收到针对性建议——户外履约的风险前置到出门之前。</p>
+            <div class="stepfig"><span class="jfbox">开拍提醒</span><span class="jfbox warn">天气预警</span><span class="jfnote">都是系统自动发出</span></div>
+            <p class="st-more"><a href="#app">详细 →</a></p>
+          </div>
+        </details>
 
-        <div class="jn">
-          <span class="jn-i">6</span>
-          <b>交付</b>
-          <span class="jn-who guest">客人交付页</span>
-          <i>选片、精修、验收各做各的一棒</i>
-          <span class="jn-auto">自动</span>
-        </div>
-        <span class="jn-a" aria-hidden="true"></span>
+        <details class="step">
+          <summary>
+            <span class="jn-i">6</span>
+            <b>交付</b>
+            <span class="jn-who guest">客人交付页</span>
+            <span class="jn-auto">自动</span>
+            <span class="st-desc">选片、精修、验收各做各的一棒</span>
+            <span class="st-ar" aria-hidden="true"></span>
+          </summary>
+          <div class="st-body">
+            <p>底片、选片、精修、验收四棒在同一张免登录页面上交接:摄影师传底片、客人选片、精修师交成品、客人验收,每一步自动通知下一棒并回写订单进度——客服退出中转链路。</p>
+            <div class="stepfig"><span class="jfr on">底片</span><span class="jfr on">选片</span><span class="jfr on">精修</span><span class="jfr">验收</span></div>
+            <p class="st-more"><a href="#why">详细 →</a></p>
+          </div>
+        </details>
 
-        <div class="jn">
-          <span class="jn-i">7</span>
-          <b>结算</b>
-          <span class="jn-who ops">管理端</span>
-          <i>公示价直接进结算,月末封口</i>
-          <span class="jn-auto">自动</span>
-        </div>
+        <details class="step">
+          <summary>
+            <span class="jn-i">7</span>
+            <b>结算</b>
+            <span class="jn-who ops">管理端</span>
+            <span class="jn-auto">自动</span>
+            <span class="st-desc">公示价直接进结算,月末封口</span>
+            <span class="st-ar" aria-hidden="true"></span>
+          </summary>
+          <div class="st-body">
+            <p>抢单公示价直接进入结算,中间无人转录;成本按六级优先取价,加急加修奖励自动生成,自然月可封口冻结——账算得清,也锁得住。</p>
+            <div class="stepfig"><span class="jfbox hi">公示价 ¥</span><span class="jfar"></span><span class="jfbox">结算单</span><span class="jfnote">零转录</span></div>
+            <p class="st-more"><a href="#system">详细 →</a></p>
+          </div>
+        </details>
 
       </div>
 
@@ -428,7 +519,7 @@
         <span class="jl"><i class="jau"></i>标「自动」= 这一步系统自己跑</span>
       </p>
 
-      <figcaption><b>图 3 · 一条订单的完整旅程</b>:这条线是整个系统的主干,后面的每一块能力都挂在这条线的某一段上。七步里只有建单与接单必须有人动手。</figcaption>
+      <figcaption><b>图 3 · 一条订单的完整旅程</b>:这条线是整个系统的主干,<b>每一步都可以点开</b>看系统在这一步具体做了什么。七步里只有建单与接单必须有人动手。</figcaption>
     </figure>
   </div>
 </section>
@@ -915,7 +1006,7 @@
     </div>
 
     <p class="grouptitle">摄影师端专属 <span>· 1 块</span></p>
-    <p class="groupnote">只在手机上出现,面向不坐班的兼职摄影师。</p>
+    <p class="groupnote">只对摄影师角色开放,面向不坐班的兼职供给。</p>
     <div class="mods">
       <div class="mod pointer">
         <span class="ico ico-phone" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></span>
@@ -1047,12 +1138,18 @@
           <span class="khint" aria-hidden="true"></span>
         </summary>
         <div class="kdet">
-          <p class="kd-q">这个数字是什么意思</p>
-          <p class="kd-a">发出去的抢单任务里,最后有多大比例是被摄影师自己点「抢」接走的。</p>
-          <p class="kd-q">怎么算的</p>
-          <p class="kd-a kd-formula">抢单成交率 = 被摄影师主动接走的抢单任务数 ÷ 已发起的抢单任务总数。统计范围:2026-05 至 2026-08 生产环境。<span class="kd-todo">分子分母的排除项(已取消 / 中途改手动指派的任务是否计入)待生产库核验后补全</span></p>
-          <p class="kd-q">为什么这个数字重要</p>
-          <p class="kd-a">它衡量的是「不用客服追人」的比例——每 4 个派单任务有 3 个自己走完了,客服只需发布一次。</p>
+          <p class="kd-q">传统模式的代价</p>
+          <p class="kd-a">上方时间轴就是传统派单的日常:逐个私聊,41 分钟过去,问到第 4 个人仍然没空。人越多,客服越是瓶颈。</p>
+          <p class="kd-a kd-hit"><b>74.7% 的派单任务,客服只做一个动作——发布。</b>剩下的由摄影师自己抢完:派单从「客服的工作量」变成「系统的吞吐量」。</p>
+          <div class="kpibar">
+            <div class="kb-row trad"><span class="kb-track"><i class="kb-fill" style="--w:86%"></i><span class="kb-txt">传统:1 单 = 3–8 轮私聊</span></span></div>
+            <div class="kb-row sys"><span class="kb-track"><i class="kb-fill" style="--w:26%"></i><span class="kb-txt">本系统:1 次发布 · 74.7% 无需第二步</span></span></div>
+            <span class="kb-note">条长示意沟通量方向,非精确比例</span>
+          </div>
+          <details class="kpi-cal">
+            <summary>统计口径<span class="kc-ar" aria-hidden="true"></span></summary>
+            <div class="kc-body"><p class="kd-a kd-formula">抢单成交率 = 被摄影师主动接走的抢单任务数 ÷ 已发起的抢单任务总数。统计范围:2026-05 至 2026-08 生产环境。<span class="kd-todo">分子分母的排除项(已取消 / 中途改手动指派的任务是否计入)待生产库核验后补全</span></p></div>
+          </details>
           <figure class="shotwrap shotwrap-in">
             <img class="shotimg" src="images/console-grab-stats.png" alt="抢单统计页(成交率)"
                  onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
@@ -1070,12 +1167,18 @@
           <span class="khint" aria-hidden="true"></span>
         </summary>
         <div class="kdet">
-          <p class="kd-q">这个数字是什么意思</p>
-          <p class="kd-a">从客服点「发布抢单」到有人接走,一半的订单用时不超过 2 分钟。</p>
-          <p class="kd-q">怎么算的</p>
-          <p class="kd-a kd-formula">取每个成交抢单任务的(接单时刻 − 发布时刻),对全部成交任务取<b>中位数</b>(不是平均数,避免个别长尾把数字拉高)。<span class="kd-todo">统计窗口起止、以及循环再推的场次如何计入,待生产库核验后补全</span></p>
-          <p class="kd-q">为什么这个数字重要</p>
-          <p class="kd-a">中位数比平均数更能反映常态。2 分钟意味着派单在体感上就是「即时」的。</p>
+          <p class="kd-q">传统模式的代价</p>
+          <p class="kd-a">上方串行时间轴里:8 分钟未回复,23 分钟档期冲突,41 分钟仍在等——每一分钟都是客服守在微信前的时间。</p>
+          <p class="kd-a kd-hit"><b>一半的订单 2 分钟内被接走。</b>不是快了几倍,是把「等人回复」这个环节从流程里拿掉了。</p>
+          <div class="kpibar">
+            <div class="kb-row trad"><span class="kb-track"><i class="kb-fill" style="--w:88%"></i><span class="kb-txt">传统:41 分钟仍无着落</span></span></div>
+            <div class="kb-row sys"><span class="kb-track"><i class="kb-fill" style="--w:8%"></i><span class="kb-txt">本系统:2.0 分钟成交(中位数)</span></span></div>
+            <span class="kb-note">41 分钟出自上方传统模式示意时间轴,为典型场景示意、非统计均值;条长按时间方向示意</span>
+          </div>
+          <details class="kpi-cal">
+            <summary>统计口径<span class="kc-ar" aria-hidden="true"></span></summary>
+            <div class="kc-body"><p class="kd-a kd-formula">取每个成交抢单任务的(接单时刻 − 发布时刻),对全部成交任务取<b>中位数</b>(不是平均数,避免个别长尾把数字拉高)。<span class="kd-todo">统计窗口起止、以及循环再推的场次如何计入,待生产库核验后补全</span></p></div>
+          </details>
           <figure class="shotwrap shotwrap-in">
             <img class="shotimg" src="images/console-grab-timing.png" alt="抢单时长分布页"
                  onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
@@ -1093,12 +1196,18 @@
           <span class="khint" aria-hidden="true"></span>
         </summary>
         <div class="kdet">
-          <p class="kd-q">这个数字是什么意思</p>
-          <p class="kd-a">成交的抢单里,绝大多数在第一轮推送就被接走,不需要再推第二次。</p>
-          <p class="kd-q">怎么算的</p>
-          <p class="kd-a kd-formula">首轮推送即成交的抢单任务数 ÷ 成交的抢单任务数。<span class="kd-todo">分母取「成交任务」还是「全部已发起任务」,以及再推场次的界定,待生产库核验后补全</span></p>
-          <p class="kd-q">为什么这个数字重要</p>
-          <p class="kd-a">它说明候选池圈得准——推给对的人,一次就够,不必反复打扰。</p>
+          <p class="kd-q">传统模式的代价</p>
+          <p class="kd-a">传统模式没人接就要再问一轮,每一轮都是客服的时间,轮次不可控。</p>
+          <p class="kd-a kd-hit"><b>96% 的成交单,一次推送就够了。</b>二次触达在这套系统里是异常,不是常态。</p>
+          <div class="kpibar">
+            <div class="kb-row trad"><span class="kb-track"><i class="kb-fill" style="--w:82%"></i><span class="kb-txt">传统:重复 N 轮 · 轮次不可控</span></span></div>
+            <div class="kb-row sys"><span class="kb-track"><i class="kb-fill" style="--w:18%"></i><span class="kb-txt">本系统:96.0% 一轮完成</span></span></div>
+            <span class="kb-note">条长示意触达轮次方向,非精确比例</span>
+          </div>
+          <details class="kpi-cal">
+            <summary>统计口径<span class="kc-ar" aria-hidden="true"></span></summary>
+            <div class="kc-body"><p class="kd-a kd-formula">首轮推送即成交的抢单任务数 ÷ 成交的抢单任务数。<span class="kd-todo">分母取「成交任务」还是「全部已发起任务」,以及再推场次的界定,待生产库核验后补全</span></p></div>
+          </details>
           <figure class="shotwrap shotwrap-in">
             <img class="shotimg" src="images/console-push-hitrate.png" alt="推送命中率统计"
                  onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
@@ -1116,12 +1225,17 @@
           <span class="khint" aria-hidden="true"></span>
         </summary>
         <div class="kdet">
-          <p class="kd-q">这个数字是什么意思</p>
-          <p class="kd-a">抢单这套新机制上线后两个月,已经承接了全部派单量的约三分之一。</p>
-          <p class="kd-q">怎么算的</p>
-          <p class="kd-a kd-formula">同期由抢单方式成交的派单数 ÷ 同期全部派单数(含手动指派)。统计窗口:抢单功能上线后的头两个月。<span class="kd-todo">窗口的精确起止日期待生产库核验后补全</span></p>
-          <p class="kd-q">为什么这个数字重要</p>
-          <p class="kd-a">它衡量的是新机制「被接受的速度」——不是我说它好,是供给侧用脚投票。</p>
+          <p class="kd-q">传统模式的代价</p>
+          <p class="kd-a">新机制上线的常见命运是没人用——尤其当用户是不坐班、不看后台的自由职业者。</p>
+          <p class="kd-a kd-hit"><b>抢单上线两个月,承接了全部派单量的三分之一。</b>这不是我说它好,是供给侧用脚投票。</p>
+          <div class="kpibar">
+            <div class="kb-row sys"><span class="kb-track"><i class="kb-fill" style="--w:32.9%"></i><span class="kb-txt">抢单承接 32.9% · 上线两个月</span></span></div>
+            <span class="kb-note">条长按真实比例映射:满条 = 同期全部派单量</span>
+          </div>
+          <details class="kpi-cal">
+            <summary>统计口径<span class="kc-ar" aria-hidden="true"></span></summary>
+            <div class="kc-body"><p class="kd-a kd-formula">同期由抢单方式成交的派单数 ÷ 同期全部派单数(含手动指派)。统计窗口:抢单功能上线后的头两个月。<span class="kd-todo">窗口的精确起止日期待生产库核验后补全</span></p></div>
+          </details>
           <figure class="shotwrap shotwrap-in">
             <img class="shotimg" src="images/console-urgent-share.png" alt="派单方式占比统计"
                  onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
