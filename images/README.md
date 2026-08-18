@@ -102,9 +102,22 @@
 
 ## 当前已放进目录的图
 
-工作区里已经放了 3 张(来自 App 下载落地页的真机截图,780×1688 JPG):
-`app-grab-hall.jpg`、`app-schedule-fill.jpg`、`app-calendar-weather.jpg`。
-**它们目前是 untracked,没有提交进 Git**——等你目视确认无敏感信息后再 `git add` 即可。
+目录里现有 **12 张**真实截图(全部 `.jpg`,单张均 ≤300 KB,已提交进 Git):
+
+- `app-grab-hall.jpg`(139 KB)——抢单大厅真机截图
+- `app-schedule-fill.jpg`(139 KB)——档期填报页真机截图
+- `app-calendar-weather.jpg`(139 KB)——日历天气底色页真机截图
+- `console-orders-list.jpg`(196 KB)——总控台订单列表页
+- `console-order-edit.jpg`(206 KB)——订单编辑页
+- `console-ai-parse.jpg`(190 KB)——订单文本解析界面
+- `console-mail-templates.jpg`(157 KB)——邮件模板管理页
+- `console-push-center.jpg`(209 KB)——推送模板中心
+- `console-weather-alert.jpg`(158 KB)——预警详情弹层
+- `console-grab-stats.jpg`(176 KB)——抢单统计页(成交率)
+- `console-grab-timing.jpg`(195 KB)——抢单时长分布页
+- `console-locations.jpg`(161 KB)——拍摄地点管理页
+
+管理端截图均已完成脱敏(姓名、电话、邮箱、金额、订单号等一律替换或遮盖)后才入库。
 
 ## 尺寸怎么理解
 
