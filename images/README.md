@@ -1,6 +1,6 @@
 # 截图清单 · 拍完照着文件名放进这个目录
 
-网站里一共留了 **36 处**截图占位,去重后需要 **32 张图**(其中 3 张各用在两处)。
+网站里一共留了 **38 处**截图占位,去重后需要 **32 张图**(其中 6 张各用在两处)。
 按下面的文件名保存到 `images/` 目录即可——**页面会自动显示,`index.html` 一行都不用改**。
 
 ## 怎么用
@@ -97,7 +97,7 @@
 
 ## 两点说明
 
-- **3 张图各用在两处**:`console-grab-modal.png`(第 5 屏正文 + 「派单调度」卡片内)、`app-grab-hall.png`(第 7 屏正文 + 「抢单大厅」格子内)、`console-grab-stats.png` 与 `console-grab-timing.png`(Hero KPI + 派单调度 KPI)。各截一张就够,同一个文件会自动填进所有位置。
+- **6 张图各用在两处**:`console-grab-modal.png`(派单调度正文 + 「派单调度」卡片内)、`app-grab-hall.png`(App 专章正文 + 「抢单大厅」格子内)、`console-grab-stats.png` 与 `console-grab-timing.png`(Hero KPI + 派单调度 KPI)、`guest-photo-select.png` 与 `guest-delivery-page.png`(原位置 + 客人交付页专章)。各截一张就够,同一个文件会自动填进所有位置。
 - **可能是同一个页面的两处**:`console-push-center.png`(推送模板中心)与 `console-push-copy.png`(推送文案模板列表)。如果系统里其实是同一个页面,只截一张,复制成两个文件名即可。
 
 ## 当前已放进目录的图

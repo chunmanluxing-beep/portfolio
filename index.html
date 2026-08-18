@@ -18,7 +18,7 @@
     <span class="logoslot" aria-hidden="true">LOGO</span>
     <span class="navbrand">榴档期</span>
     <ul>
-      <li><a href="#who">适用场景</a></li>
+      <li><a href="#guest">客人端</a></li>
       <li><a href="#two">系统构成</a></li>
       <li><a href="#system">管理端</a></li>
       <li><a href="#dispatch">派单调度</a></li>
@@ -36,6 +36,14 @@
     <span class="logoslot big" aria-hidden="true">LOGO</span>
     <h1 class="brand"><em>榴档期</em><span>旅拍自动化调度管理系统</span></h1>
     <p class="sub">一套真实运行的生产系统:覆盖日本 9 个城市与地区的旅拍业务,打通接单、建单、派单、拍摄、交付、结算全链路,由运营总控台、摄影师移动端、客人交付页三端协同。</p>
+
+    <a class="lifeline" href="#two">
+      <span class="ll-track" aria-hidden="true"><i class="ll-dot"></i></span>
+      <span class="ll-nodes">
+        <span class="ll-n n1">进单</span><span class="ll-n n2">派单</span><span class="ll-n n3">接单</span><span class="ll-n n4">拍摄</span><span class="ll-n n5">交付</span><span class="ll-n n6">结算</span>
+      </span>
+      <span class="ll-cap">从进单到结算,全程自动流转</span>
+    </a>
 
     <ul class="stats">
       <li>
@@ -196,14 +204,25 @@
       </div>
     </div>
 
-    <!-- ─── 配图 0:系统全景(节点-连线动画流程图) ─── -->
+    <!-- ─── 配图 0:系统全景(海报化 · 节点可点击 · App↔后台双向同步) ─── -->
     <figure class="fig">
-      <div class="sysflow">
+      <div class="sysflow sysflow-xl">
 
-        <div class="sf-srcs">
-          <span class="sf-src">海外 OTA 平台</span>
-          <span class="sf-src">自营渠道</span>
-        </div>
+        <details class="sf-det sf-det-src">
+          <summary>
+            <span class="sf-srcs">
+              <span class="sf-src">海外 OTA 平台</span>
+              <span class="sf-src">自营渠道</span>
+            </span>
+            <span class="sf-hint" aria-hidden="true"></span>
+          </summary>
+          <div class="sf-panel">
+            <p>订单从海外 OTA 平台与自营双渠道进来。渠道在进单时自动识别,并绑定各自的合规与门控策略——平台单和自营单从第一步起就走各自的规则。</p>
+            <div class="stepfig"><span class="jfbox">OTA 平台</span><span class="jfbox">自营渠道</span><span class="jfar"></span><span class="jfbox hi">自动识别渠道</span></div>
+            <p class="sf-fact">双渠道 · 各自合规策略</p>
+            <p class="st-more"><a href="#system">详细 →</a></p>
+          </div>
+        </details>
 
         <div class="sf-in" aria-hidden="true">
           <span class="sf-line"><i class="sf-dot"></i></span>
@@ -212,37 +231,86 @@
         </div>
 
         <div class="sf-ends">
-          <div class="sf-end e-ops">
-            <span class="sfico sfico-screen" aria-hidden="true"><i></i><i></i></span>
-            <b>运营总控台</b>
-            <i>运营角色 · 电脑或手机 App 均可进入</i>
-            <em>建单 · 派单 · 结算</em>
-          </div>
-          <div class="sf-end e-app">
-            <span class="sfico sfico-phone" aria-hidden="true"><i></i><i></i></span>
-            <b>榴档期 App</b>
-            <i>摄影师角色 · 随身接单工作台</i>
-            <em>填档期 · 抢单 · 传作品</em>
-          </div>
-          <div class="sf-end e-guest">
-            <span class="sfico sfico-web" aria-hidden="true"><i></i><i></i></span>
-            <b>客人交付页</b>
-            <i>客人 · 免登录</i>
-            <em>选片 · 验收 · 查进度</em>
-          </div>
+          <details class="sf-det">
+            <summary>
+              <span class="sf-end e-ops">
+                <span class="sfico sfico-screen" aria-hidden="true"><i></i><i></i></span>
+                <b>运营总控台</b>
+                <i>运营角色 · 电脑或手机 App 均可进入</i>
+                <em>建单 · 派单 · 结算</em>
+              </span>
+              <span class="sf-hint" aria-hidden="true"></span>
+            </summary>
+            <div class="sf-panel">
+              <p>工作室的指挥室:订单全生命周期、派单调度、交付跟进、结算对账、监控告警都在这里。原本散在 Excel、微信群、聊天记录里的订单、人、钱,收进一个后台。</p>
+              <div class="stepfig"><span class="jftxt"><i></i><i></i><i></i></span><span class="jfar"></span><span class="jfform"><i>订单号</i><i>时间</i><i>金额</i></span></div>
+              <p class="sf-fact">437 个接口 · 86 张生产在用数据表</p>
+              <p class="st-more"><a href="#system">详细 →</a></p>
+            </div>
+          </details>
+          <details class="sf-det">
+            <summary>
+              <span class="sf-end e-app">
+                <span class="sfico sfico-phone" aria-hidden="true"><i></i><i></i></span>
+                <b>榴档期 App</b>
+                <i>摄影师角色 · 随身接单工作台</i>
+                <em>填档期 · 抢单 · 传作品</em>
+              </span>
+              <span class="sf-hint" aria-hidden="true"></span>
+            </summary>
+            <div class="sf-panel">
+              <p>摄影师的移动工作台:填了档期才有接单资格;抢单大厅报酬前置、先到先得;作品提交、天气预警、收入账单都在手机上完成。</p>
+              <div class="stepfig"><span class="jfp">A</span><span class="jfp win">B ✓</span><span class="jfp">C</span><span class="jfnote">先到先得 · 恰好一人成功</span></div>
+              <p class="sf-fact">74.7% 抢单成交率 · iOS 已上架 App Store</p>
+              <p class="st-more"><a href="#app">详细 →</a></p>
+            </div>
+          </details>
+          <details class="sf-det">
+            <summary>
+              <span class="sf-end e-guest">
+                <span class="sfico sfico-web" aria-hidden="true"><i></i><i></i></span>
+                <b>客人交付页</b>
+                <i>客人 · 免登录</i>
+                <em>选片 · 验收 · 查进度</em>
+              </span>
+              <span class="sf-hint" aria-hidden="true"></span>
+            </summary>
+            <div class="sf-panel">
+              <p>客人的免登录第三端:一条链接直达,不装 App、不注册;进度自查、自助选片、一键验收,每一步自动通知下一棒并回写订单进度。</p>
+              <div class="stepfig"><span class="jfr on">底片</span><span class="jfr on">选片</span><span class="jfr on">精修</span><span class="jfr">验收</span></div>
+              <p class="sf-fact">三方同页 · 每步自动回写</p>
+              <p class="st-more"><a href="#guest">详细 →</a></p>
+            </div>
+          </details>
+        </div>
+
+        <div class="sf-duplex" aria-hidden="true">
+          <span class="sf-dxline"><i class="sf-dxdot down"></i><i class="sf-dxdot up"></i></span>
+          <span class="sf-dxlab">同一后台 · 两个界面<br><small>琥珀下行 = 派单下发 ｜ 橄榄上行 = 档期与接单回写</small></span>
         </div>
 
         <div class="sf-out" aria-hidden="true">
-          <span class="sf-line up"><i class="sf-dot"></i></span>
-          <span class="sf-line up"><i class="sf-dot d2"></i></span>
-          <span class="sf-line up"><i class="sf-dot d3"></i></span>
+          <span class="sf-line up"></span>
+          <span class="sf-line up"></span>
+          <span class="sf-line up"></span>
           <span class="sf-outlab">状态回写 · 实时同步</span>
         </div>
 
-        <div class="sf-base"><span class="sf-baselab">共享数据底座</span>同一份订单数据 · 三端实时同步</div>
+        <details class="sf-det sf-det-base">
+          <summary>
+            <span class="sf-base"><span class="sf-baselab">共享数据底座</span>同一份订单数据 · 三端实时同步</span>
+            <span class="sf-hint" aria-hidden="true"></span>
+          </summary>
+          <div class="sf-panel">
+            <p>三端底下是同一份数据:抢单成功自动占档期、交付每一步自动回写进度、公示价直接进结算——没有任何人需要在两个系统之间转录。</p>
+            <div class="stepfig"><span class="jfbox hi">订单</span><span class="jfar"></span><span class="jfbox">档期</span><span class="jfar"></span><span class="jfbox">进度</span><span class="jfar"></span><span class="jfbox">结算</span></div>
+            <p class="sf-fact">覆盖 15 个业务节点自动触达</p>
+            <p class="st-more"><a href="#auto">详细 →</a></p>
+          </div>
+        </details>
 
       </div>
-      <figcaption><b>图 0 · 系统全景</b>:订单从两个来源流入,三个端各管一段,底下是同一份数据——三端不是三套系统,是同一套系统按角色开的三个视角。</figcaption>
+      <figcaption><b>图 0 · 系统全景</b>:订单从两个来源流入,三个端各管一段,底下是同一份数据。<b>每个节点都可以点开</b>看这一端是干什么的;总控台与 App 之间的双向流动,就是「同一后台 · 两个界面」的关系。</figcaption>
     </figure>
   </div>
 </section>
@@ -490,7 +558,7 @@
           <div class="st-body">
             <p>底片、选片、精修、验收四棒在同一张免登录页面上交接:摄影师传底片、客人选片、精修师交成品、客人验收,每一步自动通知下一棒并回写订单进度——客服退出中转链路。</p>
             <div class="stepfig"><span class="jfr on">底片</span><span class="jfr on">选片</span><span class="jfr on">精修</span><span class="jfr">验收</span></div>
-            <p class="st-more"><a href="#why">详细 →</a></p>
+            <p class="st-more"><a href="#guest">详细 →</a></p>
           </div>
         </details>
 
@@ -532,50 +600,98 @@
     <p class="screenlead">这一屏讲:后台一共有哪些能力,分别归谁用</p>
     <p class="dek">旅拍的难点不在获客,在履约:订单从多个渠道进来,摄影师分散各地、不坐班也不盯后台。系统要做的是<b>把订单、人、时间、地点、钱这五件事在一条链路上对齐</b>,并让每一环都不依赖某个人的记忆。</p>
 
-    <details class="foldfig">
-      <summary><span class="fold-t">另一种看法:同一条链路按三端分工着色</span><span class="mplus" aria-hidden="true"></span></summary>
-      <!-- ─── 配图 4:三端一条业务流 ─── -->
+      <!-- ─── 配图 4:三端一条业务流(六环节可点击 · 纯 CSS radio 选项卡) ─── -->
       <figure class="fig">
+        <input type="radio" name="fmr" id="fmr0" class="fmr" checked>
+        <input type="radio" name="fmr" id="fmr1" class="fmr">
+        <input type="radio" name="fmr" id="fmr2" class="fmr">
+        <input type="radio" name="fmr" id="fmr3" class="fmr">
+        <input type="radio" name="fmr" id="fmr4" class="fmr">
+        <input type="radio" name="fmr" id="fmr5" class="fmr">
+        <input type="radio" name="fmr" id="fmr6" class="fmr">
         <div class="flowmap">
-          <div class="fm-step">
-            <div class="fm-node">客人下单</div>
-            <div class="fm-role r-ops">运营端</div>
-            <div class="fm-note">OTA 平台 / 私域</div>
-          </div>
+          <label class="fm-step" for="fmr1" tabindex="0">
+            <span class="fm-node">客人下单</span>
+            <span class="fm-role r-ops">运营端</span>
+            <span class="fm-note">OTA 平台 / 私域</span>
+            <span class="fm-open" aria-hidden="true"></span>
+          </label>
           <div class="fm-arrow" aria-hidden="true"></div>
-          <div class="fm-step">
-            <div class="fm-node">建单报价</div>
-            <div class="fm-role r-ops">运营端</div>
-            <div class="fm-note">文本粘贴自动填表</div>
-          </div>
+          <label class="fm-step" for="fmr2" tabindex="0">
+            <span class="fm-node">建单报价</span>
+            <span class="fm-role r-ops">运营端</span>
+            <span class="fm-note">文本粘贴自动填表</span>
+            <span class="fm-open" aria-hidden="true"></span>
+          </label>
           <div class="fm-arrow" aria-hidden="true"></div>
-          <div class="fm-step core">
-            <div class="fm-node">派单调度</div>
-            <div class="fm-role r-both">运营端 + 摄影师端</div>
-            <div class="fm-note">抢单 / 指派</div>
-          </div>
+          <label class="fm-step core" for="fmr3" tabindex="0">
+            <span class="fm-node">派单调度</span>
+            <span class="fm-role r-both">运营端 + 摄影师端</span>
+            <span class="fm-note">抢单 / 指派</span>
+            <span class="fm-open" aria-hidden="true"></span>
+          </label>
           <div class="fm-arrow" aria-hidden="true"></div>
-          <div class="fm-step">
-            <div class="fm-node">拍摄</div>
-            <div class="fm-role r-photo">摄影师端</div>
-            <div class="fm-note">开拍提醒 / 天气预警</div>
-          </div>
+          <label class="fm-step" for="fmr4" tabindex="0">
+            <span class="fm-node">拍摄</span>
+            <span class="fm-role r-photo">摄影师端</span>
+            <span class="fm-note">开拍提醒 / 天气预警</span>
+            <span class="fm-open" aria-hidden="true"></span>
+          </label>
           <div class="fm-arrow" aria-hidden="true"></div>
-          <div class="fm-step">
-            <div class="fm-node">交付</div>
-            <div class="fm-role r-guest">客人交付页</div>
-            <div class="fm-note">选片 / 精修 / 验收</div>
-          </div>
+          <label class="fm-step" for="fmr5" tabindex="0">
+            <span class="fm-node">交付</span>
+            <span class="fm-role r-guest">客人交付页</span>
+            <span class="fm-note">选片 / 精修 / 验收</span>
+            <span class="fm-open" aria-hidden="true"></span>
+          </label>
           <div class="fm-arrow" aria-hidden="true"></div>
-          <div class="fm-step">
-            <div class="fm-node">结算</div>
-            <div class="fm-role r-ops">运营端</div>
-            <div class="fm-note">成本 / 奖励 / 封口</div>
+          <label class="fm-step" for="fmr6" tabindex="0">
+            <span class="fm-node">结算</span>
+            <span class="fm-role r-ops">运营端</span>
+            <span class="fm-note">成本 / 奖励 / 封口</span>
+            <span class="fm-open" aria-hidden="true"></span>
+          </label>
+        </div>
+        <div class="fm-panels">
+          <div class="fm-panel fm-p1">
+            <label class="fm-close" for="fmr0" tabindex="0" aria-label="收起">×</label>
+            <p class="fm-ptitle">客人下单 · <span class="fm-role r-ops">运营端</span></p>
+            <p>订单从海外 OTA 平台与自营双渠道进来,渠道自动识别并绑定各自的合规与门控策略。</p>
+            <p class="st-more"><a href="#system">详细 →</a></p>
+          </div>
+          <div class="fm-panel fm-p2">
+            <label class="fm-close" for="fmr0" tabindex="0" aria-label="收起">×</label>
+            <p class="fm-ptitle">建单报价 · <span class="fm-role r-ops">运营端</span></p>
+            <p>整段订单文本粘贴进来,AI 自动解析填表;人工核对后保存,确认信自动发出、订单自动进派单池。建单环节全程 2–4 分钟。</p>
+            <p class="st-more"><a href="#system">详细 →</a></p>
+          </div>
+          <div class="fm-panel fm-p3">
+            <label class="fm-close" for="fmr0" tabindex="0" aria-label="收起">×</label>
+            <p class="fm-ptitle">派单调度 · <span class="fm-role r-both">运营端 + 摄影师端</span></p>
+            <p>四道硬门槛自动圈定候选,一次推送先到先得;评分梯队分层放号,最多可配 6 档。这是全链路中迭代最密集的一环。</p>
+            <p class="st-more"><a href="#dispatch">详细 →</a></p>
+          </div>
+          <div class="fm-panel fm-p4">
+            <label class="fm-close" for="fmr0" tabindex="0" aria-label="收起">×</label>
+            <p class="fm-ptitle">拍摄 · <span class="fm-role r-photo">摄影师端</span></p>
+            <p>开拍前自动提醒;暴雨、台风、地震按城市定向预警,当天有拍摄的摄影师收到针对性建议。</p>
+            <p class="st-more"><a href="#app">详细 →</a></p>
+          </div>
+          <div class="fm-panel fm-p5">
+            <label class="fm-close" for="fmr0" tabindex="0" aria-label="收起">×</label>
+            <p class="fm-ptitle">交付 · <span class="fm-role r-guest">客人交付页</span></p>
+            <p>底片、选片、精修、验收四棒在同一张免登录页面交接,每步自动通知下一棒并回写进度——客服退出中转链路。</p>
+            <p class="st-more"><a href="#guest">详细 →</a></p>
+          </div>
+          <div class="fm-panel fm-p6">
+            <label class="fm-close" for="fmr0" tabindex="0" aria-label="收起">×</label>
+            <p class="fm-ptitle">结算 · <span class="fm-role r-ops">运营端</span></p>
+            <p>抢单公示价直接进结算,无人转录;成本六级优先取价,奖励自动生成,自然月可封口冻结。</p>
+            <p class="st-more"><a href="#system">详细 →</a></p>
           </div>
         </div>
-        <figcaption><b>图 4 · 三端一条业务流</b>:六个环节由三个端分工承接,派单是全链路中迭代最密集、也最能拉开效率差距的一环。</figcaption>
+        <figcaption><b>图 4 · 三端一条业务流</b>:六个环节由三个端分工承接,<b>点任意环节</b>看这一环系统做什么;派单是全链路中迭代最密集、也最能拉开效率差距的一环。</figcaption>
       </figure>
-    </details>
 
     <!-- ─── 小节 · 建单流程对比 ─── -->
     <h3>从「三个人忙一天」到「一个人四分钟」</h3>
@@ -1001,6 +1117,7 @@
               <p class="shot-req">建议文件名:guest-photo-select.png ｜ 建议 1200×900 ｜ 需打码:客人姓名与订单金额</p>
             </div>
           </figure>
+          <p class="st-more"><a href="#guest">本端有专章 →</a></p>
         </div>
       </details>
     </div>
@@ -1030,6 +1147,7 @@
     <figure class="fig">
       <div class="vs">
         <div class="vs-col trad">
+          <i class="vs-crawl" aria-hidden="true"></i>
           <p class="vs-title">传统:逐个私聊,串行等待</p>
           <div class="vs-actor">客服</div>
           <ol class="vs-serial">
@@ -1587,6 +1705,69 @@
   </div>
 </section>
 
+<!-- ══════════ 专章三 · 客人交付页 ══════════ -->
+<section id="guest">
+  <div class="wrap">
+    <p class="kicker">核心专章 · 三</p>
+    <h2>客人交付页 · 免登录的第三端</h2>
+    <p class="screenlead">这一屏讲:客人不装 App、不注册,怎么走完从选片到验收</p>
+    <p class="dek">传统交付对客人是"黑箱 + 追问":拍完不知道进度,每一步都要问客服,跨时区一个来回就是一天。这套系统给客人一条<b>免登录链接</b>:进度、选片、验收全部自助——三端里唯一不需要任何账号的一端。</p>
+
+    <h3>客人拿到什么</h3>
+    <div class="autos">
+      <div class="au">一条链接直达,无需注册、密码、装 App</div>
+      <div class="au">进度随时自查,不用问人——页面每 30 秒自动刷新最新状态</div>
+      <div class="au">自助选片,提交即自动通知下一棒</div>
+      <div class="au">验收一键完成,返修轮次全程留痕</div>
+      <div class="au">尾款未付时成品自动隐藏,付清即恢复</div>
+      <div class="au">有问题就地提交,直接进客服事件收件箱</div>
+    </div>
+
+    <!-- ─── 配图 9:客人交付页界面示意 ─── -->
+    <figure class="fig">
+      <div class="odp">
+        <div class="odp-bar" aria-hidden="true"><i></i><i></i><i></i><span class="odp-url">…/delivery/****(免登录链接)</span></div>
+        <div class="odp-prog">
+          <span class="odp-plab">体验进度 · 8 步</span>
+          <span class="odp-ptrack"><i class="odp-pfill"></i></span>
+          <span class="odp-psteps"><i>确认</i><i>集合</i><i>拍摄</i><i>底片</i><i class="cur">选片</i><i>精修</i><i>验收</i><i>完成</i></span>
+        </div>
+        <div class="odp-grid" aria-hidden="true">
+          <span class="odp-ph sel"></span><span class="odp-ph"></span><span class="odp-ph sel"></span>
+          <span class="odp-ph"></span><span class="odp-ph"></span><span class="odp-ph sel"></span>
+          <span class="odp-ph"></span><span class="odp-ph"></span><span class="odp-ph"></span>
+        </div>
+        <div class="odp-btns"><span class="odp-btn hi">提交选片</span><span class="odp-btn">确认验收</span></div>
+      </div>
+      <figcaption><b>图 9 · 客人交付页界面示意</b>:顶部是 8 步体验进度,客服在后台的任何改动 30 秒内自动刷新到这页;中间自助选片,底部一键提交。界面元素为示意。</figcaption>
+    </figure>
+
+    <figure class="shotwrap">
+      <img class="shotimg" src="images/guest-photo-select.png" alt="客人选片界面"
+           onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
+      <div class="shot">
+        <p class="shot-name">客人选片界面截图</p>
+        <p class="shot-req">建议文件名:guest-photo-select.png ｜ 建议 1200×900 ｜ 需打码:客人姓名与订单金额</p>
+      </div>
+    </figure>
+
+    <div class="gatecard">
+      <h4>设计决策 · 尾款门控</h4>
+      <p>成品在尾款支付前<b>自动隐藏</b>:客人看得到进度走到哪、差哪一步,但底片与精修成品的链接在付清前不出现;付清后自动恢复,无需任何人手动放行。</p>
+      <p>对客人是<b>透明</b>——不是"被卡住",而是清楚知道差一步付款;对工作室是<b>回款保护</b>——先款后货由机制保证,不靠客服追讨。这是把商业规则写进系统,而不是写进聊天记录。</p>
+    </div>
+
+    <figure class="shotwrap">
+      <img class="shotimg" src="images/guest-delivery-page.png" alt="客人交付页"
+           onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
+      <div class="shot">
+        <p class="shot-name">客人交付页截图</p>
+        <p class="shot-req">建议文件名:guest-delivery-page.png ｜ 建议 1200×900 ｜ 需打码:客人姓名与金额</p>
+      </div>
+    </figure>
+  </div>
+</section>
+
 <!-- ══════════ 第 8 屏 · 为什么这套模式更好 ══════════ -->
 <section id="why" class="alt">
   <div class="wrap">
@@ -1612,6 +1793,7 @@
       <div class="relay">
         <div class="relay-row">
           <p class="relay-label">传统:每一棒都经客服中转</p>
+          <span class="relay-run trad" aria-hidden="true"></span>
           <div class="relay-line">
             <span class="rn">摄影师<i>传底片</i></span>
             <span class="ra" aria-hidden="true"></span>
@@ -1632,6 +1814,7 @@
 
         <div class="relay-row sys">
           <p class="relay-label">本系统:三方在同一张页面上各自完成</p>
+          <span class="relay-run sys" aria-hidden="true"></span>
           <div class="relay-line">
             <span class="rn">摄影师<i>传底片</i></span>
             <span class="ra" aria-hidden="true"></span>
@@ -1644,7 +1827,7 @@
           <div class="relay-base">同一张免登录交付页 · 每步自动通知下一棒 · 自动回写订单进度</div>
         </div>
       </div>
-      <figcaption><b>图 9 · 交付四棒交接对比</b>:客服退出链路不是因为不重要,而是因为<b>中转本身不产生价值,只产生延迟</b>。</figcaption>
+      <figcaption><b>图 10 · 交付四棒交接对比</b>:客服退出链路不是因为不重要,而是因为<b>中转本身不产生价值,只产生延迟</b>。</figcaption>
     </figure>
 
     <figure class="shotwrap">
@@ -1720,7 +1903,7 @@
         <span class="lg"><i class="s2"></i>空心 = 该动作已由系统自动完成</span>
       </p>
 
-      <figcaption><b>图 10 · 人工介入次数对比</b>:两行总计为<b>示意口径</b>——按主要操作节点计数,体现结构差异,不是精确统计。变化不在某一环少点几下,而在于<b>整条链路上「必须有人在场」的位置变少了</b>。</figcaption>
+      <figcaption><b>图 11 · 人工介入次数对比</b>:两行总计为<b>示意口径</b>——按主要操作节点计数,体现结构差异,不是精确统计。变化不在某一环少点几下,而在于<b>整条链路上「必须有人在场」的位置变少了</b>。</figcaption>
     </figure>
 
     <h3>哪些事系统自己在做,不需要人</h3>
@@ -1827,7 +2010,7 @@
             <div class="bar-row"><span class="bl">定向单 7</span><span class="bt"><i class="ok" style="width:46%"></i></span><span class="bv ok-t">点名数 = 实发数</span></div>
           </div>
           <p class="barsum">窗口内共 7 笔定向单 · <b>仅 2 笔超发,合计多发 4 人次</b> · 打扰度最高的急单通道<b>零波及</b></p>
-          <figcaption><b>图 11 · 事故影响面取证</b>:深色段为点名人数,浅色段为超发人次。条形长度示意,数字为生产环境实测。</figcaption>
+          <figcaption><b>图 12 · 事故影响面取证</b>:深色段为点名人数,浅色段为超发人次。条形长度示意,数字为生产环境实测。</figcaption>
         </figure>
 
         <p class="lbl">立下的规矩</p>
