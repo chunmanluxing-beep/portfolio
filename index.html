@@ -38,10 +38,110 @@
     <p class="sub">一套真实运行的生产系统:覆盖日本 9 个城市与地区的旅拍业务,打通接单、建单、派单、拍摄、交付、结算全链路,由运营总控台、摄影师移动端、客人交付页三端协同。</p>
 
     <ul class="stats">
-      <li><span class="num">74.7<small>%</small></span><span class="cap">抢单成交率<br><i>每 4 个派单任务,3 个被摄影师主动接走</i></span></li>
-      <li><span class="num">2.0<small>分钟</small></span><span class="cap">接单速度中位数<br><i>一半的订单在 2 分钟内被接走</i></span></li>
-      <li><span class="num">481<small>笔</small></span><span class="cap">累计处理订单<br><i>覆盖平台与自营双渠道</i></span></li>
-      <li><span class="num">9<small>地</small></span><span class="cap">覆盖城市与地区<br><i>京都 · 东京 · 大阪 · 奈良 · 福冈 · 镰仓 · 富士山 · 札幌 · 小樽</i></span></li>
+      <li>
+        <details class="kpi kpi-hero">
+          <summary>
+            <span class="num">74.7<small>%</small></span>
+            <span class="cap">抢单成交率<br><i>每 4 个派单任务,3 个被摄影师主动接走</i></span>
+            <span class="kplus" aria-hidden="true"></span>
+            <span class="khint" aria-hidden="true"></span>
+          </summary>
+        <div class="kdet">
+          <p class="kd-q">这个数字是什么意思</p>
+          <p class="kd-a">发出去的抢单任务里,最后有多大比例是被摄影师自己点「抢」接走的。</p>
+          <p class="kd-q">怎么算的</p>
+          <p class="kd-a kd-formula">抢单成交率 = 被摄影师主动接走的抢单任务数 ÷ 已发起的抢单任务总数。统计范围:2026-05 至 2026-08 生产环境。<span class="kd-todo">分子分母的排除项(已取消 / 中途改手动指派的任务是否计入)待生产库核验后补全</span></p>
+          <p class="kd-q">为什么这个数字重要</p>
+          <p class="kd-a">它衡量的是「不用客服追人」的比例——每 4 个派单任务有 3 个自己走完了,客服只需发布一次。</p>
+          <figure class="shotwrap shotwrap-in">
+            <img class="shotimg" src="images/console-grab-stats.png" alt="抢单统计页(成交率)"
+                 onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
+            <div class="shot shot-in">
+              <p class="shot-name">抢单统计页(成交率)截图</p>
+              <p class="shot-req">建议文件名:console-grab-stats.png ｜ 建议 1400×900 ｜ 需打码:客人信息与报酬金额</p>
+            </div>
+          </figure>
+        </div>
+        </details>
+      </li>
+      <li>
+        <details class="kpi kpi-hero">
+          <summary>
+            <span class="num">2.0<small>分钟</small></span>
+            <span class="cap">接单速度中位数<br><i>一半的订单在 2 分钟内被接走</i></span>
+            <span class="kplus" aria-hidden="true"></span>
+            <span class="khint" aria-hidden="true"></span>
+          </summary>
+        <div class="kdet">
+          <p class="kd-q">这个数字是什么意思</p>
+          <p class="kd-a">从客服点「发布抢单」到有人接走,一半的订单用时不超过 2 分钟。</p>
+          <p class="kd-q">怎么算的</p>
+          <p class="kd-a kd-formula">取每个成交抢单任务的(接单时刻 − 发布时刻),对全部成交任务取<b>中位数</b>(不是平均数,避免个别长尾把数字拉高)。<span class="kd-todo">统计窗口起止、以及循环再推的场次如何计入,待生产库核验后补全</span></p>
+          <p class="kd-q">为什么这个数字重要</p>
+          <p class="kd-a">中位数比平均数更能反映常态。2 分钟意味着派单在体感上就是「即时」的。</p>
+          <figure class="shotwrap shotwrap-in">
+            <img class="shotimg" src="images/console-grab-timing.png" alt="抢单时长分布页"
+                 onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
+            <div class="shot shot-in">
+              <p class="shot-name">抢单时长分布页截图</p>
+              <p class="shot-req">建议文件名:console-grab-timing.png ｜ 建议 1400×900 ｜ 需打码:客人信息与摄影师姓名</p>
+            </div>
+          </figure>
+        </div>
+        </details>
+      </li>
+      <li>
+        <details class="kpi kpi-hero">
+          <summary>
+            <span class="num">481<small>笔</small></span>
+            <span class="cap">累计处理订单<br><i>覆盖平台与自营双渠道</i></span>
+            <span class="kplus" aria-hidden="true"></span>
+            <span class="khint" aria-hidden="true"></span>
+          </summary>
+        <div class="kdet">
+          <p class="kd-q">这个数字是什么意思</p>
+          <p class="kd-a">系统上线以来累计处理过的订单总数。</p>
+          <p class="kd-q">怎么算的</p>
+          <p class="kd-a kd-formula">订单表中的订单记录总数,覆盖海外 OTA 平台与自营双渠道。<span class="kd-todo">是否包含已取消 / 已退款订单,待生产库核验后补全</span></p>
+          <p class="kd-q">为什么这个数字重要</p>
+          <p class="kd-a">这是「真在跑」最直接的证据——不是 demo,是承载真实交易的生产系统。</p>
+          <figure class="shotwrap shotwrap-in">
+            <img class="shotimg" src="images/console-orders-total.png" alt="订单总览统计"
+                 onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
+            <div class="shot shot-in">
+              <p class="shot-name">订单总览统计截图</p>
+              <p class="shot-req">建议文件名:console-orders-total.png ｜ 建议 1400×900 ｜ 需打码:客人姓名、电话、金额</p>
+            </div>
+          </figure>
+        </div>
+        </details>
+      </li>
+      <li>
+        <details class="kpi kpi-hero">
+          <summary>
+            <span class="num">9<small>地</small></span>
+            <span class="cap">覆盖城市与地区<br><i>京都 · 东京 · 大阪 · 奈良 · 福冈 · 镰仓 · 富士山 · 札幌 · 小樽</i></span>
+            <span class="kplus" aria-hidden="true"></span>
+            <span class="khint" aria-hidden="true"></span>
+          </summary>
+        <div class="kdet">
+          <p class="kd-q">这个数字是什么意思</p>
+          <p class="kd-a">实际有拍摄点、派得出单的城市与地区数量。</p>
+          <p class="kd-q">怎么算的</p>
+          <p class="kd-a kd-formula">拍摄地点表中去重后的城市 / 地区数。当前九项:京都、东京、大阪、奈良、福冈、镰仓、富士山、札幌、小樽(富士山为地区而非市,故单位用「地」)。<span class="kd-todo">对应去重 SQL 的精确口径(是否含已停用地点)待生产库核验后补全</span></p>
+          <p class="kd-q">为什么这个数字重要</p>
+          <p class="kd-a">跨城市履约是这门生意最难的部分,城市数直接决定调度复杂度。</p>
+          <figure class="shotwrap shotwrap-in">
+            <img class="shotimg" src="images/console-locations.png" alt="拍摄地点管理页"
+                 onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
+            <div class="shot shot-in">
+              <p class="shot-name">拍摄地点管理页截图</p>
+              <p class="shot-req">建议文件名:console-locations.png ｜ 建议 1200×900 ｜ 需打码:无客人信息;如含负责人姓名需打码</p>
+            </div>
+          </figure>
+        </div>
+        </details>
+      </li>
     </ul>
 
     <p class="note">海外 OTA 平台与自营双渠道 ｜ 12 个业务模块 ｜ 摄影师端 iOS 已上架 <a class="storelink" href="https://apps.apple.com/jp/app/id6786589485" target="_blank" rel="noopener">App Store</a></p>
@@ -50,7 +150,65 @@
 
 <main>
 
-<!-- ══════════ 第 2 屏 · 应用场景 ══════════ -->
+<!-- ══════════ 第 2 屏 · 这是什么系统 ══════════ -->
+<section id="whatis">
+  <div class="wrap">
+    <p class="kicker">先说清楚</p>
+    <h2>这是什么系统</h2>
+    <p class="screenlead">这一屏讲:一句话定义、给谁用、解决什么</p>
+
+    <div class="qa3">
+      <div class="qa">
+        <p class="qa-q">这是什么</p>
+        <p class="qa-a">一套把旅拍订单从进单到结算全程自动流转的业务系统,由三个端组成:运营总控台、摄影师手机端、客人交付页。</p>
+      </div>
+      <div class="qa">
+        <p class="qa-q">给谁用</p>
+        <p class="qa-a">中小型旅拍工作室,以及没有坐班团队、却要跨城市按时交付的经营者。</p>
+      </div>
+      <div class="qa">
+        <p class="qa-q">解决什么</p>
+        <p class="qa-a">把原本压在负责人一个人身上的协调工作——问档期、派活、催交付、算账——变成系统自动跑。</p>
+      </div>
+    </div>
+
+    <!-- ─── 配图 0:系统全景(三层结构) ─── -->
+    <figure class="fig">
+      <div class="sysmap">
+
+        <div class="sm-layer sm-l1">
+          <span class="sm-lab">① 订单来源</span>
+          <div class="sm-row">
+            <span class="sm-src">海外 OTA 平台</span>
+            <span class="sm-src">自营渠道</span>
+          </div>
+        </div>
+
+        <span class="sm-arrow" aria-hidden="true"></span>
+
+        <div class="sm-layer sm-l2">
+          <span class="sm-lab">② 三个端各管一段</span>
+          <div class="sm-row">
+            <span class="sm-end e-ops"><b>运营总控台</b><i>工作室 · 电脑浏览器</i><em>建单 · 派单 · 结算</em></span>
+            <span class="sm-end e-app"><b>摄影师端 App</b><i>摄影师 · 手机</i><em>填档期 · 抢单 · 传作品</em></span>
+            <span class="sm-end e-guest"><b>客人交付页</b><i>客人 · 免登录</i><em>选片 · 验收 · 查进度</em></span>
+          </div>
+        </div>
+
+        <span class="sm-arrow" aria-hidden="true"></span>
+
+        <div class="sm-layer sm-l3">
+          <span class="sm-lab">③ 共享数据底座</span>
+          <div class="sm-base">同一份订单数据 · 三端实时同步 · 没有任何人需要在两个系统之间转录</div>
+        </div>
+
+      </div>
+      <figcaption><b>图 0 · 系统全景</b>:订单从两个来源进来,由三个端分工承接,底下是同一份数据。三端不是三套系统,是同一套系统的三个视角。</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ══════════ 第 3 屏 · 应用场景 ══════════ -->
 <section id="who" class="alt">
   <div class="wrap">
     <p class="kicker">适用场景</p>
@@ -104,7 +262,7 @@
   </div>
 </section>
 
-<!-- ══════════ 第 3 屏 · 系统构成 ══════════ -->
+<!-- ══════════ 第 4 屏 · 系统构成 ══════════ -->
 <section id="two">
   <div class="wrap">
     <p class="kicker">系统构成</p>
@@ -112,29 +270,75 @@
     <p class="screenlead">这一屏讲:两个端怎么分工,一条订单怎么走完</p>
     <p class="dek">工作室在电脑上用管理端,摄影师在手机上用榴档期 App;两边共用同一批订单与档期数据,不需要来回同步。</p>
 
-    <!-- ─── 配图 2:两端关系图 ─── -->
+    <!-- ─── 配图 2:同一条订单的两端镜像视图 ─── -->
     <figure class="fig">
-      <div class="twoside">
-        <div class="ts-col ops">
-          <p class="ts-title">管理端 · 工作室用</p>
-          <p class="ts-sub">电脑浏览器</p>
-          <span class="ts-tags"><i>建单报价</i><i>派单调度</i><i>交付跟进</i><i>结算对账</i><i>监控告警</i></span>
+      <div class="mirror">
+        <div class="mr-head">
+          <span class="mrh ops">总控台 · 工作室看到的</span>
+          <span class="mrh mid">字段映射</span>
+          <span class="mrh app">榴档期 App · 摄影师看到的</span>
         </div>
-
-        <div class="ts-link" aria-hidden="true">
-          <span class="tl-arrow up"></span>
-          <span class="tl-label">订单流转<br>档期占用<br>报酬同步</span>
-          <span class="tl-arrow down"></span>
+        <div class="mr-row">
+          <span class="mrc ops">客人姓名<i>山田 花子</i></span>
+          <span class="mrc mid blocked"><em>不下发</em></span>
+          <span class="mrc app off">不可见</span>
         </div>
-
-        <div class="ts-col app">
-          <p class="ts-title">榴档期 App · 摄影师用</p>
-          <p class="ts-sub">手机 / iOS 已上架</p>
-          <span class="ts-tags"><i>填档期</i><i>抢单接单</i><i>传作品</i><i>收预警</i><i>查收入</i></span>
+        <div class="mr-row">
+          <span class="mrc ops">联系方式<i>090-0000-0000</i></span>
+          <span class="mrc mid blocked"><em>不下发</em></span>
+          <span class="mrc app off">不可见</span>
+        </div>
+        <div class="mr-row">
+          <span class="mrc ops">订单金额<i>¥58,000</i></span>
+          <span class="mrc mid blocked"><em>不下发</em></span>
+          <span class="mrc app off">不可见</span>
+        </div>
+        <div class="mr-row">
+          <span class="mrc ops">拍摄时间<i>08月14日 10:00</i></span>
+          <span class="mrc mid sync"><i class="mrline"></i><em>同步</em></span>
+          <span class="mrc app">08月14日 10:00</span>
+        </div>
+        <div class="mr-row">
+          <span class="mrc ops">城市 · 集合点<i>京都 · 祇园四条站</i></span>
+          <span class="mrc mid sync"><i class="mrline"></i><em>同步</em></span>
+          <span class="mrc app">京都 · 祇园四条站</span>
+        </div>
+        <div class="mr-row">
+          <span class="mrc ops">拍摄时长<i>120 分钟</i></span>
+          <span class="mrc mid sync"><i class="mrline"></i><em>同步</em></span>
+          <span class="mrc app">120 分钟</span>
+        </div>
+        <div class="mr-row">
+          <span class="mrc ops">摄影师报酬<i>¥680</i></span>
+          <span class="mrc mid sync"><i class="mrline"></i><em>同步 · 前置</em></span>
+          <span class="mrc app hi">报酬 ¥680</span>
+        </div>
+        <div class="mr-row">
+          <span class="mrc ops">订单状态<i>已确认 · 待派单</i></span>
+          <span class="mrc mid derive"><i class="mrline"></i><em>派生</em></span>
+          <span class="mrc app">可抢 / 已被抢</span>
+        </div>
+        <div class="mr-row">
+          <span class="mrc ops">档期占用<i>抢到后自动写回</i></span>
+          <span class="mrc mid both"><i class="mrline"></i><em>双向</em></span>
+          <span class="mrc app">这天已排满</span>
         </div>
       </div>
+
+      <p class="mr-note"><b>同一份数据,两个视角。</b>摄影师看得到履约所需的一切——时间、地点、时长、报酬;看不到客人隐私与订单金额。<b>这是设计选择,不是技术限制</b>:字段是一条条决定要不要下发的,默认不给,要给必须有履约上的理由。</p>
+
+      <span class="mr-tags"><i>管理端:建单报价 · 派单调度 · 交付跟进 · 结算对账 · 监控告警</i><i>App:填档期 · 抢单接单 · 传作品 · 收预警 · 查收入</i></span>
       <div class="ts-base">同一套订单 ｜ 同一份档期 ｜ 同一个报价</div>
-      <figcaption><b>图 2 · 两端关系</b>:两个入口面向两种人、两种设备,但底下是同一份数据——所以不需要任何人在两边之间转录。</figcaption>
+      <figcaption><b>图 2 · 同一条订单的两端镜像</b>:左右是同一条订单在两个端里的样子,中间标出每个字段是同步、派生、双向还是不下发。表内字段值为示意。App 不是另一套系统,是同一套系统的另一个视角。</figcaption>
+    </figure>
+
+    <figure class="shotwrap">
+      <img class="shotimg" src="images/console-app-mirror.png" alt="总控台与 App 同屏对照"
+           onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
+      <div class="shot">
+        <p class="shot-name">总控台与 App 同屏对照实拍</p>
+        <p class="shot-req">建议文件名:console-app-mirror.png ｜ 建议 1600×900 ｜ 需打码:客人姓名、电话、订单金额</p>
+      </div>
     </figure>
 
     <div class="twonote">
@@ -229,7 +433,7 @@
   </div>
 </section>
 
-<!-- ══════════ 第 4 屏 · 管理端能力 ══════════ -->
+<!-- ══════════ 第 5 屏 · 管理端能力 ══════════ -->
 <section id="system">
   <div class="wrap">
     <p class="kicker">管理端</p>
@@ -393,6 +597,11 @@
           <span class="mhint" aria-hidden="true"></span>
         </summary>
         <div class="mdet">
+          <div class="modstat">
+            <span class="ms-k">建单环节耗时</span>
+            <span class="ms-v">2–4 分钟</span>
+            <span class="ms-t">粘贴、核对、保存三步走完(300 单规模实际运营口径)</span>
+          </div>
           <p class="md-lead">一张订单从进系统到完结,全程有据可查。</p>
           <ul class="md-pts"><li>粘贴整段文本,字段自动填好</li><li>服务端统一发号,带校验位</li><li>多人同时编辑有冲突保护</li></ul>
           <div class="dg dg-parse"><span class="pz-raw" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span class="pz-ar" aria-hidden="true"></span><span class="pz-form"><i><b>订单号</b><em></em></i><i><b>拍摄时间</b><em></em></i><i><b>金额与币种</b><em></em></i></span></div>
@@ -417,6 +626,11 @@
           <span class="mhint" aria-hidden="true"></span>
         </summary>
         <div class="mdet">
+          <div class="modstat">
+            <span class="ms-k">覆盖节点 / 模板</span>
+            <span class="ms-v">15 个节点 · 8 类模板</span>
+            <span class="ms-t">业务节点触发即发信,中英双语</span>
+          </div>
           <p class="md-lead">覆盖 15 个业务节点 · 8 类信件模板,中英双语。</p>
           <ul class="md-pts"><li>合规四级防线,发送前拦截</li><li>模板按渠道与语言分层匹配</li><li>发送总览地图,哪封发过一眼看清</li></ul>
           <div class="dg dg-track"><span class="tk"><i></i>建单</span><span class="tk"><i></i>交付页</span><span class="tk"><i></i>底片</span><span class="tk"><i></i>精修</span><span class="tk"><i></i>进店提醒</span></div>
@@ -441,6 +655,11 @@
           <span class="mhint" aria-hidden="true"></span>
         </summary>
         <div class="mdet">
+          <div class="modstat">
+            <span class="ms-k">成本取价</span>
+            <span class="ms-v">六级优先</span>
+            <span class="ms-t">抢单公示价最优先,逐级回落,面议未补录不静默取价</span>
+          </div>
           <p class="md-lead">算得清、锁得住:成本、毛利、奖励、应付各归其位。</p>
           <ul class="md-pts"><li>成本六级优先取价</li><li>自然月封口冻结,账不再被改</li><li>应付看板与打款台账</li></ul>
           <div class="dg dg-steps"><span class="st top"><b>抢单公示价</b><i>优先级 1</i></span><span class="st"><i>优先级 2</i></span><span class="st"><i>优先级 3</i></span><span class="st"><i>优先级 4</i></span><span class="st"><i>优先级 5</i></span><span class="st"><i>优先级 6</i></span></div>
@@ -465,6 +684,11 @@
           <span class="mhint" aria-hidden="true"></span>
         </summary>
         <div class="mdet">
+          <div class="modstat">
+            <span class="ms-k">自动巡检</span>
+            <span class="ms-v">6 类异常 · 每半小时</span>
+            <span class="ms-t">问题自己浮上来,不用等客人投诉</span>
+          </div>
           <p class="md-lead">问题自己浮上来,不用等客人投诉。</p>
           <ul class="md-pts"><li>每半小时巡检 6 类业务异常</li><li>全站告警统一进一个信箱</li><li>订单页内嵌紧急看板</li></ul>
           <div class="dg dg-scan"><span class="sc r3" aria-hidden="true"></span><span class="sc r2" aria-hidden="true"></span><span class="sc r1" aria-hidden="true"></span><span class="sd d1"></span><span class="sd d2"></span><span class="sd d3 alert"></span><span class="sd d4"></span><span class="sd d5"></span><span class="sd d6 alert"></span><span class="sd d7"></span><span class="sc-tag">6 类业务异常 · 命中即告警</span></div>
@@ -489,6 +713,11 @@
           <span class="mhint" aria-hidden="true"></span>
         </summary>
         <div class="mdet">
+          <div class="modstat">
+            <span class="ms-k">评分维度</span>
+            <span class="ms-v">五维</span>
+            <span class="ms-t">评分直接决定放号顺序,好评能兑换接单机会</span>
+          </div>
           <p class="md-lead">评分直接兑换接单机会,好评不再没有回报。</p>
           <ul class="md-pts"><li>五维评分体系</li><li>可接单城市按人管理</li><li>自注册审核通过即自动转正</li></ul>
           <div class="dg dg-arc"><span class="ac-stage" aria-hidden="true"><span class="ac a3"></span><span class="ac a2"></span><span class="ac a1"></span><span class="ac-core">发布</span></span><span class="ac-legend"><i class="l1">高分档 · 最先开放</i><i class="l2">中间档 · 稍后开放</i><i class="l3">其余档 · 最后开放</i></span></div>
@@ -519,6 +748,11 @@
           <span class="mhint" aria-hidden="true"></span>
         </summary>
         <div class="mdet">
+          <div class="modstat">
+            <span class="ms-k">成交率 / 接单中位数</span>
+            <span class="ms-v">74.7% / 2.0 分钟</span>
+            <span class="ms-t">一次推送、先到先得,沟通量与人数无关</span>
+          </div>
           <p class="md-lead">把「逐个打电话问谁能接」变成「一次推送,先到先得」。</p>
           <ul class="md-pts"><li>四道硬门槛自动圈定候选人</li><li>评分梯队分层放号,最多 6 档</li><li>多人同抢,系统保证恰好一人成功</li></ul>
           <div class="dg dg-funnel"><span class="fn">覆盖该拍摄城市</span><span class="fn">当天填了空闲档期</span><span class="fn">该时段没有冲突单</span><span class="fn">评分达到设定门槛</span><span class="fn-out">符合条件的人 · 一次推送到手机</span></div>
@@ -543,6 +777,11 @@
           <span class="mhint" aria-hidden="true"></span>
         </summary>
         <div class="mdet">
+          <div class="modstat">
+            <span class="ms-k">推送类型 / 落点</span>
+            <span class="ms-v">12 类 · 10 种深链</span>
+            <span class="ms-t">点开就到该去的页面,不用自己找</span>
+          </div>
           <p class="md-lead">全业务通知汇进一条通道,点开就到该去的页面。</p>
           <ul class="md-pts"><li>12 类推送 · 10 种深链落点,点击直达</li><li>文案模板中心统一维护</li><li>急单走独立高优先级通道</li></ul>
           <div class="dg dg-push"><span class="ps-src">一条推送</span><span class="ps-fan" aria-hidden="true"></span><span class="ps-list"><i>订单详情</i><i>抢单大厅</i><i>系统公告</i><i>天气预警</i></span></div>
@@ -567,6 +806,11 @@
           <span class="mhint" aria-hidden="true"></span>
         </summary>
         <div class="mdet">
+          <div class="modstat">
+            <span class="ms-k">监测灾种</span>
+            <span class="ms-v">5 类气象 + 台风 + 地震</span>
+            <span class="ms-t">按城市定向送达,只有落在影响半径里的才收到</span>
+          </div>
           <p class="md-lead">户外履约的风险前置,按城市定向送达。</p>
           <ul class="md-pts"><li>暴雨雷暴等五灾种监测</li><li>台风按影响半径判定命中城市</li><li>地震只发震后情报,不冒充官方速报</li></ul>
           <div class="dg dg-geo"><span class="gzone" aria-hidden="true"></span><span class="gcity c1 ">东京</span><span class="gcity c2 hit">京都</span><span class="gcity c3 hit">大阪</span><span class="gcity c4 hit">奈良</span><span class="gcity c5 ">福冈</span><span class="gtag">影响半径内的城市定向预警</span></div>
@@ -591,6 +835,11 @@
           <span class="mhint" aria-hidden="true"></span>
         </summary>
         <div class="mdet">
+          <div class="modstat">
+            <span class="ms-k">交接棒次</span>
+            <span class="ms-v">四棒</span>
+            <span class="ms-t">每步自动通知下一棒并回写进度,客服退出链路</span>
+          </div>
           <p class="md-lead">底片、选片、精修、验收四棒交接,进度自动回写。</p>
           <ul class="md-pts"><li>网盘链接与提取码自动识别</li><li>每一步自动通知下一棒</li><li>返修轮次全程留痕</li></ul>
           <div class="dg dg-relay4"><span class="r4"><b>传底片</b><i>摄影师</i></span><span class="r4"><b>选片</b><i>客人</i></span><span class="r4"><b>精修</b><i>精修师</i></span><span class="r4 last"><b>验收</b><i>客人</i></span></div>
@@ -615,6 +864,11 @@
           <span class="mhint" aria-hidden="true"></span>
         </summary>
         <div class="mdet">
+          <div class="modstat ms-qual">
+            <span class="ms-k">AI 边界</span>
+            <span class="ms-v">只填表,不建单</span>
+            <span class="ms-t">入库前必须经过人工闸门;挂了不阻断主流程</span>
+          </div>
           <p class="md-lead">替代机械劳动,不替代判断。</p>
           <ul class="md-pts"><li>非结构化订单文本一键抽取</li><li>人工纠错静默沉淀为样本</li><li>调用有上限,异常自动降级</li></ul>
           <div class="dg dg-flow4"><span class="f4"><b>输入文本</b><i>邮件 / 客人消息</i></span><span class="f4a" aria-hidden="true"></span><span class="f4"><b>AI 抽取</b><i>只填字段,不算规则</i></span><span class="f4a" aria-hidden="true"></span><span class="f4 gate"><b>人工闸门</b><i>客服核对确认</i></span><span class="f4a" aria-hidden="true"></span><span class="f4"><b>入库</b><i>自动进派单池</i></span></div>
@@ -639,6 +893,11 @@
           <span class="mhint" aria-hidden="true"></span>
         </summary>
         <div class="mdet">
+          <div class="modstat ms-qual">
+            <span class="ms-k">参与方</span>
+            <span class="ms-v">三方同页</span>
+            <span class="ms-t">客人免登录参与交付;尾款未付时成品自动隐藏</span>
+          </div>
           <p class="md-lead">客人免登录参与交付,三方在同一页各做各的那一棒。</p>
           <ul class="md-pts"><li>客人自助选片、验收与提返修</li><li>尾款未付时成品自动隐藏</li><li>客服事件统一进收件箱</li></ul>
           <div class="dg dg-hub"><span class="hb h1">摄影师<i>传底片</i></span><span class="hb-core">订单公开页<i>免登录 · 三方同页</i></span><span class="hb h2">精修师<i>交成品</i></span><span class="hb h3">客人<i>选片 · 验收</i></span></div>
@@ -668,7 +927,7 @@
   </div>
 </section>
 
-<!-- ══════════ 第 4 屏 · 派单调度 ══════════ -->
+<!-- ══════════ 第 6 屏 · 派单调度 ══════════ -->
 <section id="dispatch" class="alt">
   <div class="wrap">
     <p class="kicker">核心专章 · 一</p>
@@ -781,15 +1040,103 @@
     </figure>
 
     <div class="kpis">
-      <div class="kpi"><b>74.7%</b><span>抢单成交率</span></div>
-      <div class="kpi"><b>2.0 分钟</b><span>接单时长中位数</span></div>
-      <div class="kpi"><b>96.0%</b><span>一次推送即成交,无需二次触达</span></div>
-      <div class="kpi"><b>32.9%</b><span>上线两个月即承接三分之一派单量</span></div>
+      <details class="kpi">
+        <summary>
+          <b>74.7%</b><span class="kcap">抢单成交率</span>
+          <span class="kplus" aria-hidden="true"></span>
+          <span class="khint" aria-hidden="true"></span>
+        </summary>
+        <div class="kdet">
+          <p class="kd-q">这个数字是什么意思</p>
+          <p class="kd-a">发出去的抢单任务里,最后有多大比例是被摄影师自己点「抢」接走的。</p>
+          <p class="kd-q">怎么算的</p>
+          <p class="kd-a kd-formula">抢单成交率 = 被摄影师主动接走的抢单任务数 ÷ 已发起的抢单任务总数。统计范围:2026-05 至 2026-08 生产环境。<span class="kd-todo">分子分母的排除项(已取消 / 中途改手动指派的任务是否计入)待生产库核验后补全</span></p>
+          <p class="kd-q">为什么这个数字重要</p>
+          <p class="kd-a">它衡量的是「不用客服追人」的比例——每 4 个派单任务有 3 个自己走完了,客服只需发布一次。</p>
+          <figure class="shotwrap shotwrap-in">
+            <img class="shotimg" src="images/console-grab-stats.png" alt="抢单统计页(成交率)"
+                 onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
+            <div class="shot shot-in">
+              <p class="shot-name">抢单统计页(成交率)截图</p>
+              <p class="shot-req">建议文件名:console-grab-stats.png ｜ 建议 1400×900 ｜ 需打码:客人信息与报酬金额</p>
+            </div>
+          </figure>
+        </div>
+      </details>
+      <details class="kpi">
+        <summary>
+          <b>2.0 分钟</b><span class="kcap">接单时长中位数</span>
+          <span class="kplus" aria-hidden="true"></span>
+          <span class="khint" aria-hidden="true"></span>
+        </summary>
+        <div class="kdet">
+          <p class="kd-q">这个数字是什么意思</p>
+          <p class="kd-a">从客服点「发布抢单」到有人接走,一半的订单用时不超过 2 分钟。</p>
+          <p class="kd-q">怎么算的</p>
+          <p class="kd-a kd-formula">取每个成交抢单任务的(接单时刻 − 发布时刻),对全部成交任务取<b>中位数</b>(不是平均数,避免个别长尾把数字拉高)。<span class="kd-todo">统计窗口起止、以及循环再推的场次如何计入,待生产库核验后补全</span></p>
+          <p class="kd-q">为什么这个数字重要</p>
+          <p class="kd-a">中位数比平均数更能反映常态。2 分钟意味着派单在体感上就是「即时」的。</p>
+          <figure class="shotwrap shotwrap-in">
+            <img class="shotimg" src="images/console-grab-timing.png" alt="抢单时长分布页"
+                 onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
+            <div class="shot shot-in">
+              <p class="shot-name">抢单时长分布页截图</p>
+              <p class="shot-req">建议文件名:console-grab-timing.png ｜ 建议 1400×900 ｜ 需打码:客人信息与摄影师姓名</p>
+            </div>
+          </figure>
+        </div>
+      </details>
+      <details class="kpi">
+        <summary>
+          <b>96.0%</b><span class="kcap">一次推送即成交,无需二次触达</span>
+          <span class="kplus" aria-hidden="true"></span>
+          <span class="khint" aria-hidden="true"></span>
+        </summary>
+        <div class="kdet">
+          <p class="kd-q">这个数字是什么意思</p>
+          <p class="kd-a">成交的抢单里,绝大多数在第一轮推送就被接走,不需要再推第二次。</p>
+          <p class="kd-q">怎么算的</p>
+          <p class="kd-a kd-formula">首轮推送即成交的抢单任务数 ÷ 成交的抢单任务数。<span class="kd-todo">分母取「成交任务」还是「全部已发起任务」,以及再推场次的界定,待生产库核验后补全</span></p>
+          <p class="kd-q">为什么这个数字重要</p>
+          <p class="kd-a">它说明候选池圈得准——推给对的人,一次就够,不必反复打扰。</p>
+          <figure class="shotwrap shotwrap-in">
+            <img class="shotimg" src="images/console-push-hitrate.png" alt="推送命中率统计"
+                 onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
+            <div class="shot shot-in">
+              <p class="shot-name">推送命中率统计截图</p>
+              <p class="shot-req">建议文件名:console-push-hitrate.png ｜ 建议 1400×900 ｜ 需打码:客人信息</p>
+            </div>
+          </figure>
+        </div>
+      </details>
+      <details class="kpi">
+        <summary>
+          <b>32.9%</b><span class="kcap">上线两个月即承接三分之一派单量</span>
+          <span class="kplus" aria-hidden="true"></span>
+          <span class="khint" aria-hidden="true"></span>
+        </summary>
+        <div class="kdet">
+          <p class="kd-q">这个数字是什么意思</p>
+          <p class="kd-a">抢单这套新机制上线后两个月,已经承接了全部派单量的约三分之一。</p>
+          <p class="kd-q">怎么算的</p>
+          <p class="kd-a kd-formula">同期由抢单方式成交的派单数 ÷ 同期全部派单数(含手动指派)。统计窗口:抢单功能上线后的头两个月。<span class="kd-todo">窗口的精确起止日期待生产库核验后补全</span></p>
+          <p class="kd-q">为什么这个数字重要</p>
+          <p class="kd-a">它衡量的是新机制「被接受的速度」——不是我说它好,是供给侧用脚投票。</p>
+          <figure class="shotwrap shotwrap-in">
+            <img class="shotimg" src="images/console-urgent-share.png" alt="派单方式占比统计"
+                 onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';this.nextElementSibling.style.display='flex';}">
+            <div class="shot shot-in">
+              <p class="shot-name">派单方式占比统计截图</p>
+              <p class="shot-req">建议文件名:console-urgent-share.png ｜ 建议 1400×900 ｜ 需打码:客人信息与报酬金额</p>
+            </div>
+          </figure>
+        </div>
+      </details>
     </div>
   </div>
 </section>
 
-<!-- ══════════ 第 5 屏 · 摄影师端 App ══════════ -->
+<!-- ══════════ 第 7 屏 · 摄影师端 App ══════════ -->
 <section id="app">
   <div class="wrap">
     <p class="kicker">核心专章 · 二</p>
@@ -1126,7 +1473,7 @@
   </div>
 </section>
 
-<!-- ══════════ 第 6 屏 · 为什么这套模式更好 ══════════ -->
+<!-- ══════════ 第 8 屏 · 为什么这套模式更好 ══════════ -->
 <section id="why" class="alt">
   <div class="wrap">
     <p class="kicker">模式优势</p>
@@ -1214,7 +1561,7 @@
   </div>
 </section>
 
-<!-- ══════════ 第 7 屏 · 自动化程度与 AI 参与 ══════════ -->
+<!-- ══════════ 第 9 屏 · 自动化程度与 AI 参与 ══════════ -->
 <section id="auto">
   <div class="wrap">
     <p class="kicker">自动化与 AI</p>
@@ -1308,7 +1655,7 @@
   </div>
 </section>
 
-<!-- ══════════ 第 8 屏 · 关键产品决策 ══════════ -->
+<!-- ══════════ 第 10 屏 · 关键产品决策 ══════════ -->
 <section id="cases" class="alt">
   <div class="wrap">
     <p class="kicker">产品决策</p>
@@ -1416,7 +1763,7 @@
   </div>
 </section>
 
-<!-- ══════════ 第 9 屏 · 怎么做出来的 ══════════ -->
+<!-- ══════════ 第 11 屏 · 怎么做出来的 ══════════ -->
 <section id="how">
   <div class="wrap">
     <p class="kicker">如何交付</p>
