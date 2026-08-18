@@ -17,7 +17,7 @@
 ## 页面结构(十二屏)
 
 ```
- 1. Hero          Logo 占位 + 品牌名 + 订单一生动线(可点跳系统构成)+ 四个可点开的 KPI
+ 1. Hero          Logo 占位 + 品牌名 + 订单一生全景动画(六站叙事,可点跳系统构成)+ 四个可点开的 KPI
  2. 这是什么系统   三问三答 + 系统全景(配图0:海报化节点图,五个节点全部可点开,
                   含总控台↔App 双向同步线「同一后台 · 两个界面」)
  3. 适用场景      四类使用者各自拿到什么(配图1)
@@ -50,7 +50,7 @@
 
 ## 可展开的图文详情
 
-全站共 57 处原生 `<details>` + 1 组纯 CSS radio 选项卡(图4 六环节),展开收起不依赖任何脚本:
+全站共 57 处原生 `<details>` + 1 组纯 CSS radio 选项卡(图4 六环节)+ 38 处纯 CSS checkbox 图片灯箱(点击任意截图全屏放大,点暗底或 ✕ 关闭),展开收起与放大全部不依赖任何脚本:
 
 - **八个 KPI 数字**——点开是「传统模式的代价 → 意味着什么 → 对比条」,统计口径(含「待生产库核验」标注)收在内层折叠
 - **图 0 五个节点**(订单来源 / 三个端 / 数据底座)——每个点开:这一端干什么 + 微型图 + 有据数据点 + 「详细 →」
@@ -73,15 +73,16 @@
 | 订单圆点沿线流动 | 配图 0 系统全景 | 4.5s / 5.5s 循环,数据底座另有 7s 流光 |
 | KPI 对比条展开 | 8 个 KPI 展开区 | 条形从 0 宽展开到目标宽,0.6s |
 | 环节箭头流动 | 图 4 / 图 7 | 3.6s 循环渐变 |
-| 订单一生动线 | Hero lifeline | 圆点走线 6.5s,节点依次亮;reduced-motion 时六节点全亮静态 |
-| App↔后台双向对流 | 图 0 双工线 | 琥珀下行=派单下发,橄榄上行=回写,4s 对向循环 |
+| 订单一生全景动画 | Hero | 圆点流经六站 10.5s/周期,到站亮起 + 状态小字浮现,结算站定格 1.5s;reduced-motion 时六站全亮、状态字全显 |
+| 总控台↔App 桥接线 | 图 0 | 两条 L 形线锚定两节点底边,标签「派单下发 →」「← 档期 · 接单回写」贴线;圆点对向流动 4s |
+| 角色卡前后对比图 | 图 1 四卡 | 一次性淡入上浮 |
 | 串行爬点 vs 并行脉冲 | 图 6 派单对比 | 左点在「未回复/没空」处停顿,右侧脉冲后依次点亮,7s |
 | 交付接力对比 | 图 10 | 传统行在每个客服节点停顿,系统行直线走完,7.5s |
 | 交付页进度填充 | 图 9 | 一次性 1.6s,播完停在「选片」段 |
 
-## 二十五张配图全部由 CSS 绘制
+## 全部配图由 CSS 绘制
 
-13 张主配图(图 0–图 12)+ 12 张板块机制图 + 12 个板块图标 + 12 个差异化图标 + 4 个角色图标,全部用 `div/span` + `flex/grid` + `border` + `border-radius` + 伪元素实现。不使用图片文件、图标字体、canvas 或 SVG,因此页面没有任何图片请求。
+13 张主配图(图 0–图 12)+ 12 张板块机制图 + 4 幅角色卡「之前 → 之后」对比图 + 12 个板块图标 + 12 个差异化图标 + 4 个角色图标 + Hero 全景动画,全部用 `div/span` + `flex/grid` + `border` + `border-radius` + 伪元素实现。不使用图片文件、图标字体、canvas 或 SVG,因此页面没有任何图片请求。
 
 ## 如何替换 Logo
 
@@ -125,17 +126,23 @@ Hero 那个记得加 `class="logoimg big"`。
 
 ```html
 <figure class="shotwrap">
-  <img class="shotimg" src="images/console-orders-list.png" alt="总控台订单列表页"
-       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-  <div class="shot">
-    <p class="shot-name">总控台订单列表页截图</p>
-    <p class="shot-req">建议文件名:console-orders-list.png ｜ 建议 1600×900 ｜ 需打码:客人姓名、电话、金额</p>
+  <input type="checkbox" id="lb-N" class="lb-toggle">          <!-- 灯箱开关(纯 CSS) -->
+  <label class="lb-zoom" for="lb-N">
+    <img class="shotimg" src="images/console-orders-list.png" alt="总控台订单列表页"
+         onerror="…先试同名 .jpg,再隐藏并显示占位框…">
+    <span class="lb-tip">⤢ 点击放大</span>
+  </label>
+  <div class="shot">…占位框…</div>
+  <div class="lb-overlay">                                     <!-- 点击后的全屏大图 -->
+    <label class="lb-close" for="lb-N">✕</label>
+    <label class="lb-back" for="lb-N"><img src="同一文件" loading="lazy"></label>
   </div>
 </figure>
 ```
 
 - `.shotwrap > .shot` 在 CSS 里默认 `display:none`,只有 `onerror` 触发时才置回 `flex`
-- 图片加载失败时 `<img>` 自身立即 `display:none`,**不会出现浏览器默认的破图图标**
+- 图片加载失败时缩略区自动隐藏,**不会出现浏览器默认的破图图标**,占位框也不会带灯箱
+- **每张已显示的截图都可点击放大**:`checkbox:checked ~ .lb-overlay` 全屏呈现同一文件(缓存命中,零额外流量),点暗底任意处或右上角 ✕ 关闭
 - 卡片内的 31 处用 `.shotwrap-in`,图片最大高度 420px;主线 5 处 520px
 
 占位框不替换也不影响观感——它本身是按设计元素处理的,留着即可。
@@ -158,8 +165,8 @@ images/       截图目录:按清单文件名放图即自动显示;README.md 是
 .nojekyll     关闭 GitHub Pages 的 Jekyll 处理
 ```
 
-- **无外部 JS 文件;仅 38 处 `<img onerror>` 内联回退(png → jpg → 占位框两级),用于截图缺失时显示占位框**
-- 平滑滚动由 CSS `scroll-behavior` 实现,板块展开由原生 `<details>` 实现
+- **无外部 JS 文件;仅 76 处 `<img onerror>` 内联回退(38 处缩略 + 38 处灯箱大图,png → jpg → 占位框两级)**
+- 平滑滚动由 CSS `scroll-behavior` 实现,板块展开由原生 `<details>` 实现,图片放大由纯 CSS checkbox 灯箱实现
 - 零第三方资源:系统字体栈,不引任何 CDN;截图放进 `images/` 后即为本仓库自有图片
 - 支持打印导出 PDF
 
