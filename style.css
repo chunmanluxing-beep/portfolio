@@ -2356,3 +2356,116 @@ label.fm-step:focus-visible { outline: 2px solid var(--accent); outline-offset: 
   .dek, .mdesc, .mc p, .dfx p, .adv p, .rule p, .case p, figcaption,
   .buildnote p, .au, .aic p, .aic ul li { color: #333; }
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ═══ v15.0 · 手机端适配体检 + 竖图容器 + 多图轮播 ═══
+   第一验证视口 390×844(iPhone 12/13/14/15 逻辑宽度)
+   本段只新增与覆盖,不删改 v14 既有规则;零外部资源、零 <script>
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── 任务一 · 竖图专用容器 .shot-portrait ───────────────────────────────
+   手机真机截图为 780×1688 竖图。v14 的 .shotimg 是 width:100% + max-height,
+   竖图进去后被 object-fit:contain 压成「宽框里的一根细条」,两侧留大片空底。
+   这里改成:按图片自然比例收窄 + 居中 + 手机壳观感(圆角/浅边/投影)。 */
+.shotwrap.shot-portrait { text-align: center; }
+.shotwrap.shot-portrait .lb-zoom { width: fit-content; margin-left: auto; margin-right: auto; }
+.shotwrap.shot-portrait .shotimg {
+  width: auto; height: auto;                 /* 宽高比交给图片自身,不再拉伸 */
+  max-width: min(300px, 78vw);               /* 桌面 300px;手机 78vw 兜底 */
+  max-height: 640px;                         /* 桌面端最大高度 */
+  margin-left: auto; margin-right: auto;
+  object-fit: contain;                       /* 兜底:即便未来图比例异常也不裁切 */
+  border: 1px solid var(--line); border-radius: 18px;
+  background: var(--bg-deep);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .46);
+}
+/* 1d · 无图态占位框在竖图位也走竖比例(约 9:19.5),不再是「横框等竖图」 */
+.shotwrap.shot-portrait > .shot {
+  width: min(300px, 78vw); margin-left: auto; margin-right: auto;
+  aspect-ratio: 9 / 19.5; min-height: 0; max-height: 640px;
+  padding: 22px 16px;
+}
+/* 1c · 灯箱内竖图:高度上限仍是 92vh,宽度按 780:1688 反推封顶,杜绝超宽拉伸 */
+.shotwrap.shot-portrait .lb-back img { max-width: min(94vw, 44vh); }
+
+/* ─── 任务二 · 纯 CSS 多图轮播 .shotdeck ─────────────────────────────────
+   约定:主图 <名>.png|.jpg,追加图 <名>-2 / -3 / -4(最多 4 张)。
+   渐进增强:圆点行默认隐藏,只有第 2 张真的加载成功(onload 打 .deck-multi)
+   才出现——只有主图时零圆点,外观与 v14 完全一致。 */
+.shotdeck .deck-r {                          /* 视觉隐藏的分组 radio */
+  position: absolute; width: 1px; height: 1px; margin: -1px;
+  opacity: 0; pointer-events: none;
+}
+.shotdeck .deck-s { display: none; }
+.shotdeck .deck-r1:checked ~ .lb-zoom .deck-s1,
+.shotdeck .deck-r2:checked ~ .lb-zoom .deck-s2 { display: block; }
+.shotdeck .deck-dots { display: none; justify-content: center; gap: 4px; margin-top: 4px; }
+.shotdeck.deck-multi .deck-dots { display: flex; }
+.shotdeck .deck-dot {                        /* 触控热区 44×44(≥ 规范要求的 32) */
+  position: relative; display: block; width: 44px; height: 44px; cursor: pointer;
+}
+.shotdeck .deck-dot::before {                /* 视觉圆点 8px */
+  content: ""; position: absolute; left: 50%; top: 50%;
+  width: 8px; height: 8px; margin: -4px 0 0 -4px;
+  border: 1px solid var(--accent-ln); border-radius: 50%; background: transparent;
+}
+.shotdeck .deck-r1:checked ~ .deck-dots .deck-d1::before,
+.shotdeck .deck-r2:checked ~ .deck-dots .deck-d2::before {
+  background: var(--accent); border-color: var(--accent);   /* 当前页:琥珀实心 */
+}
+/* 2c · 灯箱联动:radio 与 .lb-overlay 同为 figure 直接子元素,`~` 直接共享状态,
+   放大看到的就是当前选中的那一张,无需任何 JS */
+.shotdeck .deck-b { display: none; }
+.shotdeck .deck-r1:checked ~ .lb-overlay .lb-back .deck-b1,
+.shotdeck .deck-r2:checked ~ .lb-overlay .lb-back .deck-b2 { display: block; }
+
+/* ─── 任务四 · 手机端体检修复 ───────────────────────────────────────────── */
+
+/* 4a-1 顶部导航 a:热区 41×25 → 46×25+padding。这里必须用真 padding:
+        .topnav ul 是 overflow-x:auto(overflow-y 随之算作 auto),会把溢出
+        ul 内容盒的 ::after 热区裁掉,只有把 a 撑成块级才真正加大热区 */
+.topnav a { display: block; padding: 11px 2px; }
+/* 4a-2 正文内联链接(App Store 外链 / 「详细 →」/ 「专章 →」/ 邮箱):
+        16–18px 高 → 44px。这些链接都带 border-bottom 下划线,加 padding 会
+        把下划线推离文字,所以改用不可见 ::after 扩热区,版式一字不动 */
+.storelink, .st-more a, .pointto a, footer .contact a { position: relative; }
+.storelink::after, .st-more a::after, .pointto a::after, footer .contact a::after {
+  content: ""; position: absolute; left: -8px; right: -8px;
+  top: 50%; height: 44px; transform: translateY(-50%);
+}
+/* 4a-3 「统计口径」summary:39px → 44px */
+.kpi-cal > summary { min-height: 44px; padding-top: 11px; padding-bottom: 11px; }
+/* 4a-4 流程图面板关闭「×」:26×26 → 44×44 热区(视觉圆圈仍是 26) */
+.fm-close::after {
+  content: ""; position: absolute; left: 50%; top: 50%;
+  width: 44px; height: 44px; transform: translate(-50%, -50%);
+}
+/* 4a-5 灯箱:关闭键 40 → 46;并把 padding 从 overlay 挪进 .lb-back,
+        使「点暗底任意处即关」在触屏上真正覆盖到边缘 */
+.lb-close { width: 46px; height: 46px; line-height: 44px; }
+.lb-overlay { padding: 0; }
+.lb-back { padding: 26px; }
+/* 4e · 灯箱大图用 dvh 兜底:手机地址栏收起/展开时不再出现错位裁切
+        (dvh 不支持的旧内核走前一条 vh) */
+.lb-back img { max-height: 92vh; max-height: 92dvh; }
+
+@media (max-width: 768px) {
+  /* 竖图窄屏:最大高度 72vh(用 vh 不用 dvh——in-flow 图片若跟随动态视口
+     会在滚动中反复重排;灯箱是 fixed 覆盖层,才用 dvh) */
+  .shotwrap.shot-portrait .shotimg,
+  .shotwrap.shot-portrait > .shot { max-height: 72vh; }
+  .lb-overlay { padding: 0; }
+  .lb-back { padding: 14px; }
+}
+
+/* 4b/4c · 390px 是最常见的 iPhone 逻辑宽度,而 v14 的单列断点停在 380px:
+   .stats 在 390 仍是两列(卡内截图被压到 90px 宽)、.kpis 更是任何宽度都不塌成单列
+   (卡内截图 116px 宽)。此处把两块 KPI 网格在 ≤480px 一律改单列。 */
+@media (max-width: 480px) {
+  .stats, .kpis { grid-template-columns: 1fr; }
+}
+
+/* 动效一律包进 no-preference(铁律) */
+@media (prefers-reduced-motion: no-preference) {
+  .shotdeck .deck-dot::before { transition: background .18s, border-color .18s; }
+}

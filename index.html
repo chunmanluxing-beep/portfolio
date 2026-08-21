@@ -1247,20 +1247,29 @@
           <ul class="md-pts"><li>客人自助选片、验收与提返修</li><li>尾款未付时成品自动隐藏</li><li>客服事件统一进收件箱</li></ul>
           <div class="dg dg-hub"><span class="hb h1">摄影师<i>传底片</i></span><span class="hb-core">订单公开页<i>免登录 · 三方同页</i></span><span class="hb h2">精修师<i>交成品</i></span><span class="hb h3">客人<i>选片 · 验收</i></span></div>
           <p class="dg-cap">三个角色指向同一张页面,不再由客服逐棒中转</p>
-          <figure class="shotwrap shotwrap-in">
+          <figure class="shotwrap shotwrap-in shotdeck">
       <input type="checkbox" id="lb-17" class="lb-toggle" aria-hidden="true">
+      <input type="radio" name="deck-17" id="dk-17-1" class="deck-r deck-r1" checked aria-hidden="true">
+      <input type="radio" name="deck-17" id="dk-17-2" class="deck-r deck-r2" aria-hidden="true">
       <label class="lb-zoom" for="lb-17" title="点击放大">
-        <img class="shotimg" src="images/guest-photo-select.png" alt="客人选片界面"
+        <img class="shotimg deck-s deck-s1" src="images/guest-photo-select.png" alt="客人选片界面"
              onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.parentElement.style.display='none';this.closest('figure').querySelector('.shot').style.display='flex';}">
+        <img class="shotimg deck-s deck-s2" src="images/guest-photo-select-2.png" alt="客人选片界面 · 第 2 张"
+             onload="this.closest('figure').classList.add('deck-multi')"
+             onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.dataset.miss=1;}">
         <span class="lb-tip" aria-hidden="true">⤢ 点击放大</span>
       </label>
+      <div class="deck-dots">
+        <label class="deck-dot deck-d1" for="dk-17-1" title="第 1 张" aria-label="看第 1 张"></label>
+        <label class="deck-dot deck-d2" for="dk-17-2" title="第 2 张" aria-label="看第 2 张"></label>
+      </div>
       <div class="shot shot-in">
               <p class="shot-name">客人选片界面截图</p>
               <p class="shot-req">建议文件名:guest-photo-select.png ｜ 建议 1200×900 ｜ 需打码:客人姓名与订单金额</p>
             </div>
       <div class="lb-overlay">
         <label class="lb-close" for="lb-17" aria-label="关闭大图">✕</label>
-        <label class="lb-back" for="lb-17"><img src="images/guest-photo-select.png" alt="客人选片界面(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"></label>
+        <label class="lb-back" for="lb-17"><img class="deck-b deck-b1" src="images/guest-photo-select.png" alt="客人选片界面(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"><img class="deck-b deck-b2" src="images/guest-photo-select-2.png" alt="客人选片界面 · 第 2 张(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"></label>
       </div>
     </figure>
           <p class="st-more"><a href="#guest">本端有专章 →</a></p>
@@ -1596,7 +1605,7 @@
       <figcaption><b>图 8 · 抢单大厅界面示意</b>:报酬前置;可抢是蓝卡,没资格是灰卡,但报酬与城市照常可见——看得见才会想争取。</figcaption>
     </figure>
 
-    <figure class="shotwrap">
+    <figure class="shotwrap shot-portrait">
       <input type="checkbox" id="lb-23" class="lb-toggle" aria-hidden="true">
       <label class="lb-zoom" for="lb-23" title="点击放大">
         <img class="shotimg" src="images/app-grab-hall.png" alt="抢单大厅真机"
@@ -1605,7 +1614,7 @@
       </label>
       <div class="shot">
         <p class="shot-name">抢单大厅真机截图</p>
-        <p class="shot-req">建议文件名:app-grab-hall.png ｜ 建议 750×1334 ｜ 需同时出现可抢卡与灰卡,并打码集合点与报酬金额</p>
+        <p class="shot-req">建议文件名:app-grab-hall.png ｜ 建议 780×1688(手机竖屏 390×844 逻辑尺寸) ｜ 需同时出现可抢卡与灰卡,并打码集合点与报酬金额</p>
       </div>
       <div class="lb-overlay">
         <label class="lb-close" for="lb-23" aria-label="关闭大图">✕</label>
@@ -1629,7 +1638,7 @@
           <p class="dfx-full">一 · 档期不是"填表",是"接单资格"</p>
           <p>填了档期才进候选池,<b>不填收不到任何单</b>;没填的人可单独召回,抢到后自动记入档期。</p>
           <p class="wo">排班表填了也白填,与能不能接到活无关,用户没动力维护,数据很快失真。</p>
-          <figure class="shotwrap shotwrap-in">
+          <figure class="shotwrap shotwrap-in shot-portrait">
       <input type="checkbox" id="lb-24" class="lb-toggle" aria-hidden="true">
       <label class="lb-zoom" for="lb-24" title="点击放大">
         <img class="shotimg" src="images/app-schedule-fill.png" alt="档期填报页"
@@ -1638,7 +1647,7 @@
       </label>
       <div class="shot shot-in">
               <p class="shot-name">档期填报页截图</p>
-              <p class="shot-req">建议文件名:app-schedule-fill.png ｜ 建议 750×1334 ｜ 需打码:摄影师姓名</p>
+              <p class="shot-req">建议文件名:app-schedule-fill.png ｜ 建议 780×1688(手机竖屏 390×844 逻辑尺寸) ｜ 需打码:摄影师姓名</p>
             </div>
       <div class="lb-overlay">
         <label class="lb-close" for="lb-24" aria-label="关闭大图">✕</label>
@@ -1660,7 +1669,7 @@
           <p class="dfx-full">二 · 抢单大厅:公平性由系统保证</p>
           <p>报酬、城市、日期、时长、集合点全部前置,点击即抢;多人同抢恰好一人成功,输的人立即收到提示。</p>
           <p class="wo">回群里喊"我接",时间戳只精确到秒,"先到先得"成空话,不满会转向平台。</p>
-          <figure class="shotwrap shotwrap-in">
+          <figure class="shotwrap shotwrap-in shot-portrait">
       <input type="checkbox" id="lb-25" class="lb-toggle" aria-hidden="true">
       <label class="lb-zoom" for="lb-25" title="点击放大">
         <img class="shotimg" src="images/app-grab-hall.png" alt="抢单大厅列表"
@@ -1669,7 +1678,7 @@
       </label>
       <div class="shot shot-in">
               <p class="shot-name">抢单大厅列表截图</p>
-              <p class="shot-req">建议文件名:app-grab-hall.png ｜ 建议 750×1334 ｜ 需同时出现可抢卡与灰卡,并打码集合点与报酬金额</p>
+              <p class="shot-req">建议文件名:app-grab-hall.png ｜ 建议 780×1688(手机竖屏 390×844 逻辑尺寸) ｜ 需同时出现可抢卡与灰卡,并打码集合点与报酬金额</p>
             </div>
       <div class="lb-overlay">
         <label class="lb-close" for="lb-25" aria-label="关闭大图">✕</label>
@@ -1691,7 +1700,7 @@
           <p class="dfx-full">三 · 可见性与可抢性分离</p>
           <p>抢不了的单照常显示为灰卡并说明原因,报酬与城市不遮挡,点击给改进路径。</p>
           <p class="wo">大厅空空如也,用户以为平台没单——真实业务量才是最好的激励素材。</p>
-          <figure class="shotwrap shotwrap-in">
+          <figure class="shotwrap shotwrap-in shot-portrait">
       <input type="checkbox" id="lb-26" class="lb-toggle" aria-hidden="true">
       <label class="lb-zoom" for="lb-26" title="点击放大">
         <img class="shotimg" src="images/app-grey-card.png" alt="灰卡说明弹窗"
@@ -1700,7 +1709,7 @@
       </label>
       <div class="shot shot-in">
               <p class="shot-name">灰卡说明弹窗截图</p>
-              <p class="shot-req">建议文件名:app-grey-card.png ｜ 建议 750×1334 ｜ 需打码:订单编号</p>
+              <p class="shot-req">建议文件名:app-grey-card.png ｜ 建议 780×1688(手机竖屏 390×844 逻辑尺寸) ｜ 需打码:订单编号</p>
             </div>
       <div class="lb-overlay">
         <label class="lb-close" for="lb-26" aria-label="关闭大图">✕</label>
@@ -1753,7 +1762,7 @@
           <p class="dfx-full">五 · 急单快速通道</p>
           <p>急单走独立高优先级通知(带声音震动),文案独立,并放宽部分筛选扩大覆盖面;摄影师可拒绝或回一句"我一小时后能到"。</p>
           <p class="wo">急单和普通单长得一样,而普通通知会被延迟聚合,晚 20 分钟就没用了。</p>
-          <figure class="shotwrap shotwrap-in">
+          <figure class="shotwrap shotwrap-in shot-portrait">
       <input type="checkbox" id="lb-28" class="lb-toggle" aria-hidden="true">
       <label class="lb-zoom" for="lb-28" title="点击放大">
         <img class="shotimg" src="images/app-urgent-push.png" alt="急单推送通知"
@@ -1762,7 +1771,7 @@
       </label>
       <div class="shot shot-in">
               <p class="shot-name">急单推送通知截图</p>
-              <p class="shot-req">建议文件名:app-urgent-push.png ｜ 建议 750×1334 ｜ 需打码:客人信息</p>
+              <p class="shot-req">建议文件名:app-urgent-push.png ｜ 建议 780×1688(手机竖屏 390×844 逻辑尺寸) ｜ 需打码:客人信息</p>
             </div>
       <div class="lb-overlay">
         <label class="lb-close" for="lb-28" aria-label="关闭大图">✕</label>
@@ -1815,7 +1824,7 @@
           <p class="dfx-full">七 · 天气与安全预警直达</p>
           <p>抢单卡带当天当地天气,日历每格有天气底色;暴雨台风地震按城市定向预警,当天有拍摄的还收到针对性建议。</p>
           <p class="wo">关键变量不在决策发生的地方,安全信息靠运营想起来在群里说一声。</p>
-          <figure class="shotwrap shotwrap-in">
+          <figure class="shotwrap shotwrap-in shot-portrait">
       <input type="checkbox" id="lb-30" class="lb-toggle" aria-hidden="true">
       <label class="lb-zoom" for="lb-30" title="点击放大">
         <img class="shotimg" src="images/app-calendar-weather.png" alt="日历天气底色页"
@@ -1824,7 +1833,7 @@
       </label>
       <div class="shot shot-in">
               <p class="shot-name">日历天气底色页截图</p>
-              <p class="shot-req">建议文件名:app-calendar-weather.png ｜ 建议 750×1334 ｜ 需打码:摄影师姓名</p>
+              <p class="shot-req">建议文件名:app-calendar-weather.png ｜ 建议 780×1688(手机竖屏 390×844 逻辑尺寸) ｜ 需打码:摄影师姓名</p>
             </div>
       <div class="lb-overlay">
         <label class="lb-close" for="lb-30" aria-label="关闭大图">✕</label>
@@ -1846,7 +1855,7 @@
           <p class="dfx-full">八 · 收入透明</p>
           <p>每个单在抢之前就显示报酬;个人页可查接单与收入记录。</p>
           <p class="wo">接单变成赌博;月底翻聊天记录对账,对不上信任就开始流失。</p>
-          <figure class="shotwrap shotwrap-in">
+          <figure class="shotwrap shotwrap-in shot-portrait">
       <input type="checkbox" id="lb-31" class="lb-toggle" aria-hidden="true">
       <label class="lb-zoom" for="lb-31" title="点击放大">
         <img class="shotimg" src="images/app-income-bill.png" alt="个人收入账单页"
@@ -1855,7 +1864,7 @@
       </label>
       <div class="shot shot-in">
               <p class="shot-name">个人收入账单页截图</p>
-              <p class="shot-req">建议文件名:app-income-bill.png ｜ 建议 750×1334 ｜ 需打码:金额与姓名</p>
+              <p class="shot-req">建议文件名:app-income-bill.png ｜ 建议 780×1688(手机竖屏 390×844 逻辑尺寸) ｜ 需打码:金额与姓名</p>
             </div>
       <div class="lb-overlay">
         <label class="lb-close" for="lb-31" aria-label="关闭大图">✕</label>
@@ -1877,7 +1886,7 @@
           <p class="dfx-full">九 · 作品提交与审核闭环</p>
           <p>提交作品(整段网盘文案自动拆出链接与提取码)→ 客服审核 → 结果与反馈回到本人端。</p>
           <p class="wo">作品散在聊天记录里要用时找不到;不知道过没过、为什么,提交意愿逐次降低。</p>
-          <figure class="shotwrap shotwrap-in">
+          <figure class="shotwrap shotwrap-in shot-portrait">
       <input type="checkbox" id="lb-32" class="lb-toggle" aria-hidden="true">
       <label class="lb-zoom" for="lb-32" title="点击放大">
         <img class="shotimg" src="images/app-work-review.png" alt="作品审核结果页"
@@ -1886,7 +1895,7 @@
       </label>
       <div class="shot shot-in">
               <p class="shot-name">作品审核结果页截图</p>
-              <p class="shot-req">建议文件名:app-work-review.png ｜ 建议 750×1334 ｜ 需打码:网盘链接与提取码</p>
+              <p class="shot-req">建议文件名:app-work-review.png ｜ 建议 780×1688(手机竖屏 390×844 逻辑尺寸) ｜ 需打码:网盘链接与提取码</p>
             </div>
       <div class="lb-overlay">
         <label class="lb-close" for="lb-32" aria-label="关闭大图">✕</label>
@@ -1908,7 +1917,7 @@
           <p class="dfx-full">十 · 自注册与自动转正</p>
           <p>陌生摄影师可自行注册,甚至不注册先用;作品审核通过后<b>自动</b>建档建号并迁移全部数据,下次打开无感切换。</p>
           <p class="wo">招募漏斗第一步就漏光——加微信、发资料、等审核、收账号,大部分人在第二步放弃。</p>
-          <figure class="shotwrap shotwrap-in">
+          <figure class="shotwrap shotwrap-in shot-portrait">
       <input type="checkbox" id="lb-33" class="lb-toggle" aria-hidden="true">
       <label class="lb-zoom" for="lb-33" title="点击放大">
         <img class="shotimg" src="images/app-self-register.png" alt="自注册资料页"
@@ -1917,7 +1926,7 @@
       </label>
       <div class="shot shot-in">
               <p class="shot-name">自注册资料页截图</p>
-              <p class="shot-req">建议文件名:app-self-register.png ｜ 建议 750×1334 ｜ 需打码:姓名、电话与证件信息</p>
+              <p class="shot-req">建议文件名:app-self-register.png ｜ 建议 780×1688(手机竖屏 390×844 逻辑尺寸) ｜ 需打码:姓名、电话与证件信息</p>
             </div>
       <div class="lb-overlay">
         <label class="lb-close" for="lb-33" aria-label="关闭大图">✕</label>
@@ -1939,7 +1948,7 @@
           <p class="dfx-full">十一 · 免注册入口与长效登录</p>
           <p>专属链接直接进入,不用记密码;登录长期自动续期,后台切换与系统清理都不掉线。</p>
           <p class="wo">注册与密码本身就是流失点;掉登录更致命——他在外面拍摄,而早忘了密码。</p>
-          <figure class="shotwrap shotwrap-in">
+          <figure class="shotwrap shotwrap-in shot-portrait">
       <input type="checkbox" id="lb-34" class="lb-toggle" aria-hidden="true">
       <label class="lb-zoom" for="lb-34" title="点击放大">
         <img class="shotimg" src="images/app-magic-link.png" alt="专属链接进入首屏"
@@ -1948,7 +1957,7 @@
       </label>
       <div class="shot shot-in">
               <p class="shot-name">专属链接进入首屏截图</p>
-              <p class="shot-req">建议文件名:app-magic-link.png ｜ 建议 750×1334 ｜ 需打码:链接中的令牌串</p>
+              <p class="shot-req">建议文件名:app-magic-link.png ｜ 建议 780×1688(手机竖屏 390×844 逻辑尺寸) ｜ 需打码:链接中的令牌串</p>
             </div>
       <div class="lb-overlay">
         <label class="lb-close" for="lb-34" aria-label="关闭大图">✕</label>
@@ -1970,22 +1979,6 @@
           <p class="dfx-full">十二 · 版本自动感知</p>
           <p>应用自动察觉新版本并提示一键更新。采用"网页 + 原生壳"形态,<b>更新不需要重新发版、不需要过审</b>。</p>
           <p class="wo">用户跑着老版本是远程支持的噩梦——他描述的界面和你看到的不一样。</p>
-          <figure class="shotwrap shotwrap-in">
-      <input type="checkbox" id="lb-35" class="lb-toggle" aria-hidden="true">
-      <label class="lb-zoom" for="lb-35" title="点击放大">
-        <img class="shotimg" src="images/app-version-update.png" alt="新版本更新提示"
-             onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.parentElement.style.display='none';this.closest('figure').querySelector('.shot').style.display='flex';}">
-        <span class="lb-tip" aria-hidden="true">⤢ 点击放大</span>
-      </label>
-      <div class="shot shot-in">
-              <p class="shot-name">新版本更新提示截图</p>
-              <p class="shot-req">建议文件名:app-version-update.png ｜ 建议 750×1334 ｜ 需打码:界面上的摄影师昵称</p>
-            </div>
-      <div class="lb-overlay">
-        <label class="lb-close" for="lb-35" aria-label="关闭大图">✕</label>
-        <label class="lb-back" for="lb-35"><img src="images/app-version-update.png" alt="新版本更新提示(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"></label>
-      </div>
-    </figure>
         </div>
       </details>
 
@@ -2032,20 +2025,29 @@
       <figcaption><b>图 9 · 客人交付页界面示意</b>:顶部是 8 步体验进度,客服在后台的任何改动 30 秒内自动刷新到这页;中间自助选片,底部一键提交。界面元素为示意。</figcaption>
     </figure>
 
-    <figure class="shotwrap">
+    <figure class="shotwrap shotdeck">
       <input type="checkbox" id="lb-36" class="lb-toggle" aria-hidden="true">
+      <input type="radio" name="deck-36" id="dk-36-1" class="deck-r deck-r1" checked aria-hidden="true">
+      <input type="radio" name="deck-36" id="dk-36-2" class="deck-r deck-r2" aria-hidden="true">
       <label class="lb-zoom" for="lb-36" title="点击放大">
-        <img class="shotimg" src="images/guest-photo-select.png" alt="客人选片界面"
+        <img class="shotimg deck-s deck-s1" src="images/guest-photo-select.png" alt="客人选片界面"
              onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.parentElement.style.display='none';this.closest('figure').querySelector('.shot').style.display='flex';}">
+        <img class="shotimg deck-s deck-s2" src="images/guest-photo-select-2.png" alt="客人选片界面 · 第 2 张"
+             onload="this.closest('figure').classList.add('deck-multi')"
+             onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.dataset.miss=1;}">
         <span class="lb-tip" aria-hidden="true">⤢ 点击放大</span>
       </label>
+      <div class="deck-dots">
+        <label class="deck-dot deck-d1" for="dk-36-1" title="第 1 张" aria-label="看第 1 张"></label>
+        <label class="deck-dot deck-d2" for="dk-36-2" title="第 2 张" aria-label="看第 2 张"></label>
+      </div>
       <div class="shot">
         <p class="shot-name">客人选片界面截图</p>
         <p class="shot-req">建议文件名:guest-photo-select.png ｜ 建议 1200×900 ｜ 需打码:客人姓名与订单金额</p>
       </div>
       <div class="lb-overlay">
         <label class="lb-close" for="lb-36" aria-label="关闭大图">✕</label>
-        <label class="lb-back" for="lb-36"><img src="images/guest-photo-select.png" alt="客人选片界面(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"></label>
+        <label class="lb-back" for="lb-36"><img class="deck-b deck-b1" src="images/guest-photo-select.png" alt="客人选片界面(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"><img class="deck-b deck-b2" src="images/guest-photo-select-2.png" alt="客人选片界面 · 第 2 张(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"></label>
       </div>
     </figure>
 
@@ -2055,20 +2057,29 @@
       <p>对客人是<b>透明</b>——不是"被卡住",而是清楚知道差一步付款;对工作室是<b>回款保护</b>——先款后货由机制保证,不靠客服追讨。这是把商业规则写进系统,而不是写进聊天记录。</p>
     </div>
 
-    <figure class="shotwrap">
+    <figure class="shotwrap shotdeck">
       <input type="checkbox" id="lb-37" class="lb-toggle" aria-hidden="true">
+      <input type="radio" name="deck-37" id="dk-37-1" class="deck-r deck-r1" checked aria-hidden="true">
+      <input type="radio" name="deck-37" id="dk-37-2" class="deck-r deck-r2" aria-hidden="true">
       <label class="lb-zoom" for="lb-37" title="点击放大">
-        <img class="shotimg" src="images/guest-delivery-page.png" alt="客人交付页"
+        <img class="shotimg deck-s deck-s1" src="images/guest-delivery-page.png" alt="客人交付页"
              onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.parentElement.style.display='none';this.closest('figure').querySelector('.shot').style.display='flex';}">
+        <img class="shotimg deck-s deck-s2" src="images/guest-delivery-page-2.png" alt="客人交付页 · 第 2 张"
+             onload="this.closest('figure').classList.add('deck-multi')"
+             onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.dataset.miss=1;}">
         <span class="lb-tip" aria-hidden="true">⤢ 点击放大</span>
       </label>
+      <div class="deck-dots">
+        <label class="deck-dot deck-d1" for="dk-37-1" title="第 1 张" aria-label="看第 1 张"></label>
+        <label class="deck-dot deck-d2" for="dk-37-2" title="第 2 张" aria-label="看第 2 张"></label>
+      </div>
       <div class="shot">
         <p class="shot-name">客人交付页截图</p>
         <p class="shot-req">建议文件名:guest-delivery-page.png ｜ 建议 1200×900 ｜ 需打码:客人姓名与金额</p>
       </div>
       <div class="lb-overlay">
         <label class="lb-close" for="lb-37" aria-label="关闭大图">✕</label>
-        <label class="lb-back" for="lb-37"><img src="images/guest-delivery-page.png" alt="客人交付页(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"></label>
+        <label class="lb-back" for="lb-37"><img class="deck-b deck-b1" src="images/guest-delivery-page.png" alt="客人交付页(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"><img class="deck-b deck-b2" src="images/guest-delivery-page-2.png" alt="客人交付页 · 第 2 张(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"></label>
       </div>
     </figure>
   </div>
@@ -2136,20 +2147,29 @@
       <figcaption><b>图 10 · 交付四棒交接对比</b>:客服退出链路不是因为不重要,而是因为<b>中转本身不产生价值,只产生延迟</b>。</figcaption>
     </figure>
 
-    <figure class="shotwrap">
+    <figure class="shotwrap shotdeck">
       <input type="checkbox" id="lb-38" class="lb-toggle" aria-hidden="true">
+      <input type="radio" name="deck-38" id="dk-38-1" class="deck-r deck-r1" checked aria-hidden="true">
+      <input type="radio" name="deck-38" id="dk-38-2" class="deck-r deck-r2" aria-hidden="true">
       <label class="lb-zoom" for="lb-38" title="点击放大">
-        <img class="shotimg" src="images/guest-delivery-page.png" alt="客人交付页"
+        <img class="shotimg deck-s deck-s1" src="images/guest-delivery-page.png" alt="客人交付页"
              onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.parentElement.style.display='none';this.closest('figure').querySelector('.shot').style.display='flex';}">
+        <img class="shotimg deck-s deck-s2" src="images/guest-delivery-page-2.png" alt="客人交付页 · 第 2 张"
+             onload="this.closest('figure').classList.add('deck-multi')"
+             onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.dataset.miss=1;}">
         <span class="lb-tip" aria-hidden="true">⤢ 点击放大</span>
       </label>
+      <div class="deck-dots">
+        <label class="deck-dot deck-d1" for="dk-38-1" title="第 1 张" aria-label="看第 1 张"></label>
+        <label class="deck-dot deck-d2" for="dk-38-2" title="第 2 张" aria-label="看第 2 张"></label>
+      </div>
       <div class="shot">
         <p class="shot-name">客人交付页截图</p>
         <p class="shot-req">建议文件名:guest-delivery-page.png ｜ 建议 1200×900 ｜ 需打码:客人姓名与金额</p>
       </div>
       <div class="lb-overlay">
         <label class="lb-close" for="lb-38" aria-label="关闭大图">✕</label>
-        <label class="lb-back" for="lb-38"><img src="images/guest-delivery-page.png" alt="客人交付页(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"></label>
+        <label class="lb-back" for="lb-38"><img class="deck-b deck-b1" src="images/guest-delivery-page.png" alt="客人交付页(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"><img class="deck-b deck-b2" src="images/guest-delivery-page-2.png" alt="客人交付页 · 第 2 张(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"></label>
       </div>
     </figure>
 
