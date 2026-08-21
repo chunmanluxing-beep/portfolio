@@ -1,6 +1,6 @@
 # 截图清单 · 拍完照着文件名放进这个目录
 
-网站里一共留了 **36 处**截图占位,去重后需要 **32 张主图**(其中 4 张各用在两处);另有 5 处支持挂第 2 张(多图轮播)。
+网站里一共留了 **37 处**截图占位,去重后需要 **33 张主图**(其中 4 张各用在两处);另有 7 处支持挂追加图(多图轮播,最多 4 张)。
 按下面的文件名保存到 `images/` 目录即可——**页面会自动显示,`index.html` 一行都不用改**。
 
 ## 怎么用
@@ -212,4 +212,40 @@
 | `guest-photo-select`(×2 处) | `guest-photo-select-2` | 待 D2 |
 | `console-settlement-gate` | `console-settlement-gate-2` | 待 D3 |
 | `guest-delivery-page` | `guest-delivery-page-2` | 待 D1 |
+
+---
+
+## v16.1 入库记录(2026-08-21)
+
+### 新入库 4 张(手机真机竖屏 780–845 × 1688)
+
+| 文件 | 来源夹 | 内容 |
+|---|---|---|
+| `app-grab-hall-2.jpg` | C08-手机抢单蓝卡特写 | 单张可抢卡(定向邀请单) |
+| `app-grab-hall-3.jpg` | C08-手机抢单蓝卡特写 | 抢单详情页 |
+| `app-grey-explain.jpg` | C09-手机灰卡与说明弹层 | 已结束灰卡 + 评分门槛标签 |
+| `app-grey-explain-2.jpg` | C09-手机灰卡与说明弹层 | 灰卡详情(已被安排) |
+
+### 现有多图轮播 7 处
+
+| 主图 | 追加图 | 状态 |
+|---|---|---|
+| `app-grab-hall` | `-2` `-3` | ✅ **3 图已齐** |
+| `app-grey-explain` | `-2` | ✅ **2 图已齐** |
+| `console-push-center` | `-2` | ✅ 已齐 |
+| `guest-photo-select`(×2 处) | `-2` | 待 A1 重放 |
+| `console-settlement-gate` | `-2` | 待 D3 |
+| `guest-delivery-page` | `-2` | 待 A2 重放 / D1 |
+
+### 仍缺的 9 张主图
+
+`guest-photo-select`(A1,需先打码)、`guest-delivery-page`(A2,需先打码)、
+`app-urgent-push`(B1,需换壁纸重截)、`app-schedule-fill`(D4)、`app-calendar-weather`(D5)、
+`console-settlement-gate`(D3)、`console-grab-offdown`(D6)、
+`console-push-hitrate`、`console-urgent-share`(入口待确认)。
+
+### 竖图位现共 14 处
+
+`app-*` 系列 10 处,加上本轮改为竖容器的 `guest-photo-select` ×2、`guest-delivery-page` ×1,
+以及新增的 `app-grey-explain` 图位。
 

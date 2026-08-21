@@ -1256,7 +1256,7 @@
           <ul class="md-pts"><li>客人自助选片、验收与提返修</li><li>尾款未付时成品自动隐藏</li><li>客服事件统一进收件箱</li></ul>
           <div class="dg dg-hub"><span class="hb h1">摄影师<i>传底片</i></span><span class="hb-core">订单公开页<i>免登录 · 三方同页</i></span><span class="hb h2">精修师<i>交成品</i></span><span class="hb h3">客人<i>选片 · 验收</i></span></div>
           <p class="dg-cap">三个角色指向同一张页面,不再由客服逐棒中转</p>
-          <figure class="shotwrap shotwrap-in shotdeck">
+          <figure class="shotwrap shotwrap-in shotdeck shot-portrait">
       <input type="checkbox" id="lb-17" class="lb-toggle" aria-hidden="true">
       <input type="radio" name="deck-17" id="dk-17-1" class="deck-r deck-r1" checked aria-hidden="true">
       <input type="radio" name="deck-17" id="dk-17-2" class="deck-r deck-r2" aria-hidden="true">
@@ -1697,22 +1697,37 @@
           <p class="dfx-full">二 · 抢单大厅:公平性由系统保证</p>
           <p>报酬、城市、日期、时长、集合点全部前置,点击即抢;多人同抢恰好一人成功,输的人立即收到提示。</p>
           <p class="wo">回群里喊"我接",时间戳只精确到秒,"先到先得"成空话,不满会转向平台。</p>
-          <figure class="shotwrap shotwrap-in shot-portrait">
+          <figure class="shotwrap shotwrap-in shot-portrait shotdeck">
       <input type="checkbox" id="lb-25" class="lb-toggle" aria-hidden="true">
+      <input type="radio" name="deck-25" id="dk-25-1" class="deck-r deck-r1" checked aria-hidden="true">
+      <input type="radio" name="deck-25" id="dk-25-2" class="deck-r deck-r2" aria-hidden="true">
+      <input type="radio" name="deck-25" id="dk-25-3" class="deck-r deck-r3" aria-hidden="true">
       <label class="lb-zoom" for="lb-25" title="点击放大">
-        <img class="shotimg" src="images/app-grab-hall.png" alt="抢单大厅列表"
+        <img class="shotimg deck-s deck-s1" src="images/app-grab-hall.png" alt="抢单大厅列表"
              onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.parentElement.style.display='none';this.closest('figure').querySelector('.shot').style.display='flex';}">
+        <img class="shotimg deck-s deck-s2" src="images/app-grab-hall-2.png" alt="抢单大厅 · 可抢卡特写"
+             onload="this.closest('figure').classList.add('deck-multi','deck-has2')"
+             onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.dataset.miss=1;}">
+        <img class="shotimg deck-s deck-s3" src="images/app-grab-hall-3.png" alt="抢单大厅 · 抢单详情页"
+             onload="this.closest('figure').classList.add('deck-multi','deck-has3')"
+             onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.dataset.miss=1;}">
         <span class="lb-tip" aria-hidden="true">⤢ 点击放大</span>
       </label>
+      <div class="deck-dots">
+        <label class="deck-dot deck-d1" for="dk-25-1" title="第 1 张" aria-label="看第 1 张"></label>
+        <label class="deck-dot deck-d2" for="dk-25-2" title="第 2 张" aria-label="看第 2 张"></label>
+        <label class="deck-dot deck-d3" for="dk-25-3" title="第 3 张" aria-label="看第 3 张"></label>
+      </div>
       <div class="shot shot-in">
               <p class="shot-name">抢单大厅列表截图</p>
-              <p class="shot-req">建议文件名:app-grab-hall.png ｜ 建议 780×1688(手机竖屏 390×844 逻辑尺寸) ｜ 需同时出现可抢卡与灰卡,并打码集合点与报酬金额</p>
+              <p class="shot-req">建议文件名:app-grab-hall.png(第 2/3 张:app-grab-hall-2.png / -3.png) ｜ 建议 780×1688(手机竖屏 390×844 逻辑尺寸) ｜ 需同时出现可抢卡与灰卡,并打码集合点与报酬金额</p>
             </div>
       <div class="lb-overlay">
         <label class="lb-close" for="lb-25" aria-label="关闭大图">✕</label>
-        <label class="lb-back" for="lb-25"><img src="images/app-grab-hall.png" alt="抢单大厅列表(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"></label>
+        <label class="lb-back" for="lb-25"><img class="deck-b deck-b1" src="images/app-grab-hall.png" alt="抢单大厅列表(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"><img class="deck-b deck-b2" src="images/app-grab-hall-2.png" alt="抢单大厅 · 可抢卡特写(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"><img class="deck-b deck-b3" src="images/app-grab-hall-3.png" alt="抢单大厅 · 抢单详情页(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"></label>
       </div>
     </figure>
+          <p class="dg-cap">上图可左右切换:整页抢单大厅 → 单张可抢卡 → 抢单详情页(报酬、拍摄地、进店时间、人数、直线距离、拍摄日天气一屏看全)。</p>
         </div>
       </details>
 
@@ -1744,6 +1759,32 @@
         <label class="lb-back" for="lb-26"><img src="images/app-grey-card.png" alt="灰卡说明弹窗(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"></label>
       </div>
     </figure>
+          <figure class="shotwrap shotwrap-in shot-portrait shotdeck">
+      <input type="checkbox" id="lb-40" class="lb-toggle" aria-hidden="true">
+      <input type="radio" name="deck-40" id="dk-40-1" class="deck-r deck-r1" checked aria-hidden="true">
+      <input type="radio" name="deck-40" id="dk-40-2" class="deck-r deck-r2" aria-hidden="true">
+      <label class="lb-zoom" for="lb-40" title="点击放大">
+        <img class="shotimg deck-s deck-s1" src="images/app-grey-explain.png" alt="已结束灰卡与评分门槛"
+             onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.parentElement.style.display='none';this.closest('figure').querySelector('.shot').style.display='flex';}">
+        <img class="shotimg deck-s deck-s2" src="images/app-grey-explain-2.png" alt="灰卡详情 · 已被安排"
+             onload="this.closest('figure').classList.add('deck-multi','deck-has2')"
+             onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.dataset.miss=1;}">
+        <span class="lb-tip" aria-hidden="true">⤢ 点击放大</span>
+      </label>
+      <div class="deck-dots">
+        <label class="deck-dot deck-d1" for="dk-40-1" title="第 1 张" aria-label="看第 1 张"></label>
+        <label class="deck-dot deck-d2" for="dk-40-2" title="第 2 张" aria-label="看第 2 张"></label>
+      </div>
+      <div class="shot shot-in">
+              <p class="shot-name">灰卡与抢单详情截图</p>
+              <p class="shot-req">建议文件名:app-grey-explain.png(第 2 张:app-grey-explain-2.png) ｜ 建议 780×1688(手机竖屏 390×844 逻辑尺寸) ｜ 需打码:集合点详细位置</p>
+            </div>
+      <div class="lb-overlay">
+        <label class="lb-close" for="lb-40" aria-label="关闭大图">✕</label>
+        <label class="lb-back" for="lb-40"><img class="deck-b deck-b1" src="images/app-grey-explain.png" alt="已结束灰卡与评分门槛(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"><img class="deck-b deck-b2" src="images/app-grey-explain-2.png" alt="灰卡详情 · 已被安排(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"></label>
+      </div>
+    </figure>
+          <p class="dg-cap">上图可左右切换:已结束的灰卡照常显示报酬与城市,并标出「需★≥5.0」的评分门槛;点开详情信息一样给全,只是按钮变成「已被安排」。</p>
         </div>
       </details>
 
@@ -2023,7 +2064,7 @@
       <figcaption><b>图 9 · 客人交付页界面示意</b>:顶部是 8 步体验进度,客服在后台的任何改动 30 秒内自动刷新到这页;中间自助选片,底部一键提交。界面元素为示意。</figcaption>
     </figure>
 
-    <figure class="shotwrap shotdeck">
+    <figure class="shotwrap shotdeck shot-portrait">
       <input type="checkbox" id="lb-36" class="lb-toggle" aria-hidden="true">
       <input type="radio" name="deck-36" id="dk-36-1" class="deck-r deck-r1" checked aria-hidden="true">
       <input type="radio" name="deck-36" id="dk-36-2" class="deck-r deck-r2" aria-hidden="true">
@@ -2145,7 +2186,7 @@
       <figcaption><b>图 10 · 交付四棒交接对比</b>:客服退出链路不是因为不重要,而是因为<b>中转本身不产生价值,只产生延迟</b>。</figcaption>
     </figure>
 
-    <figure class="shotwrap shotdeck">
+    <figure class="shotwrap shotdeck shot-portrait">
       <input type="checkbox" id="lb-38" class="lb-toggle" aria-hidden="true">
       <input type="radio" name="deck-38" id="dk-38-1" class="deck-r deck-r1" checked aria-hidden="true">
       <input type="radio" name="deck-38" id="dk-38-2" class="deck-r deck-r2" aria-hidden="true">

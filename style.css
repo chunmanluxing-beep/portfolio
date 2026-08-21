@@ -2483,3 +2483,22 @@ label.fm-step:focus-visible { outline: 2px solid var(--accent); outline-offset: 
   .stats > li:has(> details[open]) .shotimg,
   .kpis > details[open] .shotimg   { max-height: 520px; }
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ═══ v16.1 · 多图轮播扩到 4 张 ═══
+   v15 只接了第 1/2 张;文件名约定本就是 <名> / -2 / -3 / -4(最多 4 张),
+   这里把第 3、4 张的显示、圆点、灯箱联动补齐。★向后兼容★:
+   deck-multi 仍是「有追加图」总开关(任一追加图 onload 即置位),
+   第 1/2 颗圆点行为不变;第 3/4 颗只在对应图真的加载成功时才出现。
+   ══════════════════════════════════════════════════════════════════════════ */
+.shotdeck .deck-r3:checked ~ .lb-zoom .deck-s3,
+.shotdeck .deck-r4:checked ~ .lb-zoom .deck-s4 { display: block; }
+.shotdeck .deck-r3:checked ~ .deck-dots .deck-d3::before,
+.shotdeck .deck-r4:checked ~ .deck-dots .deck-d4::before {
+  background: var(--accent); border-color: var(--accent);
+}
+.shotdeck .deck-r3:checked ~ .lb-overlay .lb-back .deck-b3,
+.shotdeck .deck-r4:checked ~ .lb-overlay .lb-back .deck-b4 { display: block; }
+.shotdeck .deck-d3, .shotdeck .deck-d4 { display: none; }
+.shotdeck.deck-has3 .deck-d3,
+.shotdeck.deck-has4 .deck-d4 { display: block; }
