@@ -2469,3 +2469,17 @@ label.fm-step:focus-visible { outline: 2px solid var(--accent); outline-offset: 
 @media (prefers-reduced-motion: no-preference) {
   .shotdeck .deck-dot::before { transition: background .18s, border-color .18s; }
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ═══ v16.0 · 展开态 KPI 卡横跨整行(桌面) ═══
+   v16-A 审计实测:1280 视口下 KPI 卡内截图只有 180–188px 宽(缩放 13%),
+   1400×900 的后台界面缩到这个尺寸等于一块彩色噪点。收起态布局一字不动,
+   只在「这张卡被点开」时让它横跨整行,把卡内图位从约 180px 提到约 1000px。
+   ══════════════════════════════════════════════════════════════════════════ */
+@media (min-width: 769px) {
+  .stats > li:has(> details[open]) { grid-column: 1 / -1; }
+  .kpis > details[open]            { grid-column: 1 / -1; }
+  /* 横跨后放开高度上限,否则 object-fit:contain 会把可见画面压回 650px 宽 */
+  .stats > li:has(> details[open]) .shotimg,
+  .kpis > details[open] .shotimg   { max-height: 520px; }
+}
