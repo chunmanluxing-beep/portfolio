@@ -953,6 +953,33 @@
         <label class="lb-back" for="lb-8"><img src="images/console-mail-templates.png" alt="邮件模板管理页(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"></label>
       </div>
     </figure>
+          <p class="dg-cap">客人实际收到的确认信长这样</p>
+          <figure class="shotwrap shotwrap-in shotdeck shot-portrait">
+      <input type="checkbox" id="lb-42" class="lb-toggle" aria-hidden="true">
+      <input type="radio" name="deck-42" id="dk-42-1" class="deck-r deck-r1" checked aria-hidden="true">
+      <input type="radio" name="deck-42" id="dk-42-2" class="deck-r deck-r2" aria-hidden="true">
+      <label class="lb-zoom" for="lb-42" title="点击放大">
+        <img class="shotimg deck-s deck-s1" src="images/guest-confirm-mail.png" alt="客人收到的订单确认信 · 上半"
+             onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.parentElement.style.display='none';this.closest('figure').querySelector('.shot').style.display='flex';}">
+        <img class="shotimg deck-s deck-s2" src="images/guest-confirm-mail-2.png" alt="客人收到的订单确认信 · 下半(集合点与进度链接)"
+             onload="this.closest('figure').classList.add('deck-multi')"
+             onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.dataset.miss=1;}">
+        <span class="lb-tip" aria-hidden="true">⤢ 点击放大</span>
+      </label>
+      <div class="deck-dots">
+        <label class="deck-dot deck-d1" for="dk-42-1" title="第 1 张" aria-label="看第 1 张"></label>
+        <label class="deck-dot deck-d2" for="dk-42-2" title="第 2 张" aria-label="看第 2 张"></label>
+      </div>
+      <div class="shot shot-in">
+              <p class="shot-name">客人确认信截图(收件端)</p>
+              <p class="shot-req">建议文件名:guest-confirm-mail.png ｜ 竖屏 ｜ 需打码:客人姓名</p>
+            </div>
+      <div class="lb-overlay">
+        <label class="lb-close" for="lb-42" aria-label="关闭大图">✕</label>
+        <label class="lb-back" for="lb-42"><img class="deck-b deck-b1" src="images/guest-confirm-mail.png" alt="客人收到的订单确认信 · 上半(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"><img class="deck-b deck-b2" src="images/guest-confirm-mail-2.png" alt="客人收到的订单确认信 · 下半(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"></label>
+      </div>
+    </figure>
+          <p class="dg-cap">同一封信里英文正文配中文集合点步行指引;底部那颗「Track Order Progress」就是客人交付页的入口——链接随确认信一起发出,不必客服再单独发一次</p>
         </div>
       </details>
       <details class="mod">
@@ -1227,6 +1254,24 @@
         <label class="lb-back" for="lb-15"><img src="images/console-delivery-progress.png" alt="交付进度页(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"></label>
       </div>
     </figure>
+          <p class="dg-cap">同一条订单的节点清单,按「渠道 × 订单类型」自动套用</p>
+          <figure class="shotwrap shotwrap-in shot-portrait">
+      <input type="checkbox" id="lb-41" class="lb-toggle" aria-hidden="true">
+      <label class="lb-zoom" for="lb-41" title="点击放大">
+        <img class="shotimg" src="images/console-checkpoint-template.png" alt="订单进度节点模板(按渠道与订单类型套用)"
+             onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.parentElement.style.display='none';this.closest('figure').querySelector('.shot').style.display='flex';}">
+        <span class="lb-tip" aria-hidden="true">⤢ 点击放大</span>
+      </label>
+      <div class="shot shot-in">
+              <p class="shot-name">订单节点模板截图(总控台)</p>
+              <p class="shot-req">建议文件名:console-checkpoint-template.png ｜ 竖屏 ｜ 需打码:订单号</p>
+            </div>
+      <div class="lb-overlay">
+        <label class="lb-close" for="lb-41" aria-label="关闭大图">✕</label>
+        <label class="lb-back" for="lb-41"><img src="images/console-checkpoint-template.png" alt="订单进度节点模板(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"></label>
+      </div>
+    </figure>
+          <p class="dg-cap">图中这条走的是「GYG 外网平台 · 和服旅拍」模板,共 12 步,分售前 / 履约 / 交付三段;每步可一键 AI 起草对客文案,发信状态直接挂在步骤上</p>
         </div>
       </details>
       <details class="mod">
@@ -2062,9 +2107,18 @@
       <div class="odp">
         <div class="odp-bar" aria-hidden="true"><i></i><i></i><i></i><span class="odp-url">…/delivery/****(免登录链接)</span></div>
         <div class="odp-prog">
-          <span class="odp-plab">交付进度</span>
-          <span class="odp-ptrack"><i class="odp-pfill"></i></span>
-          <span class="odp-pdots" aria-hidden="true"><i></i><i></i><i class="cur"></i><i></i><i></i></span>
+          <span class="odp-phead">
+            <span class="odp-plab">Your Photoshoot Journey</span>
+            <span class="odp-pct">67%</span>
+          </span>
+          <ol class="odp-steps">
+            <li class="done">Order Created</li>
+            <li class="done">Meeting Photographer</li>
+            <li class="done">Shooting Completed</li>
+            <li class="done">Awaiting Photographer Upload</li>
+            <li class="cur">Awaiting Customer Selection</li>
+            <li>Awaiting Retouching</li>
+          </ol>
         </div>
         <div class="odp-card">
           <span class="odp-ct"><b>底片已上传</b><i class="odp-tag ok">已完成</i></span>
@@ -2078,7 +2132,7 @@
         </div>
         <div class="odp-btns"><span class="odp-btn">取消</span><span class="odp-btn hi">确认提交</span></div>
       </div>
-      <figcaption><b>图 9 · 客人交付页界面示意</b>:客人拿到底片的网盘链接后,<b>在页面的输入框里填要精修的照片编号</b>(逗号分隔,可填多个),提交即自动通知下一棒;客服在后台的任何改动 30 秒内自动刷新到这页。界面元素为示意,进度条不代表实际步数。</figcaption>
+      <figcaption><b>图 9 · 客人交付页界面示意</b>:顶部<b>六步进度按实机重画</b>——步名为客人页英文视图的原文(页面支持中英切换),百分比即「已完成步数 ÷ 6」。客人拿到底片的网盘链接后,<b>在页面的输入框里填要精修的照片编号</b>(逗号分隔,可填多个),提交即自动通知下一棒;客服在后台的任何改动 30 秒内自动刷新到这页。下方卡片为示意。</figcaption>
     </figure>
 
     <figure class="shotwrap shotdeck shot-portrait">

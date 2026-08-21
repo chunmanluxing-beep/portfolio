@@ -189,7 +189,7 @@
   它本身是好图,只是被放错了地方(放在了 App 专章)。现在改作「推送体系」那一处的**第 2 张**,
   与 `console-push-center.jpg` 组成两图轮播。
 
-### 新增的 2 个待截占位
+### 新增的 2 个待截占位(v17.1:`guest-photo-select` 已到位,余 `console-grab-offdown`)
 
 | 建议文件名 | 拍什么 | 尺寸 | 工作台夹子 |
 |---|---|---|---|
@@ -201,7 +201,7 @@
 - `console-tier-setting.jpg` 从「App 专章 · 评分梯队」移到「派单专章 · 评分梯队分层放号」下方——
   它是**总控台**界面,不该出现在摄影师端专章里。
 
-### 多图轮播现有用例(4 处)
+### 多图轮播现有用例(v17.1 起 5 处)
 
 | 主图 | 第 2 张 | 状态 |
 |---|---|---|
@@ -232,14 +232,14 @@
 | `guest-photo-select`(×2 处) | `-2` | 待 A1 重放 |
 | `guest-delivery-page` | `-2` | 待 A2 重放 / D1 |
 
-### 仍缺的 8 张主图
+### 仍缺的主图(v17.1 后剩 3 张)
 
 `guest-photo-select`(A1,需先打码)、`guest-delivery-page`(A2,需先打码)、
 `app-urgent-push`(B1,需换壁纸重截)、`app-schedule-fill`(D4)、`app-calendar-weather`(D5)、
 `console-grab-offdown`(D6)、
 `console-push-hitrate`、`console-urgent-share`(入口待确认)。
 
-### 竖图位现共 13 处
+### 竖图位现共 15 处
 
 `app-*` 系列 10 处,加上本轮改为竖容器的 `guest-photo-select` ×2、`guest-delivery-page` ×1,
 以及新增的 `app-grey-explain` 图位。
@@ -266,3 +266,42 @@
 - 占位 36 → **35**;灯箱大图 44 → **42**(删的是两图轮播位);
   待截占位 3 → **2**;多图轮播用例 5 → **4**;仍缺主图 9 → **8**;竖图位 13(D3 是横图,不受影响)。
 - 图 0 本轮按真实订单流转重画为**总控台枢纽结构**,但它是纯 CSS 绘制,**不占任何图位**,与本文件的计数无关。
+
+---
+
+## v17.1 入库记录(2026-08-22)
+
+本批**未打码,按用户明确授权按现状入库**。工作台 23 个文件 → md5 去重 21 张 →
+其中 4 张早已在库(C08 两张 = `app-grab-hall-2/-3`,C09 两张 = `app-grey-explain/-2`),
+3 个文件互为副本(A2 / D1 / D2 同一张图)。**本轮实际入库 8 张。**
+
+### 转档参数(竖图 `sips -Z 1688` 封顶 → JPG q82;>300KB 才降档)
+
+| 目标文件名 | 来源夹 | 像素 | 字节 | 档位 |
+|---|---|---|---|---|
+| `guest-photo-select.jpg` | A1-客人选片页 | 823×1688 | 212 KB | q82 |
+| `app-urgent-push.jpg` | B1-手机急单推送通知 | 862×1688 | 128 KB | q82 |
+| `console-checkpoint-template.jpg` | C03-订单交付进度记录 | 831×1688 | 182 KB | q82 |
+| `guest-confirm-mail.jpg` | C10-邮件中英双语对照 | 835×1688 | 149 KB | q82 |
+| `guest-delivery-page.jpg` | C10-邮件中英双语对照 | 830×1688 | 174 KB | q82 |
+| `guest-confirm-mail-2.jpg` | C10-邮件中英双语对照 | 820×1688 | 173 KB | q82 |
+| `app-schedule-fill.jpg` | D4-手机档期填报 | 814×1688 | 242 KB | q82 |
+| `app-calendar-weather.jpg` | D5-手机日历天气 | 828×1688 | 235 KB | q82 |
+
+**8 张全部一次 q82 过线,无一超 300 KB,无「待裁决」项。** 中间产物只落在 `_converted/`。
+
+### 计数
+
+- 图片文件 27 → **35**;占位 35 → **37**(新增 lb-41 / lb-42);
+  显示 26 → **34**;空位 9 → **3**;灯箱大图 42 → **45**;竖图位 13 → **15**。
+- 仍空的三个占位:`console-grab-offdown`、`console-push-hitrate`、`console-urgent-share`
+  ——本批没有与它们讲的是同一件事的画面,留白不硬凑。
+- 两个新增图位都是**竖图**:`console-checkpoint-template`(单图)、
+  `guest-confirm-mail` + `-2`(两图轮播)。
+- 注意:`guest-photo-select` 一个文件同时供 lb-17 与 lb-36 两个图位使用(同一主题,非跨主题复用)。
+
+### 敏感内容留档
+
+已入库图中:`guest-photo-select` 含完整网盘链接与摄影师姓名;`guest-confirm-mail` 含客人姓名;
+`guest-confirm-mail-2` 含集合点街道地址;`app-urgent-push` 锁屏壁纸含**可辨识人脸 ×2**;
+`console-checkpoint-template` 含订单号。用户已知情并授权按现状入库,此处仅留档。
