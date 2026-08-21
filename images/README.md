@@ -189,11 +189,10 @@
   它本身是好图,只是被放错了地方(放在了 App 专章)。现在改作「推送体系」那一处的**第 2 张**,
   与 `console-push-center.jpg` 组成两图轮播。
 
-### 新增的 3 个待截占位
+### 新增的 2 个待截占位
 
 | 建议文件名 | 拍什么 | 尺寸 | 工作台夹子 |
 |---|---|---|---|
-| `console-settlement-gate.png` | 尾款未付时客人页的样子(链接显示为「—」/ 🔒 提示 / 收款码卡) | 1200×750 | **D3-尾款门控状态** |
 | `console-grab-offdown.png` | 抢单任务「已被抢 / 已停止 / 已结束」的状态行 | 1200×750 | **D6-抢单自动下架** |
 | `guest-photo-select.png`(重截) | 「填写选片需求」那张卡:照片编号输入框 + 实时计数 | 1200×750 | **D2** |
 
@@ -202,13 +201,12 @@
 - `console-tier-setting.jpg` 从「App 专章 · 评分梯队」移到「派单专章 · 评分梯队分层放号」下方——
   它是**总控台**界面,不该出现在摄影师端专章里。
 
-### 多图轮播现有用例(5 处)
+### 多图轮播现有用例(4 处)
 
 | 主图 | 第 2 张 | 状态 |
 |---|---|---|
 | `console-push-center` | `console-push-center-2` | ✅ 已到位 |
 | `guest-photo-select`(×2 处) | `guest-photo-select-2` | 待 D2 |
-| `console-settlement-gate` | `console-settlement-gate-2` | 待 D3 |
 | `guest-delivery-page` | `guest-delivery-page-2` | 待 D1 |
 
 ---
@@ -232,17 +230,16 @@
 | `app-grey-explain` | `-2` | ✅ **2 图已齐** |
 | `console-push-center` | `-2` | ✅ 已齐 |
 | `guest-photo-select`(×2 处) | `-2` | 待 A1 重放 |
-| `console-settlement-gate` | `-2` | 待 D3 |
 | `guest-delivery-page` | `-2` | 待 A2 重放 / D1 |
 
-### 仍缺的 9 张主图
+### 仍缺的 8 张主图
 
 `guest-photo-select`(A1,需先打码)、`guest-delivery-page`(A2,需先打码)、
 `app-urgent-push`(B1,需换壁纸重截)、`app-schedule-fill`(D4)、`app-calendar-weather`(D5)、
-`console-settlement-gate`(D3)、`console-grab-offdown`(D6)、
+`console-grab-offdown`(D6)、
 `console-push-hitrate`、`console-urgent-share`(入口待确认)。
 
-### 竖图位现共 14 处
+### 竖图位现共 13 处
 
 `app-*` 系列 10 处,加上本轮改为竖容器的 `guest-photo-select` ×2、`guest-delivery-page` ×1,
 以及新增的 `app-grey-explain` 图位。
@@ -256,3 +253,16 @@
   内容更准确(灰卡 + 点开后的完整详情),旧图位与旧文件一并撤除。
 - 图片文件 28 → **27**;占位 37 → **36**;仍缺 9 张主图,清单不变。
 
+
+---
+
+## v17.0 撤除记录(2026-08-22)
+
+- **删除「尾款门控状态」图位 `console-settlement-gate`(D3)**——用户要求作品集不展示尾款门控这个功能。
+  该功能在生产代码里真实存在(`server/src/routes/delivery_pages.js:375-387`),这次只是从作品集撤下,不是修正错误。
+  连带撤除:`lb-37` 整个 `<figure>`(两图轮播,`console-settlement-gate` + `-2`)、
+  `~/Desktop/手动截图工作台/D3-尾款门控状态/` 文件夹、`0-总说明.txt` 对照表 D3 行。
+- **本轮不入库任何图片**,图片文件数 27 不变。
+- 占位 36 → **35**;灯箱大图 44 → **42**(删的是两图轮播位);
+  待截占位 3 → **2**;多图轮播用例 5 → **4**;仍缺主图 9 → **8**;竖图位 13(D3 是横图,不受影响)。
+- 图 0 本轮按真实订单流转重画为**总控台枢纽结构**,但它是纯 CSS 绘制,**不占任何图位**,与本文件的计数无关。

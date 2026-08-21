@@ -1385,37 +1385,79 @@ h2::after {
    v12.0 新增:图0 节点流程 / 图3 可点击旅程 / KPI 对比条
    ═══════════════════════════════════════════════ */
 
-/* ─── 配图 0 · sysflow ─── */
+/* ─── 配图 0 · sysflow(枢纽结构:全部渠道先进总控台,再由总控台分配与交付) ─── */
 .sysflow { display: flex; flex-direction: column; }
-.sf-srcs { display: flex; gap: 14px; justify-content: center; }
+.sf-row { position: relative; }
+.sf-row-src, .sf-row-ends { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+
+/* 第一层 · 来源节点 */
 .sf-src {
-  flex: 0 1 280px; text-align: center; padding: 20px 16px; min-height: 64px; font-size: 13.5px; color: var(--dim);
-  border: 1px dashed var(--line); border-radius: 8px; background: var(--bg);
+  display: block; text-align: center; padding: 17px 16px; min-height: 60px; font-size: 14px; color: var(--dim);
+  border: 1px dashed var(--line); border-radius: 8px; background: var(--bg); transition: border-color .18s;
 }
-.sf-in, .sf-out { position: relative; display: flex; justify-content: center; gap: 160px; height: 64px; }
-.sf-out { gap: 0; justify-content: space-around; }
-.sf-line {
-  position: relative; width: 1px; height: 100%;
-  background: linear-gradient(180deg, var(--accent-ln), var(--line));
+.sf-src i { display: block; margin-top: 6px; font-style: normal; font-size: 12px; color: var(--dimmer); }
+
+/* ── 连线通用:2px 竖线 + 端点箭头,颜色走 currentColor ── */
+.sf-conv, .sf-dist, .sf-into { position: relative; }
+.sf-conv { height: 86px; }
+.sf-dist { height: 108px; }
+.sf-into { height: 56px; }
+.cv, .ln, .sf-spine {
+  position: absolute; display: block; width: 2px; margin-left: -1px;
+  background: currentColor; z-index: 0;
 }
-.sf-line::after {
-  content: ""; position: absolute; left: 50%; bottom: -1px;
-  border: 4px solid transparent; border-top-color: var(--accent); transform: translateX(-50%);
+.ln::after, .cv-mid::after {
+  content: ""; position: absolute; left: 50%; margin-left: -5px;
+  border-left: 5px solid transparent; border-right: 5px solid transparent;
 }
-.sf-line.up { background: linear-gradient(180deg, var(--line), var(--photo-ln)); }
-.sf-line.up::after { border-top-color: var(--photo); }
-.sf-dot {
-  display: none; position: absolute; left: 50%; top: -6px;
-  width: 6px; height: 6px; margin-left: -3px; border-radius: 50%;
-  background: var(--accent); box-shadow: 0 0 6px rgba(232,163,61,.55);
+.ln.dn::after, .cv-mid::after { bottom: -7px; border-top: 7px solid currentColor; }
+.ln.up::after { top: -7px; border-bottom: 7px solid currentColor; }
+
+/* 连线标签:贴在各自线的中段旁,与线距 11px,互相错开高度 */
+.ln-lab, .cv-lab {
+  position: absolute; z-index: 2; white-space: nowrap; line-height: 1.6;
+  font-size: 12px; padding: 2px 10px; border-radius: 20px;
+  background: var(--bg-deep); border: 1px dashed var(--line); color: var(--dimmer);
 }
-.sf-line.up .sf-dot { background: var(--photo); box-shadow: 0 0 6px rgba(160,171,94,.55); }
-.sf-inlab, .sf-outlab {
-  align-self: center; font-size: 12px; letter-spacing: .06em; color: var(--dimmer);
-  padding: 2px 10px; border: 1px dashed var(--line); border-radius: 20px; background: var(--bg);
+.lp { display: none; }
+
+/* ── 汇聚层:两条来源线合并,共同指向总控台顶边 ── */
+.cv-a, .cv-b { top: 0; height: 32px; color: var(--accent-ln); }
+.cv-a { left: calc(25% - 7px); }
+.cv-b { left: calc(75% + 7px); }
+.cv-a::before, .cv-b::before {
+  content: ""; position: absolute; left: 50%; top: -4px; margin-left: -4px;
+  width: 8px; height: 8px; border-radius: 50%; background: currentColor;
 }
-.sf-outlab { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
-.sf-ends { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.cv-bar {
+  left: calc(25% - 7px); right: calc(25% - 7px); top: 31px;
+  width: auto; height: 2px; margin-left: 0; color: var(--accent-ln);
+}
+.cv-mid { left: 50%; top: 32px; height: 54px; color: var(--accent); }
+.cv-lab { left: calc(50% + 12px); top: 42px; color: var(--accent-2); border-color: var(--accent-ln); }
+
+/* ── 分配层:总控台 ↓ 两端,两端 ↑ 总控台;四线平行错开,互不交叉 ── */
+.sf-dist .ln { top: 0; bottom: 0; }
+.ln-ad { left: calc(12% - 7px); color: var(--accent); }
+.ln-au { left: calc(38% - 7px); color: var(--photo); }
+.ln-gd { left: calc(62% + 7px); color: var(--accent); }
+.ln-gu { left: calc(88% + 7px); color: var(--warn); }
+.ln-core { left: 50%; color: var(--accent-ln); }
+.lab-ad { left: calc(12% + 4px);   top: 21px; color: var(--accent-2); border-color: var(--accent-ln); }
+.lab-au { right: calc(62% + 18px); top: 63px; color: var(--photo);    border-color: var(--photo-ln); }
+.lab-gd { left: calc(62% + 18px);  top: 21px; color: var(--accent-2); border-color: var(--accent-ln); }
+.lab-gu { right: calc(12% + 4px);  top: 63px; color: var(--warn);     border-color: var(--warn-ln); }
+
+/* ── 第三层中轴:总控台直连底座的过路段 ── */
+.sf-spine { left: 50%; top: 0; bottom: 0; color: var(--accent-ln); }
+
+/* ── 底座接入层:三端各一条竖线,箭头方向统一向下 ── */
+.sf-into .ln { top: 0; bottom: 0; }
+.ln-b1 { left: calc(25% - 7px); color: var(--photo-ln); }
+.ln-b2 { left: 50%;             color: var(--accent-ln); }
+.ln-b3 { left: calc(75% + 7px); color: var(--warn-ln); }
+
+/* 三端卡片 */
 .sf-end {
   position: relative; display: block; min-height: 112px; padding: 24px 16px 20px; text-align: center;
   border: 1px solid var(--line); border-radius: 10px; background: var(--bg);
@@ -1436,6 +1478,22 @@ h2::after {
 .sf-end.e-guest { border-color: var(--warn-ln); background: rgba(201,123,74,.08); }
 .sf-end.e-guest b { color: var(--warn); }
 .sf-end.e-guest em { border-color: var(--warn-ln); color: var(--warn); }
+
+/* 第二层 · 枢纽:比另两端更宽、更醒目 */
+.sf-hub {
+  display: flex; align-items: center; gap: 20px; text-align: left;
+  min-height: 0; padding: 20px 22px; border-width: 2px;
+  box-shadow: 0 0 0 4px rgba(232,163,61,.055);
+}
+.sf-hub .sfico { flex: none; margin: 0; }
+.sf-hubtx { flex: 1 1 auto; min-width: 0; }
+.sf-hub b { margin: 0 0 5px; font-size: 18px; }
+.sf-hub i { margin-bottom: 9px; }
+.sf-hubtag {
+  flex: none; font-size: 12px; font-weight: 600; letter-spacing: .04em; white-space: nowrap;
+  padding: 6px 14px; border-radius: 20px;
+  border: 1px solid var(--accent-ln); background: rgba(232,163,61,.13); color: var(--accent-2);
+}
 /* 端图标(显示器 / 手机 / 网页窗) */
 .sfico { position: relative; display: block; width: 48px; height: 36px; margin: 0 auto; }
 .sfico i { position: absolute; display: block; }
@@ -1719,8 +1777,6 @@ h2::after {
 
 .sf-det-base > summary .sf-base { transition: border-color .18s; }
 /* ─── 图0 · 可点节点(details 方案) ─── */
-.sysflow-xl { min-height: 580px; }
-.sysflow-xl .sf-in { height: 72px; }
 .sf-det { border: none; background: none; }
 .sf-det > summary { display: block; list-style: none; cursor: pointer; position: relative; }
 .sf-det > summary::-webkit-details-marker { display: none; }
@@ -1744,33 +1800,9 @@ h2::after {
   display: inline-block; padding: 4px 12px; border-radius: 20px; margin: 10px 0 0;
   border: 1px solid var(--accent-ln); font-size: 12.5px; font-weight: 600; color: var(--accent-2);
 }
-.sf-det-src > summary .sf-srcs { display: flex; gap: 14px; justify-content: center; }
 .sf-det .st-more { margin: 8px 0 0; }
 
 /* ─── v14 图0 · 总控台↔App 桥接动线(锚定两节点,线自带方向与标签) ─── */
-.sf-bridge { position: relative; height: 82px; margin: 6px 0 2px 15%; width: 37%; }
-.dx-title {
-  position: absolute; left: 50%; top: 0; transform: translateX(-50%); z-index: 1;
-  font-size: 12.5px; color: var(--dim); white-space: nowrap;
-  padding: 2px 12px; border: 1px dashed var(--line); border-radius: 20px; background: var(--bg);
-}
-.dx-path { position: absolute; left: 0; right: 0; border: 2px solid; border-top: none; border-radius: 0 0 14px 14px; }
-.dx-path.down { top: 13px; bottom: 28px; border-color: var(--accent-ln); }
-.dx-path.up   { top: 13px; bottom: 12px; left: 7%; right: 7%; border-color: var(--photo-ln); }
-/* 起点圆(锚出发节点底边)与终点箭头(指进目标节点底边) */
-.dx-path.down::before { content: ""; position: absolute; left: -6px;  top: -4px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
-.dx-path.down::after  { content: ""; position: absolute; right: -8px; top: -8px; border: 6px solid transparent; border-bottom-color: var(--accent); }
-.dx-path.up::before   { content: ""; position: absolute; right: -6px; top: -4px; width: 8px; height: 8px; border-radius: 50%; background: var(--photo); }
-.dx-path.up::after    { content: ""; position: absolute; left: -8px;  top: -8px; border: 6px solid transparent; border-bottom-color: var(--photo); }
-.dx-lab {
-  position: absolute; font-size: 12px; padding: 1px 9px; border-radius: 10px;
-  background: var(--bg-deep); white-space: nowrap; line-height: 1.6;
-}
-.dx-path.down .dx-lab { left: 20%; bottom: -11px; color: var(--accent-2); border: 1px solid var(--accent-ln); }
-.dx-path.up   .dx-lab { right: 18%; bottom: -11px; color: var(--photo); border: 1px solid var(--photo-ln); }
-.dx-dot { display: none; position: absolute; bottom: -4px; width: 7px; height: 7px; border-radius: 50%; }
-.dx-path.down .dx-dot { background: var(--accent); box-shadow: 0 0 6px rgba(232,163,61,.6); }
-.dx-path.up   .dx-dot { background: var(--photo);  box-shadow: 0 0 6px rgba(160,171,94,.6); }
 
 /* ─── 图4 · radio 选项卡 ─── */
 .fmr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
@@ -1857,12 +1889,6 @@ label.fm-step:focus-visible { outline: 2px solid var(--accent); outline-offset: 
   border: 1px solid var(--line); color: var(--dim);
 }
 .odp-btn.hi { background: var(--accent); border-color: var(--accent); color: #1A1408; }
-.gatecard {
-  margin: 28px 0; padding: 20px 22px; border: 1px solid var(--warn-ln); border-radius: 12px;
-  background: rgba(201,123,74,.06);
-}
-.gatecard h4 { margin: 0 0 10px; font-size: 15px; color: var(--warn); }
-.gatecard p { margin: 0 0 10px; font-size: 13.5px; line-height: 1.85; color: var(--dim); }
 
 /* ─── 5a/5b 对比图动画锚元素(基础态隐藏,motion 块内启用) ─── */
 .vs-crawl, .relay-run { display: none; }
@@ -1880,18 +1906,14 @@ label.fm-step:focus-visible { outline: 2px solid var(--accent); outline-offset: 
   @keyframes v11-flow     { from { background-position: 200% 0; } to { background-position: -200% 0; } }
   @keyframes v11-slidein  { from { opacity: 0; } to { opacity: 1; } }  /* v14:去 translateY——运行中的 transform 会把灯箱 fixed 定位囚在展开区内 */
 
-  /* 动效① 图0:节点分层淡入 + 订单圆点沿线流动 + 数据底座流光 */
+  /* 动效① 图0:枢纽结构自上而下分层淡入 + 数据底座流光 */
   .sysflow > * { animation: v11-fadeup .55s cubic-bezier(.22,.61,.36,1) both; }
-  .sysflow .sf-in   { animation-delay: 90ms; }
-  .sysflow .sf-ends { animation-delay: 150ms; }
-  .sysflow .sf-out  { animation-delay: 240ms; }
-  .sysflow .sf-base { animation-delay: 300ms; }
-  @keyframes v12-dotdown { 0% { top: -6px; opacity: 0; } 12% { opacity: 1; } 88% { opacity: 1; } 100% { top: calc(100% - 2px); opacity: 0; } }
-  @keyframes v12-dotup   { 0% { top: calc(100% - 2px); opacity: 0; } 12% { opacity: 1; } 88% { opacity: 1; } 100% { top: -6px; opacity: 0; } }
-  .sf-dot { display: block; animation: v12-dotdown 4.5s linear infinite; }
-  .sf-dot.d2 { animation-delay: 1.5s; }
-  .sf-dot.d3 { animation-delay: 3s; }
-  .sf-line.up .sf-dot { animation-name: v12-dotdown; animation-duration: 5.5s; }
+  .sysflow .sf-conv     { animation-delay:  80ms; }
+  .sysflow .sf-row-hub  { animation-delay: 150ms; }
+  .sysflow .sf-dist     { animation-delay: 220ms; }
+  .sysflow .sf-row-ends { animation-delay: 290ms; }
+  .sysflow .sf-into     { animation-delay: 360ms; }
+  .sysflow .sf-det-base { animation-delay: 420ms; }
   .sf-base {
     background-image: linear-gradient(100deg, rgba(232,163,61,.05) 0%, rgba(232,163,61,.16) 18%, rgba(232,163,61,.05) 36%, rgba(232,163,61,.05) 100%);
     background-size: 280% 100%;
@@ -1925,13 +1947,6 @@ label.fm-step:focus-visible { outline: 2px solid var(--accent); outline-offset: 
   @keyframes v12-kbgrow { from { width: 0; } to { width: var(--w); } }
   .kpi[open] .kb-fill { animation: v12-kbgrow .6s ease-out both; }
   .kpi[open] .kb-row:nth-child(2) .kb-fill { animation-delay: .15s; }
-
-  /* v14 · 图0 桥接线圆点:沿水平段对向流动(下发→ / ←回写) */
-  @keyframes v14-dxgo   { 0% { left: 2%;  opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { left: 94%; opacity: 0; } }
-  @keyframes v14-dxback { 0% { left: 94%; opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { left: 2%;  opacity: 0; } }
-  .dx-dot { display: block; }
-  .dx-path.down .dx-dot { animation: v14-dxgo 4s linear infinite; }
-  .dx-path.up   .dx-dot { animation: v14-dxback 4s linear infinite; animation-delay: 2s; }
 
   /* v14 · hero 全景动画:圆点流经六站,到站亮起+状态字浮现,尾站定格 1.5s(周期 10.5s) */
   @keyframes v14-hjdot {
@@ -2276,14 +2291,6 @@ label.fm-step:focus-visible { outline: 2px solid var(--accent); outline-offset: 
 
 
   /* ── v12.0 新增块的窄屏适配 ── */
-  .sf-srcs { flex-direction: column; align-items: stretch; gap: 8px; }
-  .sf-src { flex: 1 1 auto; }
-  .sf-in { gap: 0; justify-content: space-around; }
-  .sf-ends { grid-template-columns: 1fr; gap: 10px; }
-  .sf-in, .sf-out { height: 32px; }
-  .sf-base { padding: 12px 12px 12px 14px; }
-  .sf-baselab { position: static; display: block; transform: none; margin-bottom: 4px; }
-  .sf-inlab, .sf-outlab, .sf-src, .sf-end i, .sf-end em, .sf-base { font-size: 12px; }
 
   .journey { padding-left: 24px; }
   .journey::before { left: 7px; }
@@ -2299,19 +2306,47 @@ label.fm-step:focus-visible { outline: 2px solid var(--accent); outline-offset: 
 
   /* ── v13.0 新增块的窄屏适配 ── */
 
-  .sysflow-xl { min-height: 0; }
-  .sysflow-xl .sf-in { height: 44px; }
-  /* 窄屏三端纵排:桥接线退化为注释条(标签自带方向箭头,语义不丢) */
-  .sf-bridge { width: auto; height: auto; margin: 8px 0; padding: 10px 12px; border: 1px dashed var(--line); border-radius: 9px; }
-  .dx-title { position: static; transform: none; display: block; margin-bottom: 8px; text-align: center; border: none; padding: 0; background: none; }
-  .dx-path { position: static; display: block; border: none; border-radius: 0; }
-  .dx-path::before, .dx-path::after { display: none; }
-  .dx-path + .dx-path { margin-top: 6px; }
-  .dx-lab { position: static; display: block; text-align: center; }
-  .dx-dot { display: none !important; }
   .sf-panel { padding: 12px; }
   .sf-panel > p, .sf-fact { font-size: 12.5px; }
-  .sf-det-src > summary .sf-srcs { flex-direction: column; gap: 8px; }
+
+  /* ── 图0 枢纽结构 · 窄屏纵向版(方向逻辑与宽屏一致)── */
+  .sf-row-src, .sf-row-ends { grid-template-columns: 1fr; gap: 10px; }
+  .sf-src { padding: 13px 12px; min-height: 0; font-size: 12.5px; }
+  .sf-src i { font-size: 11.5px; }
+  .sf-end { min-height: 0; padding: 16px 12px 14px; }
+  .sf-end i, .sf-end em, .sf-base { font-size: 12px; }
+
+  /* 汇聚层:两源已纵向堆叠,收成一条居中竖线 + 箭头进总控台 */
+  .sf-conv { height: 76px; }
+  .cv-a, .cv-b, .cv-bar { display: none; }
+  .cv-mid { left: 50%; top: 0; height: 76px; }
+  .cv-lab {
+    left: calc(50% + 12px); top: 16px; font-size: 11.5px; padding: 3px 9px;
+    max-width: calc(50% - 26px); white-space: normal; text-align: left;
+  }
+
+  /* 枢纽:窄屏改纵向排布,标签换行不挤 */
+  .sf-hub { display: block; text-align: center; padding: 16px 14px; }
+  .sf-hub .sfico { margin: 0 auto; }
+  .sf-hub b { margin: 10px 0 5px; font-size: 16px; }
+  .sf-hubtag { display: inline-block; margin-top: 4px; white-space: normal; }
+
+  /* 分配层:线全部隐藏,四条关系改为带端名的文字行,方向不可误读 */
+  .sf-dist { height: auto; padding: 10px 0; display: grid; gap: 6px; }
+  .sf-dist .ln, .sf-spine { display: none; }
+  .ln-lab {
+    position: static; display: block; white-space: normal; text-align: left;
+    font-size: 11.5px; padding: 6px 11px; border-radius: 8px;
+  }
+  .lp { display: inline; margin-right: 5px; font-weight: 600; }
+
+  /* 底座接入层:收成一条居中竖线,箭头向下 */
+  .sf-into { height: 34px; }
+  .ln-b1, .ln-b3 { display: none; }
+  .ln-b2 { left: 50%; }
+
+  .sf-base { padding: 12px 12px 12px 14px; }
+  .sf-baselab { position: static; display: block; transform: none; margin-bottom: 4px; }
 
   .flowmap { flex-direction: column; }
   label.fm-step { text-align: left; padding: 12px 34px 12px 14px; }
@@ -2327,8 +2362,6 @@ label.fm-step:focus-visible { outline: 2px solid var(--accent); outline-offset: 
   .odp-card { margin: 10px 14px 0; padding: 10px 12px; }
   .odp-eg { font-size: 12px; }
   .odp-btn { font-size: 12.5px; padding: 9px; }
-  .gatecard { padding: 16px; }
-  .gatecard p { font-size: 12.5px; }
 
   .thesis { font-size: 15.5px; }
 
@@ -2478,6 +2511,8 @@ label.fm-step:focus-visible { outline: 2px solid var(--accent); outline-offset: 
    (卡内截图 116px 宽)。此处把两块 KPI 网格在 ≤480px 一律改单列。 */
 @media (max-width: 480px) {
   .stats, .kpis { grid-template-columns: 1fr; }
+  /* 图0 汇聚标签:窄到此宽度必换行,收窄让它在「·」处断成两行匀称行,不留孤字 */
+  .cv-lab { max-width: 116px; }
 }
 
 /* 动效一律包进 no-preference(铁律) */

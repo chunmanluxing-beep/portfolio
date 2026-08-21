@@ -40,7 +40,7 @@
     <a class="hero-journey" href="#two" aria-label="订单一生全景动画,点击查看系统构成">
       <span class="hj-track" aria-hidden="true"><i class="hj-dot"></i></span>
       <span class="hj-stations">
-        <span class="hj-st s1"><i class="hj-ico" aria-hidden="true">✉️</i><b>进单</b><em>双渠道自动识别</em></span>
+        <span class="hj-st s1"><i class="hj-ico" aria-hidden="true">✉️</i><b>进单</b><em>双渠道 · 总控台建单</em></span>
         <span class="hj-st s2"><i class="hj-ico" aria-hidden="true">📣</i><b>派单</b><em>四道门槛 · 一次推送</em></span>
         <span class="hj-st s3"><i class="hj-ico" aria-hidden="true">📱</i><b>接单</b><em>先到先得 · 2.0 分钟中位</em></span>
         <span class="hj-st s4"><i class="hj-ico" aria-hidden="true">📷</i><b>拍摄</b><em>天气预警护航</em></span>
@@ -241,50 +241,84 @@
       </div>
     </div>
 
-    <!-- ─── 配图 0:系统全景(海报化 · 节点可点击 · App↔后台双向同步) ─── -->
+    <!-- ─── 配图 0:系统全景(枢纽结构 · 所有渠道先进总控台,再由总控台分配与交付) ─── -->
     <figure class="fig">
-      <div class="sysflow sysflow-xl">
+      <div class="sysflow sysflow-hub">
 
-        <details class="sf-det sf-det-src">
-          <summary>
-            <span class="sf-srcs">
-              <span class="sf-src">海外 OTA 平台</span>
-              <span class="sf-src">自营渠道</span>
-            </span>
-            <span class="sf-hint" aria-hidden="true"></span>
-          </summary>
-          <div class="sf-panel">
-            <p>订单从海外 OTA 平台与自营双渠道进来。渠道在进单时自动识别,并绑定各自的合规与门控策略——平台单和自营单从第一步起就走各自的规则。</p>
-            <div class="stepfig"><span class="jfbox">OTA 平台</span><span class="jfbox">自营渠道</span><span class="jfar"></span><span class="jfbox hi">自动识别渠道</span></div>
-            <p class="sf-fact">双渠道 · 各自合规策略</p>
-            <p class="st-more"><a href="#system">详细 →</a></p>
-          </div>
-        </details>
-
-        <div class="sf-in" aria-hidden="true">
-          <span class="sf-line"><i class="sf-dot"></i></span>
-          <span class="sf-inlab">订单流入</span>
-          <span class="sf-line"><i class="sf-dot d2"></i></span>
-        </div>
-
-        <div class="sf-ends">
+        <!-- 第一层 · 两个来源 -->
+        <div class="sf-row sf-row-src">
           <details class="sf-det">
             <summary>
-              <span class="sf-end e-ops">
+              <span class="sf-src">海外 OTA 平台<i>Viator · GetYourGuide · 携程</i></span>
+              <span class="sf-hint" aria-hidden="true"></span>
+            </summary>
+            <div class="sf-panel">
+              <p>平台来的单:Viator、GetYourGuide、携程各是一个独立渠道,默认<b>全额预付</b>。平台不直接写进系统——运营在总控台建单时选定渠道,这条单从第一步起就带上该渠道自己的支付与交付规则。</p>
+              <div class="stepfig"><span class="jfbox">平台订单</span><span class="jfar"></span><span class="jfbox hi">总控台建单</span></div>
+              <p class="sf-fact">3 个平台渠道 · 默认全额预付</p>
+              <p class="st-more"><a href="#system">详细 →</a></p>
+            </div>
+          </details>
+          <details class="sf-det">
+            <summary>
+              <span class="sf-src">自营渠道<i>自营直客 · 小红书</i></span>
+              <span class="sf-hint" aria-hidden="true"></span>
+            </summary>
+            <div class="sf-panel">
+              <p>自己的私域来源:自营直客与小红书。自营单的支付方式<b>按单设定</b>(可分两笔收,也可一次付清),与平台单固定的全额预付不同——但走的建单入口完全一样,同样必须先进总控台。</p>
+              <div class="stepfig"><span class="jfbox">自营订单</span><span class="jfar"></span><span class="jfbox hi">总控台建单</span></div>
+              <p class="sf-fact">2 个自有渠道 · 支付方式按单设定</p>
+              <p class="st-more"><a href="#system">详细 →</a></p>
+            </div>
+          </details>
+        </div>
+
+        <!-- 汇聚层 · 两条来源线合并后共同指向总控台顶边 -->
+        <div class="sf-conv" aria-hidden="true">
+          <i class="cv cv-a"></i>
+          <i class="cv cv-b"></i>
+          <i class="cv cv-bar"></i>
+          <i class="cv cv-mid"></i>
+          <span class="cv-lab">订单流入 · 建单时选定渠道</span>
+        </div>
+
+        <!-- 第二层 · 枢纽 -->
+        <div class="sf-row sf-row-hub">
+          <details class="sf-det">
+            <summary>
+              <span class="sf-end e-ops sf-hub">
                 <span class="sfico sfico-screen" aria-hidden="true"><i></i><i></i></span>
-                <b>运营总控台</b>
-                <i>运营角色 · 电脑或手机 App 均可进入</i>
-                <em>建单 · 派单 · 结算</em>
+                <span class="sf-hubtx">
+                  <b>运营总控台</b>
+                  <i>运营角色 · 电脑或手机 App 均可进入</i>
+                  <em>建单 · 派单 · 交付 · 结算</em>
+                </span>
+                <span class="sf-hubtag">全部订单的唯一枢纽</span>
               </span>
               <span class="sf-hint" aria-hidden="true"></span>
             </summary>
             <div class="sf-panel">
-              <p>工作室的指挥室:订单全生命周期、派单调度、交付跟进、结算对账、监控告警都在这里。原本散在 Excel、微信群、聊天记录里的订单、人、钱,收进一个后台。</p>
-              <div class="stepfig"><span class="jftxt"><i></i><i></i><i></i></span><span class="jfar"></span><span class="jfform"><i>订单号</i><i>时间</i><i>金额</i></span></div>
+              <p>工作室的指挥室,也是<b>系统里唯一的订单入口</b>:没有面向客人或平台的公开建单接口,任何一条订单——不论来自平台还是自营——都由运营在这里建单落库。</p>
+              <p>建单的<b>同一个事务</b>里,系统按「渠道 × 订单类型」套用这条单的交付节点模板,并顺手生成客人交付页的专属链接。此后的派单、交付、结算,也全都从这里发出。</p>
+              <div class="stepfig"><span class="jfbox">平台单</span><span class="jfbox">自营单</span><span class="jfar"></span><span class="jfbox hi">建单 · 绑定渠道规则 · 生成交付链接</span></div>
               <p class="sf-fact">437 个接口 · 86 张生产在用数据表</p>
               <p class="st-more"><a href="#system">详细 →</a></p>
             </div>
           </details>
+        </div>
+
+        <!-- 分配层 · 总控台向两端下发,两端向总控台回写 -->
+        <div class="sf-dist" aria-hidden="true">
+          <i class="ln ln-ad dn"></i><span class="ln-lab lab-ad"><b class="lp">总控台 →</b>派单下发</span>
+          <i class="ln ln-au up"></i><span class="ln-lab lab-au"><b class="lp">App →</b>档期 · 接单回写</span>
+          <i class="ln ln-gd dn"></i><span class="ln-lab lab-gd"><b class="lp">总控台 →</b>分享交付链接</span>
+          <i class="ln ln-gu up"></i><span class="ln-lab lab-gu"><b class="lp">交付页 →</b>选片 · 验收回写</span>
+          <i class="ln ln-core"></i>
+        </div>
+
+        <!-- 第三层 · 两个执行端 -->
+        <div class="sf-row sf-row-ends">
+          <i class="sf-spine" aria-hidden="true"></i>
           <details class="sf-det">
             <summary>
               <span class="sf-end e-app">
@@ -296,7 +330,7 @@
               <span class="sf-hint" aria-hidden="true"></span>
             </summary>
             <div class="sf-panel">
-              <p>摄影师的移动工作台:填了档期才有接单资格;抢单大厅报酬前置、先到先得;作品提交、天气预警、收入账单都在手机上完成。</p>
+              <p>摄影师的移动工作台:填了档期才有接单资格。总控台把派单任务推下来,抢单大厅报酬前置、先到先得;<b>抢到的那一刻</b>系统直接占用档期、把摄影师写进这条订单、同步下架该任务——不需要任何人再回总控台登记一次。</p>
               <div class="stepfig"><span class="jfp">A</span><span class="jfp win">B ✓</span><span class="jfp">C</span><span class="jfnote">先到先得 · 恰好一人成功</span></div>
               <p class="sf-fact">74.7% 抢单成交率 · iOS 已上架 App Store</p>
               <p class="st-more"><a href="#app">详细 →</a></p>
@@ -313,7 +347,7 @@
               <span class="sf-hint" aria-hidden="true"></span>
             </summary>
             <div class="sf-panel">
-              <p>客人的免登录第三端:一条链接直达,不装 App、不注册;进度自查、按编号提交精修需求、一键验收,每一步自动通知下一棒并回写订单进度。</p>
+              <p>客人的免登录第三端:<b>链接由总控台在建单时生成、再由运营分享给客人</b>,不装 App、不注册。进度自查每 30 秒自动刷新;按编号提交精修需求、一键验收与提返修,每一步都自动回写这条订单的状态并通知下一棒。</p>
               <div class="stepfig"><span class="jfr on">底片</span><span class="jfr on">选片</span><span class="jfr on">精修</span><span class="jfr">验收</span></div>
               <p class="sf-fact">三方同页 · 每步自动回写</p>
               <p class="st-more"><a href="#guest">详细 →</a></p>
@@ -321,19 +355,14 @@
           </details>
         </div>
 
-        <div class="sf-bridge" aria-hidden="true">
-          <span class="dx-title">同一后台 · 两个界面</span>
-          <span class="dx-path down"><i class="dx-dot"></i><em class="dx-lab">派单下发 →</em></span>
-          <span class="dx-path up"><i class="dx-dot"></i><em class="dx-lab">← 档期 · 接单回写</em></span>
+        <!-- 底座接入层 · 三端各一条竖线,方向统一向下 -->
+        <div class="sf-into" aria-hidden="true">
+          <i class="ln ln-b1 dn"></i>
+          <i class="ln ln-b2 dn"></i>
+          <i class="ln ln-b3 dn"></i>
         </div>
 
-        <div class="sf-out" aria-hidden="true">
-          <span class="sf-line up"></span>
-          <span class="sf-line up"></span>
-          <span class="sf-line up"></span>
-          <span class="sf-outlab">状态回写 · 实时同步</span>
-        </div>
-
+        <!-- 第四层 · 共享数据底座 -->
         <details class="sf-det sf-det-base">
           <summary>
             <span class="sf-base"><span class="sf-baselab">共享数据底座</span>同一份订单数据 · 三端实时同步</span>
@@ -348,7 +377,7 @@
         </details>
 
       </div>
-      <figcaption><b>图 0 · 系统全景</b>:订单从两个来源流入,三个端各管一段,底下是同一份数据。<b>每个节点都可以点开</b>看这一端是干什么的;总控台与 App 之间的双向流动,就是「同一后台 · 两个界面」的关系。</figcaption>
+      <figcaption><b>图 0 · 系统全景</b>:两个渠道的订单<b>都必须先进运营总控台</b>——系统里没有绕过总控台的建单入口。总控台在建单时绑定该渠道的规则、并生成这条订单的客人交付页链接,再由它向摄影师 App <b>派单</b>、向客人<b>分享交付页</b>;两端各自把结果回写到同一份订单数据上,总控台据此结算。<b>每个节点都可以点开</b>看这一端是干什么的。</figcaption>
     </figure>
   </div>
 </section>
@@ -526,7 +555,7 @@
             <span class="st-ar" aria-hidden="true"></span>
           </summary>
           <div class="st-body">
-            <p>订单来自海外 OTA 平台与自营双渠道。渠道在进单时自动识别,并绑定后续的合规与门控策略——平台单和自营单从第一步起就走各自的规则。</p>
+            <p>订单来自海外 OTA 平台与自营双渠道,但<b>都由运营在总控台建单</b>入库——系统没有让平台或客人直接写入的公开入口。渠道在建单表单里选定,选定后系统自动套用该渠道的支付与交付规则:平台单和自营单从第一步起就走各自的路子。</p>
             <div class="stepfig"><span class="jfbox">OTA 平台</span><span class="jfbox">自营渠道</span><span class="jfar"></span><span class="jfbox hi">进入系统</span></div>
             <p class="st-more"><a href="#who">详细 →</a></p>
           </div>
@@ -542,7 +571,7 @@
             <span class="st-ar" aria-hidden="true"></span>
           </summary>
           <div class="st-body">
-            <p>整段订单文本粘贴进来,AI 自动解析成表单字段;人工核对确认——这是全流程唯一需要判断的一步;保存即自动发确认信、自动进派单池。建单环节全程 2–4 分钟。</p>
+            <p>整段订单文本粘贴进来,AI 自动解析成表单字段;人工核对确认——这是全流程唯一需要判断的一步;保存即自动发确认信、自动进派单池,<b>并在同一个事务里生成这条订单的客人交付页链接</b>。建单环节全程 2–4 分钟。</p>
             <div class="stepfig"><span class="jftxt"><i></i><i></i><i></i></span><span class="jfar"></span><span class="jfform"><i>订单号</i><i>时间</i><i>金额</i></span></div>
             <p class="st-more"><a href="#system">详细 →</a></p>
           </div>
@@ -606,7 +635,7 @@
             <span class="st-ar" aria-hidden="true"></span>
           </summary>
           <div class="st-body">
-            <p>底片、选片、精修、验收四棒在同一张免登录页面上交接:摄影师传底片、客人填编号选片、精修师交成品、客人验收,每一步自动通知下一棒并回写订单进度——客服退出中转链路。</p>
+            <p>这张页面<b>由总控台在建单时生成、再由运营分享给客人</b>;拿到链接后,底片、选片、精修、验收四棒都在这一张免登录页面上交接:摄影师传底片、客人填编号选片、精修师交成品、客人验收,每一步自动通知下一棒并回写订单进度——客服退出中转链路。</p>
             <div class="stepfig"><span class="jfr on">底片</span><span class="jfr on">选片</span><span class="jfr on">精修</span><span class="jfr">验收</span></div>
             <p class="st-more"><a href="#guest">详细 →</a></p>
           </div>
@@ -706,7 +735,7 @@
           <div class="fm-panel fm-p1">
             <label class="fm-close" for="fmr0" tabindex="0" aria-label="收起">×</label>
             <p class="fm-ptitle">客人下单 · <span class="fm-role r-ops">运营端</span></p>
-            <p>订单从海外 OTA 平台与自营双渠道进来,渠道自动识别并绑定各自的合规与门控策略。</p>
+            <p>订单从海外 OTA 平台与自营双渠道进来,一律由运营在总控台建单;渠道在建单时选定,选定后自动绑定该渠道的支付与交付规则。</p>
             <p class="st-more"><a href="#system">详细 →</a></p>
           </div>
           <div class="fm-panel fm-p2">
@@ -1242,7 +1271,7 @@
           <span class="ico ico-page" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></span>
           <h4>订单公开页</h4>
           <span class="mdesc">客人免登录参与交付,三方在同一页面各自完成自己那一棒。</span>
-          <span class="mlist"><span>填编号提交精修与验收返修</span><span>尾款未付自动隐藏成品</span><span>客服事件收件箱</span></span>
+          <span class="mlist"><span>填编号提交精修与验收返修</span><span>进度自查 · 30 秒自动刷新</span><span>客服事件收件箱</span></span>
           <span class="mplus" aria-hidden="true"></span>
           <span class="mhint" aria-hidden="true"></span>
         </summary>
@@ -1250,10 +1279,10 @@
           <div class="modstat ms-qual">
             <span class="ms-k">参与方</span>
             <span class="ms-v">三方同页</span>
-            <span class="ms-t">客人免登录参与交付;尾款未付时成品自动隐藏</span>
+            <span class="ms-t">客人免登录参与交付;每一步自动回写订单进度</span>
           </div>
           <p class="md-lead">客人免登录参与交付,三方在同一页各做各的那一棒。</p>
-          <ul class="md-pts"><li>客人填编号提交精修需求、验收与提返修</li><li>尾款未付时成品自动隐藏</li><li>客服事件统一进收件箱</li></ul>
+          <ul class="md-pts"><li>客人填编号提交精修需求、验收与提返修</li><li>每一步自动回写订单进度并通知下一棒</li><li>客服事件统一进收件箱</li></ul>
           <div class="dg dg-hub"><span class="hb h1">摄影师<i>传底片</i></span><span class="hb-core">订单公开页<i>免登录 · 三方同页</i></span><span class="hb h2">精修师<i>交成品</i></span><span class="hb h3">客人<i>选片 · 验收</i></span></div>
           <p class="dg-cap">三个角色指向同一张页面,不再由客服逐棒中转</p>
           <figure class="shotwrap shotwrap-in shotdeck shot-portrait">
@@ -2017,7 +2046,7 @@
     <p class="kicker">核心专章 · 三</p>
     <h2>客人交付页 · 免登录的第三端</h2>
     <p class="screenlead">这一屏讲:客人不装 App、不注册,怎么走完从填编号选片到验收</p>
-    <p class="dek">传统交付对客人是"黑箱 + 追问":拍完不知道进度,每一步都要问客服,跨时区一个来回就是一天。这套系统给客人一条<b>免登录链接</b>:进度自查、按编号提交精修需求、一键验收全部自助——三端里唯一不需要任何账号的一端。</p>
+    <p class="dek">传统交付对客人是"黑箱 + 追问":拍完不知道进度,每一步都要问客服,跨时区一个来回就是一天。这套系统给客人一条<b>免登录链接</b>——链接由总控台在建单时生成、再由运营分享出去:进度自查、按编号提交精修需求、一键验收全部自助,三端里唯一不需要任何账号的一端。</p>
 
     <h3>客人拿到什么</h3>
     <div class="autos">
@@ -2025,7 +2054,6 @@
       <div class="au">进度随时自查,不用问人——页面每 30 秒自动刷新最新状态</div>
       <div class="au">拿到底片链接后,在输入框里填要精修的照片编号(逗号分隔,可填多个),提交即自动通知下一棒</div>
       <div class="au">验收一键完成,返修轮次全程留痕</div>
-      <div class="au">尾款未付时成品链接自动隐藏,后台确认收款后 30 秒内自动恢复</div>
       <div class="au">有问题就地提交,直接进客服事件收件箱</div>
     </div>
 
@@ -2079,37 +2107,6 @@
       </div>
     </figure>
 
-    <div class="gatecard">
-      <h4>设计决策 · 尾款门控</h4>
-      <p>成品在尾款支付前<b>自动隐藏</b>:客人看得到进度走到哪、差哪一步,但底片与精修成品的链接在付清前不出现;付清后客人页 30 秒内自动恢复链接;付款确认这一步由运营在后台点一次,之后无需任何人手动放行链接。</p>
-      <p>对客人是<b>透明</b>——不是"被卡住",而是清楚知道差一步付款;对工作室是<b>回款保护</b>——先款后货由机制保证,不靠客服追讨。这是把商业规则写进系统,而不是写进聊天记录。</p>
-    </div>
-
-    <figure class="shotwrap shotdeck">
-      <input type="checkbox" id="lb-37" class="lb-toggle" aria-hidden="true">
-      <input type="radio" name="deck-37" id="dk-37-1" class="deck-r deck-r1" checked aria-hidden="true">
-      <input type="radio" name="deck-37" id="dk-37-2" class="deck-r deck-r2" aria-hidden="true">
-      <label class="lb-zoom" for="lb-37" title="点击放大">
-        <img class="shotimg deck-s deck-s1" src="images/console-settlement-gate.png" alt="尾款未付时的客人页状态"
-             onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.parentElement.style.display='none';this.closest('figure').querySelector('.shot').style.display='flex';}">
-        <img class="shotimg deck-s deck-s2" src="images/console-settlement-gate-2.png" alt="尾款未付时的客人页状态 · 第 2 张"
-             onload="this.closest('figure').classList.add('deck-multi')"
-             onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.dataset.miss=1;}">
-        <span class="lb-tip" aria-hidden="true">⤢ 点击放大</span>
-      </label>
-      <div class="deck-dots">
-        <label class="deck-dot deck-d1" for="dk-37-1" title="第 1 张" aria-label="看第 1 张"></label>
-        <label class="deck-dot deck-d2" for="dk-37-2" title="第 2 张" aria-label="看第 2 张"></label>
-      </div>
-      <div class="shot">
-        <p class="shot-name">尾款门控状态截图(客人页)</p>
-        <p class="shot-req">建议文件名:console-settlement-gate.png ｜ 建议 1200×750 ｜ 需打码:客人姓名与金额</p>
-      </div>
-      <div class="lb-overlay">
-        <label class="lb-close" for="lb-37" aria-label="关闭大图">✕</label>
-        <label class="lb-back" for="lb-37"><img class="deck-b deck-b1" src="images/console-settlement-gate.png" alt="尾款未付时的客人页状态(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"><img class="deck-b deck-b2" src="images/console-settlement-gate-2.png" alt="尾款未付时的客人页状态 · 第 2 张(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"></label>
-      </div>
-    </figure>
   </div>
 </section>
 
@@ -2123,7 +2120,7 @@
 
     <div class="cmp">
       <div class="cmp-head"><span>环节</span><span>传统做法</span><span>本系统做法</span></div>
-      <div class="cmp-row"><span class="ph1">接单</span><span class="ph2">人工读邮件或客人消息,抄进 Excel,多渠道格式各异靠人识别</span><span class="ph3">整段粘贴自动填表,人工确认后入库;渠道自动识别并绑定合规与门控策略</span></div>
+      <div class="cmp-row"><span class="ph1">接单</span><span class="ph2">人工读邮件或客人消息,抄进 Excel,多渠道格式各异靠人识别</span><span class="ph3">整段粘贴自动填表,人工确认后入库;渠道选定后自动绑定该渠道的支付与交付规则</span></div>
       <div class="cmp-row"><span class="ph1">建单</span><span class="ph2">一行 Excel + 一条群消息;编号手编,金额币种常漏,平台单号常忘记</span><span class="ph3">服务端统一发号带校验位;字段按渠道强制;多人同编有冲突保护</span></div>
       <div class="cmp-row hi"><span class="ph1">派单</span><span class="ph2">逐个私聊问"谁能接",一单问 3–8 人,回复了再确认档期冲突</span><span class="ph3">四道门槛自动圈人,一次推送到手机,先到先得有并发保证;可再推、分层、定向</span></div>
       <div class="cmp-row"><span class="ph1">拍前</span><span class="ph2">群里再发一遍时间地点;天气自己查;变更再发一条,旧消息还在造成混乱</span><span class="ph3">一键生成格式化摘要;开拍前自动提醒;天气台风地震按城市定向预警;变更自动通知</span></div>
@@ -2211,7 +2208,7 @@
     <details class="more">
       <summary><span class="fold-t">另外四条结构性优势</span><span class="fold-n">风险前置 · 机制保证 · 供给侧选择权 · 决策有数据</span><span class="mplus" aria-hidden="true"></span></summary>
       <div class="advs">
-      <article class="adv"><h4>四 · 风险从"事后发现"变成"事前拦截"</h4><p>合规违规发送前被拦、时间冲突派单时被查、尾款未付成品自动隐藏、面议价未补录拒绝结算。<b>"不可能做错"优于"做错了会被发现"。</b></p></article>
+      <article class="adv"><h4>四 · 风险从"事后发现"变成"事前拦截"</h4><p>合规违规发送前被拦、时间冲突派单时被查、面议价未补录拒绝结算。<b>"不可能做错"优于"做错了会被发现"。</b></p></article>
       <article class="adv"><h4>五 · 规则从"口头约定"变成"机制保证"</h4><p>"先到先得""填了档期才算能接""说好的价不能变",原本全靠自觉。<b>约定被破坏时没人知道,机制被破坏时根本执行不了。</b>供给侧的信任正建立在"规则真的算数"之上。</p></article>
       <article class="adv"><h4>六 · 供给侧从"被分配"变成"有选择权"</h4><p>摄影师原本只能答"能"或"不能",有哪些单、别人接到什么一无所知。抢单给了他选择权与信息权。<b>从"你被安排"到"你来选择",本身就是激励。</b></p></article>
       <article class="adv"><h4>七 · 决策从"凭感觉"变成"有数据"</h4><p>统计成本太高就没人做。系统化后一次取数当场发现两个此前不知道的问题:供给负载高度集中、订单状态字段使用不足。<b>它们在传统模式下永远不会被发现,因为没人会去数。</b></p></article>
