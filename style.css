@@ -3300,3 +3300,153 @@ a.jstep .st-ar { transform: rotate(-45deg); margin-top: -4px; }
   .hero-h2 { font-size: 24px; }
   .hero .intro { font-size: 15px; line-height: 1.85; }
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ═══ v20 · 视觉品质改版:对齐修复 + 车企官网章头语法 + 大数字系统 ═══
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── 3b 自托管数字展示字体(Space Grotesk 子集,OFL-1.1,见 fonts/OFL.txt)─── */
+@font-face {
+  font-family: 'NumDisplay';
+  src: url('fonts/num.woff2') format('woff2');
+  font-weight: 600; font-style: normal; font-display: swap;
+  unicode-range: U+0020, U+0025, U+002B-002F, U+0030-003A, U+0041-005A, U+00D7, U+2013-2014;
+}
+:root {
+  --font-num: 'NumDisplay', ui-monospace, "SF Mono", "Helvetica Neue", Arial, sans-serif;
+  --r-card: 16px;                 /* 圆角第一档:卡片 */
+  --r-sm: 10px;                   /* 圆角第二档:小元素 */
+  --sh-1: 0 2px 10px rgba(0,0,0,.26);    /* 阴影第一档:静态浮起 */
+  --sh-2: 0 14px 34px rgba(0,0,0,.46);   /* 阴影第二档:悬停 / 主视觉 */
+}
+
+/* ─── 1b 对齐修复:h1 的 max-width:960px 让 .hh-brand 在 1280 下左锚定偏移 32px ─── */
+.hh-brand { max-width: none; margin-left: auto; margin-right: auto; }
+
+/* ─── 1b 章节卡:介绍句锁两行,保证同行等高与「进入 →」同线 ─── */
+.hc-d {
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;
+  overflow: hidden; min-height: 3.4em;      /* 2 行 × line-height 1.7,降级浏览器也等高 */
+}
+@supports not (-webkit-line-clamp: 2) { .hc-d { max-height: 3.4em; } }
+
+/* 1b 缩略区逐张裁切位(竖屏截图取信息最密的一段)*/
+.hcard[href="#top"]     .hc-shot img { object-position: 50% 42%; }
+.hcard[href="#map"]     .hc-shot img { object-position: 50% 50%; }
+.hcard[href="#console"] .hc-shot img { object-position: 50% 46%; }
+.hcard[href="#app"]     .hc-shot img { object-position: 50% 58%; }
+
+/* ─── 2a 章头三件套统一:眉题 → 大标题 → 一行副题,整组居中 ─── */
+section > .wrap > .kicker,
+.hero > .wrap > .kicker {
+  text-align: center; font-size: 12.5px; letter-spacing: .12em;
+  color: var(--accent-2); font-weight: 600; margin: 0 0 16px;
+}
+section > .wrap > h2,
+.hero > .wrap > .hero-h2 {
+  text-align: center; max-width: none;
+  font-size: clamp(30px, 4.5vw, 46px); font-weight: 700;
+  line-height: 1.22; letter-spacing: -.015em;
+  margin: 0 auto 18px; padding-bottom: 16px;
+}
+section > .wrap > h2::after,
+.hero > .wrap > .hero-h2::after {           /* 下划线随标题居中 */
+  content: ""; position: absolute; left: 50%; transform: translateX(-50%); bottom: 0;
+  width: 54px; height: 3px; border-radius: 2px;
+  background: linear-gradient(90deg, rgba(232,163,61,0), var(--accent), rgba(232,163,61,0));
+}
+.hero > .wrap > .hero-h2 { position: relative; }
+section > .wrap > .lead,
+.hero > .wrap > .lead {
+  text-align: center; max-width: 34em; margin: 0 auto 44px;
+  font-size: clamp(15px, 1.25vw, 16px); line-height: 1.85;
+  font-weight: 400; color: var(--dim);
+}
+
+/* ─── 2b 大数字系统 ─── */
+.bignum, .kpi .num, .kpt-n {
+  font-family: var(--font-num);
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+  letter-spacing: -.015em;
+}
+.kpi .num { font-size: clamp(38px, 5vw, 58px); line-height: 1.06; }
+.kpt-n { font-size: clamp(24px, 2.2vw, 30px); }
+
+/* 证据条:5 项改「大数字 + 小标签」瓦片 */
+.proofbar {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px; margin: 0 0 34px; padding: 0; list-style: none;
+}
+.pb {
+  display: flex; padding: 20px 12px 18px; border-radius: var(--r-card);
+  border: 1px solid var(--line); background: var(--card); text-align: center;
+}
+.pb, .pb > a {
+  flex-direction: column; align-items: center; justify-content: center; gap: 7px;
+  width: 100%; text-decoration: none;
+}
+.pb > a { display: flex; }
+.pb .bignum { font-size: clamp(25px, 2.3vw, 33px); line-height: 1.1; color: var(--accent-2); font-weight: 600; }
+.pb-l { font-size: 12.5px; line-height: 1.55; color: var(--dimmer); }
+.pb-store { border-color: var(--accent-ln); background: rgba(232,163,61,.07); }
+.pb-store .bignum { color: var(--accent); }
+.pb-store .pb-l { color: var(--dim); }
+
+/* ─── 2c 留白 · 圆角两档 · 阴影两档 ─── */
+section { padding: clamp(88px, 10vh, 136px) 0; }
+.hero { padding: clamp(72px, 8vh, 104px) 0 clamp(72px, 8vh, 104px); }
+.homehub { padding: clamp(52px, 7vh, 78px) 0 clamp(64px, 8vh, 92px); }
+.hcard, .film-slot, .kpi, .mod, .qa, .rule, .adv, .aic, .case, .vs-col, .mc, .cmp, .tn {
+  border-radius: var(--r-card);
+}
+.hc-shot, .fst-shot, .fm-stage, .gcard, .shotimg, .hh-logo { border-radius: var(--r-sm); }
+.hh-logo, .navlogo { border-radius: 23%; }      /* App 图标类保持 iOS 圆角 */
+.fm-stage { border-radius: var(--r-sm); }
+
+/* ─── 2c 卡片交互:hover 抬起 + 边框提亮;focus-visible 琥珀外圈 ─── */
+.hcard:focus-visible, .pb > a:focus-visible, .rail a:focus-visible, .jstep:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 3px; border-radius: var(--r-sm);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hcard { transition: transform .22s ease, border-color .22s ease, background .22s ease, box-shadow .22s ease; }
+  .hcard:hover { transform: translateY(-4px); border-color: var(--accent-ln); box-shadow: var(--sh-2); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hcard:hover { transform: none; border-color: var(--accent-ln); }   /* 位移归零,信息与反馈不丢 */
+}
+
+/* ─── 窄屏 ─── */
+@media (max-width: 640px) {
+  .proofbar { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .pb { padding: 16px 8px 14px; }
+  .pb .bignum { font-size: 24px; }
+  .pb-l { font-size: 11.5px; }
+  section > .wrap > .lead, .hero > .wrap > .lead { margin-bottom: 32px; font-size: 15px; }
+}
+
+/* ─── 2c/2d 主视觉之间加留白:同屏不并置两个主视觉,圆角并入卡片档 ─── */
+.fig { margin: clamp(48px, 6vh, 86px) 0 clamp(20px, 2.5vh, 32px); border-radius: var(--r-card); }
+.films { margin-top: clamp(34px, 4vh, 58px); }
+.qa { border-radius: var(--r-card); }
+
+/* ─── 2c 圆角归两档(容器层);纯 CSS 手绘图形内部的圆角属于"绘制几何",不并档 ─── */
+.more, .appintro, .dfx, .shot, .hero-journey, .odp, .case, .mod, .film-slot, .hcard, .fig, .qa {
+  border-radius: var(--r-card);
+}
+.shotimg, .fm-stage, .mr-row, .modstat, .sf-base, .ts-base, .pp, .fm-step, .hc-shot, .fst-shot {
+  border-radius: var(--r-sm);
+}
+/* 徽章/标签是"药丸"形,与两档圆角是不同角色,统一到 999px */
+.fm-role, .bs-tool, .bs-flag, .mhint, .fn-out, .gcity, .pm, .ph-badge, .badge, .st, .jfp {
+  border-radius: 999px;
+}
+/* 阴影归两档 */
+.hcard:hover, .hh-logo, .fm-screen-p, .fm-screen-c { box-shadow: var(--sh-2); }
+
+/* ─── 2b KPI 卡:summary 撑满卡片,使绝对定位的「看对比 +」四卡同线 ─── */
+.stats .kpi { display: flex; flex-direction: column; }
+.stats .kpi > summary { padding-bottom: 30px; }
+.stats .kpi:not([open]) > summary { flex: 1 1 auto; }
+.stats > li { display: flex; }
+.stats > li > .kpi { flex: 1 1 auto; }
