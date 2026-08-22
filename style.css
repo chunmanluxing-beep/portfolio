@@ -1036,33 +1036,7 @@ footer .disc { font-size: 12.5px; color: var(--dimmer); margin: 0; }
 /* ─── 品牌字标(v18-A:纯 CSS,不依赖任何图片文件) ───
    导航条用单字「榴」印章;Hero 用完整锁形:主字「榴档期」+ 小字「LIULIAN · 旅拍调度」。
    放入真实 logo 图片后可整体替换为 <img>,见工作台 E0-品牌LOGO。 */
-.logoslot {
-  flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center;
-  width: 34px; height: 34px; border-radius: 9px;
-  border: 1px solid var(--accent-ln);
-  background: linear-gradient(158deg, rgba(232,163,61,.22), rgba(232,163,61,.05));
-  user-select: none;
-}
-.logoslot .lm-mark {
-  font-size: 17px; font-weight: 700; line-height: 1;
-  color: var(--accent); font-style: normal;
-}
-.logoslot.big {
-  display: inline-flex; flex-direction: column;
-  align-items: flex-start; justify-content: center;
-  width: auto; height: auto; margin: 0 0 22px;
-  padding: 13px 20px 12px; border-radius: 15px;
-  background: linear-gradient(158deg, rgba(232,163,61,.17), rgba(232,163,61,.03));
-}
-.logoslot.big .lm-zh {
-  font-size: 30px; font-weight: 700; line-height: 1.06;
-  letter-spacing: .07em; color: var(--accent);
-}
-.logoslot.big .lm-en {
-  margin-top: 7px; font-style: normal;
-  font-size: 10.5px; font-weight: 500; letter-spacing: .22em;
-  color: var(--accent-2); white-space: nowrap;
-}
+
 
 /* ─── Hero 内的 App Store 外链 ─── */
 .storelink {
@@ -2254,9 +2228,6 @@ label.fm-step:focus-visible { outline: 2px solid var(--accent); outline-offset: 
 
 
   /* ── v10.0 新增块的窄屏适配 ── */
-  .logoslot.big { padding: 11px 16px 10px; border-radius: 13px; margin-bottom: 16px; }
-  .logoslot.big .lm-zh { font-size: 25px; }
-  .logoslot.big .lm-en { font-size: 9.5px; letter-spacing: .18em; }
   .screenlead { font-size: 12px; margin-bottom: 14px; }
 
   .twonote { grid-template-columns: 1fr; }
@@ -3188,4 +3159,144 @@ a.jstep .st-ar { transform: rotate(-45deg); margin-top: -4px; }
     padding: 14px; border-radius: 9px;
     border: 1px solid var(--line); background: var(--bg-deep);
   }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ═══ v19 · 首页章节枢纽 #home + 侧边速跳栏 + 真实 logo + 项目介绍白话开篇 ═══
+   零 <script>:侧栏高亮用 :target ~ 兄弟选择器,故 .rail 必须与各章同级、且在其后。
+   侧栏不压正文靠「body 预留右侧留白 + 固定栏占据该留白」实现,而不是靠视口够宽。
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── 导航条:真 logo + 品牌名,整体回首页 ─── */
+.topnav .navhome {          /* 特异性须压过 style.css 内 .topnav a { display:block } */
+  display: flex; align-items: center; gap: 9px;
+  padding: 0; border-bottom: 0; text-decoration: none; flex: 0 0 auto;
+}
+.navlogo { display: block; width: 28px; height: 28px; border-radius: 23%; }
+.navhome:hover .navbrand { color: var(--accent-2); }
+
+/* ─── 首页枢纽 ─── */
+.homehub { padding: 62px 0 74px; border-top: 0; }
+.hh-eyebrow {
+  margin: 0 0 20px; text-align: center; font-size: 12px; letter-spacing: .14em;
+  color: var(--accent-2); text-transform: uppercase;
+}
+.hh-logo {
+  display: block; width: 112px; height: 112px; margin: 0 auto 20px;
+  border-radius: 23%; box-shadow: 0 14px 34px rgba(0,0,0,.5);
+}
+.hh-brand {
+  margin: 0 0 12px; text-align: center;
+  font-size: 40px; font-weight: 700; letter-spacing: .04em; color: var(--text);
+}
+.hh-brand span {
+  display: block; margin-top: 9px;
+  font-size: 15px; font-weight: 400; letter-spacing: .02em; color: var(--dim);
+}
+.hh-tag { margin: 0 0 8px; text-align: center; font-size: 15.5px; line-height: 1.7; color: var(--dim); }
+.hh-hint { margin: 0 0 32px; text-align: center; font-size: 12.5px; color: var(--dimmer); }
+
+.hhgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.hcard {
+  display: flex; flex-direction: column;
+  padding: 12px 12px 14px; border-radius: 14px;
+  border: 1px solid var(--line); background: var(--card);
+  text-decoration: none; color: inherit;
+  transition: border-color .2s ease, background .2s ease, transform .2s ease;
+}
+.hcard:hover { border-color: var(--accent-ln); background: rgba(232,163,61,.06); transform: translateY(-2px); }
+.hcard:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.hc-shot {
+  display: block; width: 100%; aspect-ratio: 16 / 10; overflow: hidden;
+  border-radius: 9px; border: 1px solid var(--line); background: var(--bg-deep);
+}
+.hc-shot img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.hc-t { display: block; margin: 12px 0 5px; text-align: center; font-size: 15px; font-weight: 600; color: var(--text); }
+.hc-d { display: block; flex: 1 1 auto; text-align: center; font-size: 12.5px; line-height: 1.7; color: var(--dimmer); }
+.hc-go { display: block; margin-top: 11px; text-align: center; font-size: 12.5px; color: var(--accent-2); }
+.hcard:hover .hc-go { color: var(--accent); }
+
+/* 无合适截图的三章:主题色图形卡(纯 CSS) */
+.hc-fig {
+  position: relative;
+  background: linear-gradient(140deg, rgba(232,163,61,.12), rgba(232,163,61,0) 64%), var(--bg-deep);
+}
+.fig-why i { position: absolute; left: 14%; right: 14%; height: 7px; border-radius: 4px; }
+.fig-why i:nth-child(1) { top: 38%; background: repeating-linear-gradient(90deg, var(--warn) 0 9px, transparent 9px 17px); }
+.fig-why i:nth-child(2) { top: 57%; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+.fig-data i { position: absolute; bottom: 27%; width: 11%; border-radius: 3px 3px 0 0; background: var(--accent); }
+.fig-data i:nth-child(1) { left: 28%; height: 22%; opacity: .5; }
+.fig-data i:nth-child(2) { left: 44%; height: 40%; opacity: .76; }
+.fig-data i:nth-child(3) { left: 60%; height: 30%; opacity: 1; }
+.fig-how i {
+  position: absolute; top: 42%; width: 15%; aspect-ratio: 1;
+  border-right: 2px solid var(--accent); border-top: 2px solid var(--accent);
+  transform: rotate(45deg);
+}
+.fig-how i:nth-child(1) { left: 27%; opacity: .42; }
+.fig-how i:nth-child(2) { left: 43%; opacity: .7; }
+.fig-how i:nth-child(3) { left: 59%; opacity: 1; }
+
+/* ─── #top 项目介绍开篇(白话三段)─── */
+.hero-h2 { margin: 0 0 18px; font-size: 30px; font-weight: 700; letter-spacing: .02em; color: var(--text); }
+.hero .intro { max-width: 780px; margin: 0 0 12px; font-size: 16px; line-height: 1.9; color: var(--dim); }
+.hero .intro.last { margin-bottom: 42px; color: var(--text); }
+
+/* ─── 侧边速跳栏 ─── */
+.rail { display: none; }
+@media (min-width: 1024px) {
+  body { padding-right: 116px; }          /* 给侧栏预留独占留白,正文永不被压 */
+  .rail {
+    display: flex; flex-direction: column; align-items: flex-end; gap: 1px;
+    position: fixed; right: 0; top: 50%; transform: translateY(-50%);
+    width: 116px; padding: 8px 16px 8px 0; z-index: 40;
+  }
+  .rail a {
+    display: flex; align-items: center; justify-content: flex-end; gap: 9px;
+    padding: 7px 0; font-size: 12px; line-height: 1.2; white-space: nowrap;
+    color: var(--dimmer); text-decoration: none;
+    transition: color .18s ease;
+  }
+  .rail a i {
+    flex: 0 0 auto; width: 7px; height: 7px; border-radius: 50%;
+    border: 1px solid var(--accent-ln); background: transparent;
+    transition: background .18s ease, transform .18s ease;
+  }
+  .rail a:hover { color: var(--text); }
+  .rail a:hover i { background: var(--accent-ln); }
+  .rail a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+  /* 当前章高亮::target ~ 兄弟命中(零脚本) */
+  #home:target ~ .rail a[href="#home"],
+  #top:target  ~ .rail a[href="#top"],
+  #map:target  ~ .rail a[href="#map"],
+  #console:target ~ .rail a[href="#console"],
+  #app:target  ~ .rail a[href="#app"],
+  #why:target  ~ .rail a[href="#why"],
+  #data:target ~ .rail a[href="#data"],
+  #how:target  ~ .rail a[href="#how"] { color: var(--accent-2); }
+
+  #home:target ~ .rail a[href="#home"] i,
+  #top:target  ~ .rail a[href="#top"] i,
+  #map:target  ~ .rail a[href="#map"] i,
+  #console:target ~ .rail a[href="#console"] i,
+  #app:target  ~ .rail a[href="#app"] i,
+  #why:target  ~ .rail a[href="#why"] i,
+  #data:target ~ .rail a[href="#data"] i,
+  #how:target  ~ .rail a[href="#how"] i {
+    background: var(--accent); border-color: var(--accent); transform: scale(1.28);
+  }
+}
+
+/* ─── 首页枢纽窄屏 ─── */
+@media (max-width: 1023px) { .hhgrid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) {
+  .homehub { padding: 44px 0 54px; }
+  .hh-logo { width: 88px; height: 88px; }
+  .hh-brand { font-size: 30px; }
+  .hh-brand span { font-size: 13.5px; }
+  .hh-tag { font-size: 14.5px; }
+  .hhgrid { grid-template-columns: 1fr; gap: 12px; }
+  .hero-h2 { font-size: 24px; }
+  .hero .intro { font-size: 15px; line-height: 1.85; }
 }
