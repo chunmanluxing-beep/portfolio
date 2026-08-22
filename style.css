@@ -285,6 +285,12 @@ figcaption {
   border: 1px solid var(--accent-ln); border-radius: 4px;
 }
 .shot-name { margin: 0 0 5px; font-size: 13.5px; font-weight: 600; color: var(--dim); }
+/* v18-A · 真实截图的据实图注(只在有图时出现,与占位框互不相干) */
+.shotcap {
+  margin: 10px 0 0; font-size: 12.5px; line-height: 1.75; color: var(--dimmer);
+  text-align: left;
+}
+.shotcap b { color: var(--dim); font-weight: 600; }
 .shot-req  { margin: 0; font-size: 12px; color: var(--dimmer); }
 
 /* ─── 板块卡片网格(可展开手风琴 · 零 JS) ─── */
@@ -408,23 +414,8 @@ summary:hover .mhint { color: var(--accent-2); border-color: var(--accent); back
   background: rgba(232,163,61,.16);
 }
 
-/* 3 摄影师端 · 三态屏幕 */
-.dg-three { display: flex; gap: 10px; }
-.tp { flex: 1 1 0; min-width: 0; text-align: center; }
-.tp b { display: block; margin-top: 7px; font-size: 12px; font-weight: 500; color: var(--dim); }
-.tp-scr {
-  display: block; height: 104px; padding: 7px; border: 1px solid var(--accent-ln);
-  border-radius: 8px; background: var(--bg);
-}
-.tp-scr.cal { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; align-content: start; }
-.tp-scr.cal i { display: block; height: 14px; border-radius: 2px; background: rgba(255,255,255,.07); }
-.tp-scr.cal i:nth-child(3), .tp-scr.cal i:nth-child(6), .tp-scr.cal i:nth-child(11) { background: var(--accent); }
-.tp-scr.hall i { display: block; height: 33px; border-radius: 5px; border: 1px solid var(--line); margin-bottom: 6px; }
-.tp-scr.hall i:first-child { border-color: var(--accent); background: rgba(232,163,61,.16); }
-.tp-scr.bill i { display: block; height: 5px; border-radius: 3px; background: rgba(255,255,255,.12); margin-bottom: 9px; }
-.tp-scr.bill i:nth-child(1) { width: 100%; }
-.tp-scr.bill i:nth-child(2) { width: 72%; }
-.tp-scr.bill i:nth-child(3) { width: 56%; background: var(--accent-2); }
+/* 3 摄影师端 · 三块主界面 —— v18-A 已删除 CSS 简笔画,
+   改为 App 专章内的真机截图轮播(lb-43),规则随之移除。 */
 
 /* 4 订单公开页 · 三方指向同一页 */
 .dg-hub { display: grid; grid-template-columns: 1fr 1.25fr 1fr; gap: 10px 14px; align-items: center; }
@@ -1042,16 +1033,35 @@ footer .disc { font-size: 12.5px; color: var(--dimmer); margin: 0; }
    板块分组 / 折叠区 / 十二项图标 / 点击affordance
    ═══════════════════════════════════════════════ */
 
-/* ─── Logo 占位(用户自行替换) ─── */
+/* ─── 品牌字标(v18-A:纯 CSS,不依赖任何图片文件) ───
+   导航条用单字「榴」印章;Hero 用完整锁形:主字「榴档期」+ 小字「LIULIAN · 旅拍调度」。
+   放入真实 logo 图片后可整体替换为 <img>,见工作台 E0-品牌LOGO。 */
 .logoslot {
   flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center;
-  width: 36px; height: 36px; border: 1px dashed var(--accent-ln); border-radius: 9px;
-  font-size: 9.5px; letter-spacing: .08em; color: var(--accent);
-  background: rgba(232,163,61,.05); user-select: none;
+  width: 34px; height: 34px; border-radius: 9px;
+  border: 1px solid var(--accent-ln);
+  background: linear-gradient(158deg, rgba(232,163,61,.22), rgba(232,163,61,.05));
+  user-select: none;
+}
+.logoslot .lm-mark {
+  font-size: 17px; font-weight: 700; line-height: 1;
+  color: var(--accent); font-style: normal;
 }
 .logoslot.big {
-  display: flex; width: 72px; height: 72px; border-radius: 16px;
-  font-size: 12px; margin: 0 0 22px;
+  display: inline-flex; flex-direction: column;
+  align-items: flex-start; justify-content: center;
+  width: auto; height: auto; margin: 0 0 22px;
+  padding: 13px 20px 12px; border-radius: 15px;
+  background: linear-gradient(158deg, rgba(232,163,61,.17), rgba(232,163,61,.03));
+}
+.logoslot.big .lm-zh {
+  font-size: 30px; font-weight: 700; line-height: 1.06;
+  letter-spacing: .07em; color: var(--accent);
+}
+.logoslot.big .lm-en {
+  margin-top: 7px; font-style: normal;
+  font-size: 10.5px; font-weight: 500; letter-spacing: .22em;
+  color: var(--accent-2); white-space: nowrap;
 }
 
 /* ─── Hero 内的 App Store 外链 ─── */
@@ -2149,8 +2159,6 @@ label.fm-step:focus-visible { outline: 2px solid var(--accent); outline-offset: 
   .pz-ar { align-self: center; border: 6px solid transparent; border-top-color: var(--accent); border-left-color: transparent; }
   .fn, .fn-out, .tk, .ps-list i, .st, .ac-legend i, .gcity, .gtag, .sc-tag, .f4, .f4 i,
   .tp b, .hb, .hb-core, .hb i, .hb-core i, .r4, .r4 i, .st i, .pz-form b { font-size: 12px; }
-  .dg-three { gap: 7px; }
-  .tp-scr { height: 84px; }
   .dg-hub { grid-template-columns: 1fr; gap: 22px; }
   .hb.h1, .hb.h2, .hb.h3, .hb-core { grid-column: 1; }
   .hb.h1 { grid-row: 1; } .hb-core { grid-row: 2; } .hb.h2 { grid-row: 3; } .hb.h3 { grid-row: 4; }
@@ -2246,7 +2254,9 @@ label.fm-step:focus-visible { outline: 2px solid var(--accent); outline-offset: 
 
 
   /* ── v10.0 新增块的窄屏适配 ── */
-  .logoslot.big { width: 60px; height: 60px; border-radius: 14px; margin-bottom: 16px; }
+  .logoslot.big { padding: 11px 16px 10px; border-radius: 13px; margin-bottom: 16px; }
+  .logoslot.big .lm-zh { font-size: 25px; }
+  .logoslot.big .lm-en { font-size: 9.5px; letter-spacing: .18em; }
   .screenlead { font-size: 12px; margin-bottom: 14px; }
 
   .twonote { grid-template-columns: 1fr; }

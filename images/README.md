@@ -1,6 +1,11 @@
 # 截图清单 · 拍完照着文件名放进这个目录
 
-网站里一共留了 **36 处**截图占位,去重后需要 **32 张主图**(其中 4 张各用在两处);另有 7 处支持挂追加图(多图轮播,最多 4 张)。
+网站里一共留了 **36 处**截图占位,去重后需要 **31 张主图**(其中 5 张各用在两处);另有 8 处支持挂追加图(多图轮播,最多 4 张)。
+
+> **v18-A(2026-08-22)**:本轮做了一次**全站图片视觉总对位**——把每一张已显示的图逐张打开看画面,
+> 再和它所在位置的标题逐一对照。结果见文末〈v18-A · 全站图片视觉总对位〉。
+> 当前 **33 处有图 / 3 处空位**(`console-orders-list`、`app-income-bill`、`app-magic-link`,分别对应工作台 **E1 / E2 / E3**)。
+
 按下面的文件名保存到 `images/` 目录即可——**页面会自动显示,`index.html` 一行都不用改**。
 
 ## 怎么用
@@ -82,8 +87,6 @@
 | 27 | `console-grab-timing.png` | .jpg 同名亦可 | 抢单时长分布页 | 2.0 分钟 接单中位数 | 1400×900 | 客人信息与摄影师姓名 |
 | 28 | `console-orders-total.png` | .jpg 同名亦可 | 订单总览统计 | 481 笔 累计订单 | 1400×900 | 客人姓名、电话、金额 |
 | 29 | `console-locations.png` | .jpg 同名亦可 | 拍摄地点管理页 | 9 地 覆盖城市与地区 | 1200×900 | 无客人信息;如含负责人姓名需打码 |
-| 30 | `console-push-hitrate.png` | .jpg 同名亦可 | 推送命中率统计 | 96.0% 一次推送即成交 | 1400×900 | 客人信息 |
-| 31 | `console-urgent-share.png` | .jpg 同名亦可 | 派单方式占比统计 | 32.9% 抢单承接占比 | 1400×900 | 客人信息与报酬金额 |
 
 ## v11.0 新增 · 两端镜像对照图(1 张)
 
@@ -100,35 +103,41 @@
 
 ## 当前已放进目录的图
 
-目录里现有 **28 张**真实截图(全部 `.jpg`,单张均 ≤300 KB,已提交进 Git):
+目录里现有 **33 张**真实截图(全部 `.jpg`,单张均 ≤300 KB,已提交进 Git):
 
-- `app-grab-hall.jpg`(139 KB)——抢单大厅真机截图
-- `app-schedule-fill.jpg`(139 KB)——档期填报页真机截图
-- `app-calendar-weather.jpg`(139 KB)——日历天气底色页真机截图
-- `app-magic-link.jpg`(283 KB)——专属链接落地首屏
-- `app-income-bill.jpg`(266 KB)——个人收入账单页
-- `app-self-register.jpg`(140 KB)——自注册资料表单页
-- `app-work-review.jpg`(261 KB)——作品审核空态界面
-- `console-orders-list.jpg`(196 KB)——总控台订单列表页
-- `console-order-edit.jpg`(206 KB)——订单编辑页
-- `console-ai-parse.jpg`(190 KB)——订单文本解析界面
-- `console-mail-templates.jpg`(157 KB)——邮件模板管理页
-- `console-push-center.jpg`(209 KB)——推送模板中心
-- `console-push-copy.jpg`(130 KB)——推送文案模板列表
-- `console-weather-alert.jpg`(158 KB)——预警详情弹层
-- `console-grab-stats.jpg`(176 KB)——抢单统计页(成交率)
-- `console-grab-timing.jpg`(195 KB)——抢单时长分布页
-- `console-grab-modal.jpg`(138 KB)——发起抢单弹窗
-- `console-tier-setting.jpg`(135 KB)——抢单弹窗阶梯发布(评分档位)设置
-- `console-orders-total.jpg`(181 KB)——订单总览统计
-- `console-locations.jpg`(161 KB)——拍摄地点管理页
-- `console-settlement-report.jpg`(253 KB)——结算中心报表
-- `console-photographer-profile.jpg`(107 KB)——摄影师档案页
-- `console-delivery-progress.jpg`(162 KB)——订单交付进度(交付内容)视图
-- `console-alert-board.jpg`(190 KB)——AI 紧急看板
-- `console-app-mirror.jpg`(195 KB)——双端真图并排合成(左:总控台订单列表 / 右:App 抢单大厅,均为已脱敏真实截图)
-- `guest-photo-select.jpg`(28 KB)——客人选片界面(客照已模糊)
-- `guest-delivery-page.jpg`(101 KB)——客人交付页(客照已模糊)
+- `app-calendar-weather.jpg`(234 KB)——档期日历·日期格自带天气图标与档期时间
+- `app-grab-hall-2.jpg`(234 KB)——抢单大厅·东京浅草寺定向邀请单
+- `app-grab-hall-3.jpg`(165 KB)——抢单详情弹层(拍摄地/时长/进店/距离/拍摄日天气)
+- `app-grab-hall.jpg`(138 KB)——抢单大厅真机截图(京都·清水寺 ¥680)
+- `app-grey-explain-2.jpg`(275 KB)——灰卡抢单详情(按钮为「已被安排」)
+- `app-grey-explain.jpg`(277 KB)——抢单大厅灰卡「已派出/已被安排」
+- `app-schedule-fill.jpg`(242 KB)——添加档期弹层(单日/区间批量/AI 填写)
+- `app-self-register.jpg`(139 KB)——注册账号弹层(自注册)
+- `app-urgent-push.jpg`(128 KB)——iOS 锁屏急单推送通知
+- `app-work-review.jpg`(261 KB)——优秀作品提交弹层(含「我的提交记录」)
+- `console-ai-parse.jpg`(189 KB)——新建订单弹窗(AI 智能识别粘贴填表)
+- `console-alert-board.jpg`(190 KB)——订单管理页 AI 管家 + AI 紧急看板(20 项需处理)
+- `console-app-mirror.jpg`(194 KB)——双端并排合成(左:总控台 / 右:App 抢单大厅)★左半待 E1 到位后重新合成★
+- `console-checkpoint-template.jpg`(181 KB)——订单详情·进度节点(业务流程 2/12)
+- `console-delivery-progress.jpg`(162 KB)——订单详情抽屉(订单计划 + 交付内容四棒)
+- `console-grab-modal.jpg`(137 KB)——发起抢单弹窗(候选条件/报酬/评分档位)
+- `console-grab-offdown.jpg`(170 KB)——**v18-A 新入库** 历史抢单(共 142 条,状态列「已抢到/进行中」)
+- `console-grab-stats.jpg`(176 KB)——抢单派发监控(进行中 2 · 超时 11)
+- `console-grab-timing.jpg`(194 KB)——历史抢单记录(共 132 条,含发起与抢到时间)
+- `console-locations.jpg`(160 KB)——拍摄地点管理表(京都/东京/富士山…)
+- `console-mail-templates.jpg`(157 KB)——邮件模板·发送总览(直营/OTA 合规四级)
+- `console-order-edit.jpg`(205 KB)——订单管理页·订单表头与首行 + AI 紧急看板
+- `console-orders-total.jpg`(180 KB)——总控面板(今日要闻/拍摄地实况/最近订单动态/AI L5 监控)
+- `console-photographer-profile.jpg`(107 KB)——摄影师档案(五维评分/优秀作品/档案表单)
+- `console-push-center-2.jpg`(129 KB)——推送文案模板列表(12 类推送)
+- `console-push-center.jpg`(209 KB)——自动推送配置 + 突发天气预警阈值
+- `console-settlement-report.jpg`(253 KB)——财务结算·订单明细(总流水/成本/毛利 + 明细表)
+- `console-tier-setting.jpg`(135 KB)——发起抢单弹窗·阶梯发布展开(最多 6 档)
+- `console-weather-alert.jpg`(158 KB)——突发天气预警配置(五灾种阈值 + 地震)
+- `guest-confirm-mail-2.jpg`(172 KB)——订单确认信·下半(集合点 + 进度链接)
+- `guest-confirm-mail.jpg`(149 KB)——订单确认信·上半(收件端)
+- `guest-delivery-page.jpg`(174 KB)——客人交付页 Your Experience(六步进度)
+- `guest-photo-select.jpg`(207 KB)——客人公开页·Awaiting Customer Selection(填精修编号)
 
 管理端与客人端截图均已完成脱敏(姓名、电话、邮箱、金额、订单号等一律替换或遮盖;含客照页面另加图像模糊)后才入库。
 
@@ -236,8 +245,8 @@
 
 `guest-photo-select`(A1,需先打码)、`guest-delivery-page`(A2,需先打码)、
 `app-urgent-push`(B1,需换壁纸重截)、`app-schedule-fill`(D4)、`app-calendar-weather`(D5)、
-`console-grab-offdown`(D6)、
-`console-push-hitrate`、`console-urgent-share`(入口待确认)。
+`console-grab-offdown`(D6)。
+~~`console-push-hitrate`、`console-urgent-share`~~ —— **v18-A 已整块删除**(生产系统里没有这两个界面,挂空框无意义)。
 
 ### 竖图位现共 15 处
 
@@ -296,6 +305,7 @@
   显示 26 → **34**;空位 9 → **3**;灯箱大图 42 → **45**;竖图位 13 → **15**。
 - 仍空的三个占位:`console-grab-offdown`、`console-push-hitrate`、`console-urgent-share`
   ——本批没有与它们讲的是同一件事的画面,留白不硬凑。
+  (**v18-A 后续**:`console-grab-offdown` 已入库;另两个已整块删除。)
 - 两个新增图位都是**竖图**:`console-checkpoint-template`(单图)、
   `guest-confirm-mail` + `-2`(两图轮播)。
 - 注意:`guest-photo-select` 一个文件同时供 lb-17 与 lb-36 两个图位使用(同一主题,非跨主题复用)。
@@ -305,3 +315,89 @@
 已入库图中:`guest-photo-select` 含完整网盘链接与摄影师姓名;`guest-confirm-mail` 含客人姓名;
 `guest-confirm-mail-2` 含集合点街道地址;`app-urgent-push` 锁屏壁纸含**可辨识人脸 ×2**;
 `console-checkpoint-template` 含订单号。用户已知情并授权按现状入库,此处仅留档。
+
+---
+
+## v18-A · 全站图片视觉总对位(2026-08-22)
+
+做法:把网站上**当时全部 34 处「已显示」图位的图逐张打开看画面**,写下画面一句话,
+再与该图位所在的屏 / 格标题逐一对照,判定「匹配 / 错配」。不靠文件名推断,只认画面。
+
+### 1a · 全表(判定后)
+
+| lb | 所在屏 / 格标题 | 文件名 | 画面一句话 | 判定与处置 |
+|---|---|---|---|---|
+| lb-1 | 第 1 屏 KPI「74.7% 抢单成交率」 | `console-grab-stats` | 「抢单派发监控」弹层:进行中 2 · 超时 11,表列 状态/订单号/客户/拍摄/发起时长/候选数 | ⚠ 名不符实 → **改标**为「抢单派发监控」(画面是真的,原标题「抢单统计页(成交率)」查无此页) |
+| lb-2 | 第 1 屏 KPI「2.0 分钟接单中位数」 | `console-grab-timing` | 「历史抢单」弹层:共 132 条,含 发起时间 / 抢到时间 / 候选数 / 发起客服 | ⚠ 名不符实 → **改标**为「历史抢单记录」(时长由发起与抢到两列推得,证据成立) |
+| lb-3 | 第 1 屏 KPI「481 笔累计订单」 | `console-orders-total` | 总控面板:今日要闻、四城拍摄地实况、最近订单动态、社媒雷达、AI L5 监控、未派单计数 | ✅ 匹配(总览面板) |
+| lb-4 | 第 1 屏 KPI「9 地覆盖」 | `console-locations` | 拍摄地点管理表:京都/东京/富士山 等逐行城市与景点 | ✅ 匹配 |
+| lb-5 | 第 3 屏 图 2 双端合成 | `console-app-mirror` | 左=总控台订单管理页(只有筛选器+AI 管家+紧急看板)/ 右=App 抢单大厅 | ❌ **左半错配**(用户反馈②)→ 本轮按令**不动此图**;待 E1 到位后重新合成 |
+| lb-6 | 第 5 屏「从三个人忙一天到一个人四分钟」 | `console-orders-list` | **整屏没有一行订单数据**——与 `console-alert-board` 几乎是同一屏 | ❌ **错配**(用户反馈⑥)→ **撤图、回落占位框**,新建 **E1** |
+| lb-7 | 管理端 5 块 ·「订单管理」 | `console-order-edit` | 订单管理页下半:AI 紧急看板 + 订单表头与首行(订单号/品牌/类型/客户/拍摄地点/渠道) | ⚠ 名不符实 → **改标**为「订单管理页 · 订单表」(原标题「订单编辑页」画面里没有编辑表单) |
+| lb-8 | 管理端 5 块 ·「邮件自动化」 | `console-mail-templates` | 邮件模板发送总览:发送环节 × 直营/OTA 两列,逐行「合规跳过 / 照发」 | ✅ 匹配 |
+| lb-42 | 管理端 5 块 ·「邮件自动化」 | `guest-confirm-mail` + `-2` | 收件端确认信上半(单号/城市/人数)与下半(集合点、地图链接、进度按钮) | ✅ 匹配 |
+| lb-9 | 管理端 5 块 ·「结算体系」 | `console-settlement-report` | 财务结算·订单明细:总流水/总成本/总毛利/未配置 四卡 + 逐单实收·折扣·成本·毛利 | ✅ 匹配 |
+| lb-10 | 管理端 5 块 ·「监控告警」 | `console-alert-board` | 订单管理页:AI 管家式服务摘要 + AI 紧急看板(20 项需处理) | ✅ 匹配 |
+| lb-11 | 管理端 5 块 ·「人员与评分」 | `console-photographer-profile` | 摄影师档案:五维评分(技术/态度/准时/沟通/英语)、优秀作品、历史订单、档案表单 | ✅ 匹配 |
+| lb-12 | 两端共用 ·「派单调度」 | `console-grab-modal` | 「发起抢单」弹窗:候选条件、报酬、评分档位、阶梯发布、含新人、定向邀请 | ✅ 匹配 |
+| lb-13 | 两端共用 ·「推送体系」 | `console-push-center` + `-2` | 自动推送配置(晨报/晚报)与运行详情;第 2 张为推送文案模板列表,**恰好 12 类** | ✅ 匹配 |
+| lb-14 | 两端共用 ·「气象与安全预警」 | `console-weather-alert` | 突发天气预警配置:暴雨/雷暴/大风/高温/低温 阈值 + 地震震度,与 push-center 同页不同裁切 | ⚠ 名不符实 → **改标**为「突发天气预警配置」(原标题「预警详情弹层」画面里没有弹层) |
+| lb-15 | 两端共用 ·「交付与精修」 | `console-delivery-progress` | 订单详情抽屉:订单计划(进店/拍摄/底片截止/精修截止)+ 交付内容四棒接力 | ✅ 匹配 |
+| lb-41 | 两端共用 ·「交付与精修」 | `console-checkpoint-template` | 订单详情·进度节点:业务流程 2/12,11 条 checkpoint 逐条带「AI 起草」 | ✅ 匹配 |
+| lb-16 | 两端共用 ·「AI 能力」 | `console-ai-parse` | 「新建订单」弹窗:AI 智能识别(粘贴客户对话/邮件 → 自动填表,需人工审核)+ 表单 | ✅ 匹配 |
+| lb-17 | 两端共用 ·「订单公开页」 | `guest-photo-select` | 客人公开页(英文):Awaiting Customer Selection,精修编号输入框 + 0/5000 计数 | ✅ 匹配 |
+| lb-39 | 派单专章「评分梯队分层放号」 | `console-tier-setting` | 发起抢单弹窗·阶梯发布展开:第 2 档「发布后 10 分钟仍无人接单 → 门槛降至」,最多 6 档 | ✅ 匹配 |
+| lb-18 | 派单专章「三方联动自动下架」 | `console-grab-offdown` | **v18-A 新入库**:历史抢单共 142 条分 8 页,状态列「已抢到/进行中」,筛选范围列「评分≥5.0·急单 / 定向邀请 N 人」 | ✅ **本轮补齐**(用户反馈③,来源 D6) |
+| lb-19 | 派单专章 KPI「74.7%」 | `console-grab-stats` | 同 lb-1 | ⚠ 同 lb-1 处置 |
+| lb-20 | 派单专章 KPI「2.0 分钟」 | `console-grab-timing` | 同 lb-2 | ⚠ 同 lb-2 处置 |
+| ~~lb-21~~ | ~~派单专章 KPI「96.0%」~~ | ~~`console-push-hitrate`~~ | 无图,空占位框 | ❌ **整块删除**(用户反馈④,界面不存在) |
+| ~~lb-22~~ | ~~派单专章 KPI「32.9%」~~ | ~~`console-urgent-share`~~ | 无图,空占位框 | ❌ **整块删除**(用户反馈④,界面不存在) |
+| lb-43 | App 专章开头「主界面」 | `app-calendar-weather` + `app-grab-hall` | **v18-A 新图位**:两图轮播,日历(天气图标+档期时间)/ 抢单大厅(报酬前置) | ✅ **本轮新增**(用户反馈⑨,替掉 CSS 简笔画) |
+| lb-23 | App 专章开篇 | `app-grab-hall` | 抢单大厅:京都·清水寺 ¥680,「抢」按钮,拍摄 1 小时 30 分 · 2 人 | ✅ 匹配 |
+| lb-24 | App 十二格 · 一「档期即接单资格」 | `app-schedule-fill` | 「添加档期」弹层:单日 / 区间批量 / AI 填写,含 AI 解析与自然语言示例 | ✅ 匹配 |
+| lb-25 | App 十二格 · 二「抢单大厅」 | `app-grab-hall` + `-2` + `-3` | 抢单大厅 → 东京·浅草寺定向邀请单 → 抢单详情(距离、拍摄日天气) | ✅ 匹配 |
+| lb-40 | App 十二格 · 三「灰卡也看得见」 | `app-grey-explain` + `-2` | 灰卡「已派出 / 已被安排」照常显示报酬与城市;详情页按钮为「已被安排」 | ✅ 匹配 |
+| lb-28 | App 十二格 · 五「急单快速通道」 | `app-urgent-push` | iOS 锁屏推送:「急单速抢 · 京都 今天拍 ¥350 · 60 分钟 · 立即出发,先到先得」 | ✅ 匹配 |
+| lb-30 | App 十二格 · 七「天气直接送到手上」 | `app-calendar-weather` | 2026 年 8 月月历,日期格带雨/雷图标与当天档期时间 | ✅ 匹配 |
+| lb-31 | App 十二格 · **八「收入自己查」** | `app-income-bill` | **画面其实是「📍位置设置」弹层**(天气当前位置/重新定位/更改城市/搜索全球城市) | ❌ **错配**(用户反馈⑤)→ **撤图、回落占位框**,新建 **E2** |
+| lb-32 | App 十二格 · 九「作品提交有回音」 | `app-work-review` | 「优秀作品提交」弹层:底片链接输入 + 补充说明 +「我的提交记录:还没有提交记录」 | ⚠ 弱匹配 → **改标**为「优秀作品提交」;**画面只有提交侧,没有审核结果**,是否也算错配请裁决 |
+| lb-33 | App 十二格 · 十「自注册自动转正」 | `app-self-register` | 「注册账号」弹层:用户名/密码/邮箱/微信号/昵称 +「注册并进入」 | ✅ 匹配 |
+| lb-34 | App 十二格 · **十一「免注册长效登录」** | `app-magic-link` | **与 lb-31 是同一个「📍位置设置」弹层**,只有背后标签页不同 | ❌ **错配**(用户反馈⑤)→ **撤图、回落占位框**,新建 **E3** |
+| lb-36 | 第 8 屏「客人拿到什么」 | `guest-photo-select` | 同 lb-17 | ✅ 匹配 |
+| lb-38 | 第 9 屏「为什么这套模式更好」 | `guest-delivery-page` | 客人交付页 Your Experience:六步旅程,进度 17%,当前「Awaiting Photographer Upload」 | ✅ 匹配 |
+
+**判定小结**:36 个图位中 —— ✅ 匹配 25 · ⚠ 名不符实(改标保留)6 · ❌ 错配撤图 3 · 整块删除 2(不再计入)· 新增补齐 2。
+
+### 1b · 错配处置(按优先级,禁止近似顶替)
+
+| 图位 | a) 库内有正确图? | b) 工作台有正确图? | c) 结论 |
+|---|---|---|---|
+| lb-6 `console-orders-list` | 否(`console-order-edit` 只露 1 行且被截断,属近似顶替) | 否 | **清空 + 新建 E1** |
+| lb-31 `app-income-bill` | 否(全库无「账单」页画面) | 否(D 类无此项) | **清空 + 新建 E2** |
+| lb-34 `app-magic-link` | 否(全库无专属链接落地画面) | 否 | **清空 + 新建 E3** |
+| lb-5 左半 | —— | —— | 用户明令本轮不动,待 E1 后重新合成 |
+
+撤下来的三张原图**没有删除**,已留档在 `~/Desktop/手动截图工作台/_错配留档/`,可自行开图核对。
+
+### 2d · 占位文案残留核查结论
+
+逐位实测(1280 / 390 双视口 + `<details>` 全展开):
+**「真实图片已显示、但『建议文件名…』占位文案仍可见」的情况:0 处。**
+机制本身是对的——`.shotwrap > .shot { display:none }` 默认隐藏,只有 `<img onerror>` 命中才置回 `flex`。
+用户看到的残留,实际就是**当时那 3 个真的没有图的位**(`lb-18` / `lb-21` / `lb-22`)。
+本轮 lb-18 已补图、lb-21/22 已整块删除,这三处占位文案随之消失。
+
+### 已知且无害:两处预留的第 2 张
+
+`guest-photo-select-2`、`guest-delivery-page-2` 文件尚未提供。
+它们在 `.shotdeck` 里是 `display:none` 的第 2 张预留位:**不出圆点、不显示破图、页面零视觉影响**,
+只是各产生一次落空的图片请求。保留接线是为了将来放图即生效,无需再改 HTML。
+
+### v18-A 计数
+
+- 图片文件 35 → **33**(+1 `console-grab-offdown` 入库;−3 错配撤图)
+- 图位 37 → **36**(−2 删框 `lb-21`/`lb-22`;+1 新增 `lb-43`)
+- 有图 34 → **33** · 空位 3 → **3**(空位换了三个位置:`lb-18` 补上,`lb-6`/`lb-31`/`lb-34` 让出)
+- 灯箱接线 37 → **36** 套(`lb-toggle` / `lb-overlay` / `lb-close` / `lb-back` 各 36)
+- 竖图位 15 → **17**(+`lb-18` 转竖容器,+`lb-43` 新竖位)
+- LOGO:两处 `LOGO` 虚线空框 → **纯 CSS 字标**(导航「榴」印章 / 首屏「榴档期」+「LIULIAN · 旅拍调度」)
