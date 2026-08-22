@@ -36,25 +36,101 @@
     <h1 class="brand"><em>榴档期</em><span>旅拍自动化调度管理系统</span></h1>
     <p class="sub">一套真实在跑的旅拍业务系统:订单、派单、拍摄、交付、结算全链路自动流转,由运营总控台、摄影师 App、客人交付页三端协同。</p>
 
-    <div class="films" aria-label="双视角演示影片(制作中)">
-      <div class="film-slot">
-        <span class="fs-16by9">
-          <span class="fs-play" aria-hidden="true"></span>
-          <span class="fs-badge">制作中</span>
-        </span>
+    <div class="films" aria-label="双视角演示:客人篇与客服篇">
+      <div class="film-slot" data-film="a">
+        <input type="checkbox" id="fm-pa" class="fm-pause" aria-hidden="true">
+        <label for="fm-pa" class="fm-pausebtn" title="暂停 / 播放 客人篇"><span class="fm-sr">暂停或播放 客人篇演示</span></label>
+        <div class="fm-stage fm-a" aria-hidden="true">
+          <span class="fm-lab l">传统 · 微信里追问</span>
+          <span class="fm-lab r">本系统 · 免登录交付页</span>
+          <div class="fm-trad">
+            <span class="fm-rows">
+              <span class="tb me">拍好了吗?</span>
+              <span class="tb">…</span>
+              <span class="tb me">在吗?什么时候能看到片子</span>
+              <span class="tb">稍等,我问一下摄影师</span>
+            </span>
+            <span class="fm-wait">等客服回复</span>
+          </div>
+          <div class="fm-screen fm-screen-p">
+          <img class="fs fs1" src="images/guest-confirm-mail-2.jpg" alt="" aria-hidden="true">
+          <img class="fs fs2" src="images/guest-delivery-page.jpg" alt="" aria-hidden="true">
+          <img class="fs fs3" src="images/guest-photo-select.jpg" alt="" aria-hidden="true">
+          <img class="fs fs4" src="images/guest-photo-select.jpg" alt="" aria-hidden="true">
+            <span class="fm-type"><i>IMG_001, IMG_007</i></span>
+            <span class="fm-check" aria-hidden="true"></span>
+          </div>
+          <i class="fm-cursor" aria-hidden="true"></i>
+          <div class="fm-subs">
+            <span class="fm-sub u1">确认信底部就是一条进度链接 · 不用注册、不用装 App</span>
+            <span class="fm-sub u2">点开就是六步进度 · 页面每 30 秒自动刷新</span>
+            <span class="fm-sub u3">拿到底片后,在输入框里填要精修的照片编号</span>
+            <span class="fm-sub u4">提交即自动通知下一棒 · 验收一键完成</span>
+          </div>
+          <div class="fm-end"><b>客人全程免登录</b><i>一条链接走完选片到验收</i></div>
+        </div>
+        <div class="fm-static">
+          <p class="fst-h">静态分镜(系统已关闭动效)</p>
+          <div class="fst-cell"><span class="fst-shot fst1"><img src="images/guest-confirm-mail-2.jpg" alt="" aria-hidden="true"></span><i>① 确认信 · 底部进度链接</i></div>
+          <div class="fst-cell"><span class="fst-shot fst2"><img src="images/guest-delivery-page.jpg" alt="" aria-hidden="true"></span><i>② 交付页 · 六步进度</i></div>
+          <div class="fst-cell"><span class="fst-shot fst3"><img src="images/guest-photo-select.jpg" alt="" aria-hidden="true"></span><i>③ 填要精修的照片编号</i></div>
+          <div class="fst-cell"><span class="fst-shot fst4"><img src="images/guest-photo-select.jpg" alt="" aria-hidden="true"></span><i>④ 提交 · 自动通知下一棒</i></div>
+          <p class="fst-c">传统:每一步都要问人;本系统:一条链接自助走完。</p>
+        </div>
         <b class="fs-title">客人篇</b>
         <span class="fs-sub">下单之后,客人这一侧看到的全过程:确认信、进度页、填编号选片、验收。</span>
       </div>
-      <div class="film-slot">
-        <span class="fs-16by9">
-          <span class="fs-play" aria-hidden="true"></span>
-          <span class="fs-badge">制作中</span>
-        </span>
+      <div class="film-slot" data-film="b">
+        <input type="checkbox" id="fm-pb" class="fm-pause" aria-hidden="true">
+        <label for="fm-pb" class="fm-pausebtn" title="暂停 / 播放 客服篇"><span class="fm-sr">暂停或播放 客服篇演示</span></label>
+        <div class="fm-stage fm-b" aria-hidden="true">
+          <span class="fm-lab l">传统 · 逐个私聊</span>
+          <span class="fm-lab r">本系统 · 一次推送</span>
+          <div class="fm-trad">
+            <span class="fm-timer"><span class="fm-win"><span class="fm-reel"><b>0</b><b>8</b><b>23</b><b>41</b></span></span><em>分钟</em></span>
+            <span class="fm-rows">
+              <span class="tr">摄影师 A<i>没空</i></span>
+              <span class="tr">摄影师 B<i>未回复</i></span>
+              <span class="tr">摄影师 C<i>档期冲突</i></span>
+              <span class="tr">摄影师 D<i>没空</i></span>
+            </span>
+            <span class="fm-wait">仍无着落</span>
+          </div>
+          <div class="fm-screen fm-screen-c">
+            <img class="fs fs1" src="images/console-ai-parse.jpg" alt="" aria-hidden="true">
+            <img class="fs fs2" src="images/console-ai-parse.jpg" alt="" aria-hidden="true">
+            <img class="fs fs3" src="images/console-grab-modal.jpg" alt="" aria-hidden="true">
+            <span class="fm-paste"><i>客人原话:清水寺 · 和服写真 · 英语客人 · 需要店铺接送…</i></span>
+            <span class="fm-fill" aria-hidden="true"></span>
+            <span class="fm-pulse" aria-hidden="true"></span>
+            <span class="fm-tag">推送已发</span>
+          </div>
+          <div class="fm-screen fm-screen-p fm-phone">
+            <img class="fs fs4" src="images/app-grab-hall-2.jpg" alt="" aria-hidden="true">
+            <span class="fm-stamp">已被抢</span>
+          </div>
+          <i class="fm-cursor" aria-hidden="true"></i>
+          <div class="fm-subs">
+            <span class="fm-sub u1">整段订单文本粘贴进来,AI 自动解析成表单字段</span>
+            <span class="fm-sub u2">字段自动填好 · 建单环节全程 2–4 分钟</span>
+            <span class="fm-sub u3">四道门槛自动圈人 · 评分梯队分层放号</span>
+            <span class="fm-sub u4">一次推送先到先得 · 接单时长中位数 2.0 分钟</span>
+          </div>
+          <div class="fm-end"><b>发布一次 · 系统圈人</b><i>先到先得,并发保证恰好一人成功</i></div>
+        </div>
+        <div class="fm-static">
+          <p class="fst-h">静态分镜(系统已关闭动效)</p>
+          <div class="fst-cell"><span class="fst-shot fst1"><img src="images/console-ai-parse.jpg" alt="" aria-hidden="true"></span><i>① 粘贴订单文本 · AI 解析</i></div>
+          <div class="fst-cell"><span class="fst-shot fst2"><img src="images/console-ai-parse.jpg" alt="" aria-hidden="true"></span><i>② 字段自动填好</i></div>
+          <div class="fst-cell"><span class="fst-shot fst3"><img src="images/console-grab-modal.jpg" alt="" aria-hidden="true"></span><i>③ 发起抢单 · 四道门槛</i></div>
+          <div class="fst-cell"><span class="fst-shot fst4"><img src="images/app-grab-hall-2.jpg" alt="" aria-hidden="true"></span><i>④ 蓝卡被抢 · 2.0 分钟</i></div>
+          <p class="fst-c">传统:41 分钟仍无着落;本系统:一次推送,中位数 2.0 分钟成交。</p>
+        </div>
         <b class="fs-title">客服篇</b>
-        <span class="fs-sub">同一条订单,运营这一侧的全过程:粘贴建单、发起抢单、盯交付、月末结算。</span>
+        <span class="fs-sub">同一条订单,运营这一侧的全过程:粘贴建单、发起抢单、推送到手机、先到先得。</span>
       </div>
     </div>
-    <p class="films-note">双视角演示影片正在制作,完成后将替换上面两个位置。</p>
+    <p class="films-note">两部演示均由<b>站内真实界面截图</b>驱动的纯 CSS 模拟操作,无缝循环播放;右上角可暂停。</p>
 
     <ul class="proofbar">
       <li class="pb pb-store"><a href="https://apps.apple.com/jp/app/id6786589485" target="_blank" rel="noopener">摄影师端 iOS 已上架 App Store</a></li>
