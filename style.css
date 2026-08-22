@@ -2998,6 +2998,7 @@ a.jstep .st-ar { transform: rotate(-45deg); margin-top: -4px; }
   .fm-end b { font-size: 14px; }
   .fm-end i { font-size: 11px; }
   .fm-type i { font-size: 8.5px; }
+  .fm-paste i { font-size: 8px; }   /* 390 的粘贴框内宽只有 99px,须留余量 */
   .fm-stamp { font-size: 11px; }
 }
 
@@ -3029,7 +3030,7 @@ a.jstep .st-ar { transform: rotate(-45deg); margin-top: -4px; }
   .fm-b .fm-screen-c { animation: fmB-con   var(--fd) linear infinite; }
   .fm-b .fm-phone    { animation: fmB-pho   var(--fd) linear infinite; }
   .fm-b .fm-paste    { animation: fmB-pasteop var(--fd) linear infinite; }
-  .fm-b .fm-paste i  { animation: fmB-paste var(--fd) steps(28, end) infinite; }
+  .fm-b .fm-paste i  { animation: fmB-paste var(--fd) steps(11, end) infinite; }
   .fm-b .fm-fill     { animation: fmB-fill  var(--fd) linear infinite; }
   .fm-b .fm-pulse    { animation: fmB-pulse var(--fd) linear infinite; }
   .fm-b .fm-tag      { animation: fmB-tag   var(--fd) linear infinite; }
