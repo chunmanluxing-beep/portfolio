@@ -2575,3 +2575,216 @@ label.fm-step:focus-visible { outline: 2px solid var(--accent); outline-offset: 
 .shotdeck .deck-d3, .shotdeck .deck-d4 { display: none; }
 .shotdeck.deck-has3 .deck-d3,
 .shotdeck.deck-has4 .deck-d4 { display: block; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ═══ v18-B · 化繁为简重构:七屏 + 双主线 + 证据条 + 订单目录 ═══
+   新增块:结论句 .lead / 影片位 .films / 证据条 .proofbar / 目录 a.jstep /
+   主线小节 .blk / 能力清单 .caplist / 特性行 .feat / 口径表 .kptable
+   全部为静态样式,零动效依赖;动效仍只存在于 prefers-reduced-motion: no-preference 内。
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── 每屏首句 · 结论句(替代原「这一屏讲:…」元描述) ─── */
+.lead {
+  margin: 0 0 14px; max-width: 900px;
+  font-size: 17px; line-height: 1.75; font-weight: 600; color: var(--text);
+}
+.lead b { color: var(--accent-2); }
+.dek.small { font-size: 13.5px; margin: 14px 0 0; }
+
+/* ─── 首屏 · 双视角影片位(v18-C 替换为真动画) ─── */
+.films { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 0 0 12px; }
+.film-slot {
+  display: block; padding: 14px; border-radius: 12px;
+  border: 1px solid var(--line); background: var(--card);
+}
+.fs-16by9 {
+  position: relative; display: block; width: 100%; aspect-ratio: 16 / 9;
+  border-radius: 9px; border: 1px dashed var(--accent-ln);
+  background:
+    radial-gradient(120% 120% at 50% 40%, rgba(232,163,61,.10), rgba(232,163,61,0) 62%),
+    var(--bg-deep);
+}
+.fs-play {
+  position: absolute; left: 50%; top: 50%; width: 0; height: 0;
+  transform: translate(-40%, -50%);
+  border-left: 20px solid var(--accent);
+  border-top: 13px solid transparent; border-bottom: 13px solid transparent;
+  opacity: .92;
+}
+.fs-16by9::after {
+  content: ""; position: absolute; left: 50%; top: 50%;
+  width: 54px; height: 54px; margin: -27px 0 0 -27px;
+  border: 1px solid var(--accent-ln); border-radius: 50%;
+}
+.fs-badge {
+  position: absolute; left: 10px; top: 10px;
+  padding: 2px 9px; border-radius: 10px;
+  font-size: 11px; letter-spacing: .04em; color: var(--accent-2);
+  background: rgba(232,163,61,.12); border: 1px solid var(--accent-ln);
+}
+.fs-title { display: block; margin: 12px 0 4px; font-size: 14px; font-weight: 600; color: var(--text); }
+.fs-sub   { display: block; font-size: 12.5px; line-height: 1.65; color: var(--dimmer); }
+.films-note { margin: 0 0 22px; font-size: 12px; color: var(--dimmer); }
+
+/* ─── 首屏 · 证据条(真实性优先于能力) ─── */
+.proofbar {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin: 0 0 22px; padding: 0; list-style: none;
+}
+.pb {
+  padding: 7px 14px; border-radius: 999px;
+  font-size: 12.5px; line-height: 1.4; color: var(--dim);
+  border: 1px solid var(--line); background: var(--card);
+}
+.pb-store { border-color: var(--accent-ln); background: rgba(232,163,61,.08); }
+.pb-store a { color: var(--accent-2); text-decoration: none; }
+.pb-store a:hover { color: var(--accent); }
+
+/* ─── 首屏 · 六站动画压扁至 ≤120px ─── */
+.hero-journey.hj-slim { padding: 12px 14px 11px; }
+.hj-slim .hj-track { margin-bottom: 9px; }
+.hj-slim .hj-ico { width: 22px; height: 22px; line-height: 21px; font-size: 12px; margin-bottom: 3px; }
+.hj-slim .hj-st b { font-size: 12px; }
+.hj-slim .hj-st em { margin-top: 2px; font-size: 11px; line-height: 1.35; min-height: 0; }
+.hj-slim .hj-sum { position: static; display: block; margin-top: 9px; font-size: 11.5px; }
+.hj-slim .hj-go { margin-left: 8px; }
+
+/* ─── 屏 2 · 图 3 七步 → 全站可点目录 ─── */
+.journey.jdir::before { top: 18px; bottom: 18px; }
+a.jstep {
+  position: relative; display: grid;
+  grid-template-columns: max-content max-content 62px 1fr; column-gap: 10px;
+  align-items: center;
+  margin-bottom: 10px; padding: 12px 38px 12px 14px;
+  border: 1px solid var(--line); border-radius: 10px; background: var(--card);
+  text-decoration: none; color: inherit;
+  transition: border-color .18s, background .18s;
+}
+a.jstep:hover { border-color: var(--accent); background: rgba(232,163,61,.06); }
+a.jstep:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+a.jstep.core { border-color: var(--accent-ln); background: var(--accent-bg); }
+a.jstep.core:hover { background: rgba(232,163,61,.11); }
+a.jstep > b { grid-column: 1; font-size: 13.5px; color: var(--text); }
+a.jstep .jn-who  { grid-column: 2; margin: 0; justify-self: start; }
+a.jstep .jn-auto { grid-column: 3; margin: 0; justify-self: start; }
+a.jstep .st-desc { grid-column: 4; }
+a.jstep .jn-i {
+  position: absolute; left: -29px; top: 50%; transform: translateY(-50%); margin: 0; z-index: 1;
+  background: var(--bg-deep); border: 1px solid var(--accent-ln); color: var(--accent-2);
+  box-shadow: 0 0 0 4px var(--bg-deep);
+}
+a.jstep .st-ar { transform: rotate(-45deg); margin-top: -4px; }
+
+/* ─── 主线小节 ─── */
+.blk { margin: 0 0 34px; padding: 0 0 0 18px; border-left: 2px solid var(--accent-ln); }
+.blk > h3 { margin-top: 0; }
+.blk > p  { max-width: 900px; }
+.blk-h { margin: 26px 0 12px; font-size: 15px; font-weight: 600; color: var(--text); }
+.statline {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 18px;
+  margin: 14px 0 0; padding: 12px 14px;
+  border: 1px solid var(--line); border-radius: 10px; background: var(--card);
+}
+.statline span { font-size: 12.5px; color: var(--dim); }
+.statline b { margin-right: 6px; font-size: 17px; font-weight: 600; color: var(--accent-2); letter-spacing: -.01em; }
+.statline i { font-style: normal; font-size: 12px; color: var(--dimmer); }
+.statline a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-ln); }
+
+/* ─── 特性行(十二格并入主线后的一句话清单) ─── */
+.feat { margin: 14px 0 0; padding: 0; list-style: none; }
+.feat li {
+  display: grid; grid-template-columns: max-content 1fr; gap: 12px; align-items: baseline;
+  padding: 9px 0; border-bottom: 1px dashed var(--line-soft);
+}
+.feat li:last-child { border-bottom: none; }
+.feat b { font-size: 13.5px; color: var(--text); }
+.feat i { font-style: normal; font-size: 13px; line-height: 1.7; color: var(--dim); }
+
+/* ─── 能力清单(名称 + 一句话 + 缩略图直通灯箱) ─── */
+.caplist { margin: 0 0 24px; padding: 0; list-style: none; }
+.caprow {
+  display: grid; grid-template-columns: 1fr max-content; gap: 16px; align-items: center;
+  padding: 14px 0; border-bottom: 1px dashed var(--line-soft);
+}
+.caprow:last-child { border-bottom: none; }
+.cap-t b { display: block; font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.cap-t i { font-style: normal; font-size: 13px; line-height: 1.7; color: var(--dim); }
+.cap-shots { display: flex; gap: 8px; align-items: center; }
+.cap-shots .shotwrap { margin: 0; width: auto; text-align: center; }
+.cap-shots .shotwrap .shotimg,
+.cap-shots .shotwrap.shot-portrait .shotimg {
+  width: auto; max-width: 128px; max-height: 72px; border-radius: 6px; box-shadow: none;
+}
+.cap-shots .lb-tip { display: none; }
+.cap-shots .shotwrap > .shot,
+.cap-shots .shotwrap.shot-portrait > .shot {
+  width: 112px; aspect-ratio: 16 / 9; min-height: 0; max-height: none; padding: 6px; margin: 0;
+}
+.cap-shots .shot-name { font-size: 9.5px; margin-bottom: 2px; }
+.cap-shots .shot-req  { display: none; }
+.cap-shots .shot::before { width: 18px; height: 13px; margin-bottom: 5px; }
+.cap-shots .deck-dots { margin-top: 2px; }
+
+/* ─── 屏 5 证据图 / 屏 6 口径表 ─── */
+.evid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 0 0 26px; }
+.evid .shotwrap { margin: 0; }
+.stats.stats-2 { grid-template-columns: repeat(2, 1fr); }
+.kptable { border: 1px solid var(--line); border-radius: 11px; overflow: hidden; margin: 0 0 16px; }
+.kpt-head, .kpt-row { display: grid; grid-template-columns: 132px 200px 1fr; gap: 14px; align-items: start; }
+.kpt-head {
+  padding: 11px 16px; font-size: 12px; font-weight: 600; letter-spacing: .06em;
+  color: var(--dimmer); background: var(--bg-deep); border-bottom: 1px solid var(--line);
+}
+.kpt-row { padding: 16px; border-bottom: 1px solid var(--line-soft); }
+.kpt-row:last-child { border-bottom: none; }
+.kpt-row:hover { background: rgba(232,163,61,.04); }
+.kpt-n { font-size: 26px; font-weight: 600; letter-spacing: -.02em; color: var(--accent-2); line-height: 1.1; }
+.kpt-n small { font-size: 12px; font-weight: 500; color: var(--dim); margin-left: 2px; letter-spacing: 0; }
+.kpt-c b { display: block; font-size: 13.5px; color: var(--text); }
+.kpt-c i { display: block; margin-top: 4px; font-style: normal; font-size: 12px; line-height: 1.6; color: var(--dimmer); }
+.kpt-f { font-size: 12.5px; line-height: 1.8; color: var(--dim); }
+
+/* ─── 折叠体内容容器 / 章末补充 ─── */
+.more .foldbody { padding: 18px; }
+.more .foldbody > .mech, .more .foldbody > .advs { padding: 0; }
+.more .foldbody > *:first-child { margin-top: 0; }
+.append {
+  margin: 0 0 18px; padding: 16px 18px;
+  border: 1px solid var(--line); border-radius: 11px; background: var(--card);
+}
+.append p { margin: 0 0 10px; font-size: 13.5px; line-height: 1.8; color: var(--dim); }
+.append p:last-child { margin-bottom: 0; }
+.append b { color: var(--text); }
+.autos.autos-4 { margin-bottom: 22px; }
+.pointto.pt-next { margin-top: 26px; font-size: 14px; }
+.note.appnote { margin: 22px 0 0; font-size: 13px; color: var(--dimmer); }
+
+/* ─── 窄屏适配 ─── */
+@media (max-width: 768px) {
+  .lead { font-size: 15px; }
+  .films { grid-template-columns: 1fr; gap: 12px; }
+  .proofbar { gap: 6px; }
+  .pb { font-size: 12px; padding: 6px 11px; }
+  .stats.stats-2 { grid-template-columns: 1fr; }
+  .evid { grid-template-columns: 1fr; }
+  .blk { padding-left: 12px; margin-bottom: 28px; }
+  a.jstep { grid-template-columns: max-content max-content 1fr; row-gap: 4px; padding: 11px 32px 11px 12px; }
+  a.jstep .jn-auto { grid-column: 3; justify-self: end; }
+  a.jstep .st-desc { grid-column: 1 / -1; text-align: left; }
+  a.jstep .jn-i { left: -24px; }
+  /* 六站动画:窄屏改 3x2 网格并收紧字号,文字一条不删 */
+  .hj-slim .hj-stations { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px 6px; }
+  .hj-slim .hj-ico { width: 20px; height: 20px; line-height: 19px; font-size: 11px; margin-bottom: 2px; }
+  .hj-slim .hj-st b { font-size: 11.5px; }
+  .hj-slim .hj-st em { font-size: 10.5px; line-height: 1.3; margin-top: 1px; }
+  .hj-slim .hj-sum { margin-top: 8px; font-size: 11px; }
+  .hj-slim .hj-go { display: block; margin: 3px 0 0; }
+  .caprow { grid-template-columns: 1fr; gap: 10px; }
+  .cap-shots { justify-content: flex-start; }
+  .feat li { grid-template-columns: 1fr; gap: 3px; }
+  .kpt-head { display: none; }
+  .kpt-row { grid-template-columns: 1fr; gap: 6px; }
+  .kpt-n { font-size: 23px; }
+  .statline { gap: 6px 12px; }
+  .statline b { font-size: 15px; }
+}
