@@ -3450,3 +3450,143 @@ section { padding: clamp(88px, 10vh, 136px) 0; }
 .stats .kpi:not([open]) > summary { flex: 1 1 auto; }
 .stats > li { display: flex; }
 .stats > li > .kpi { flex: 1 1 auto; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ═══ v21 · 侧栏滚动跟随 + 双主线突出 + 对比数字带 ═══
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ─── 4a 对比数字带:灰色旧数 → 箭头 → 琥珀新数 ─── */
+.versus {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+  margin: 0 0 12px; padding: 0;
+}
+.vsg {
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+  gap: 10px; padding: 20px 14px 16px; text-align: center;
+  border-radius: var(--r-card); border: 1px solid var(--line); background: var(--card);
+}
+.vs-old, .vs-new { display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 0; }
+.vs-old .bignum { font-size: clamp(26px, 2.5vw, 36px); line-height: 1.05; color: var(--dimmer); }
+.vs-new .bignum { font-size: clamp(26px, 2.5vw, 36px); line-height: 1.05; color: var(--accent-2); }
+.vs-old i, .vs-new i { font-style: normal; font-size: 11.5px; color: var(--dimmer); }
+.vs-new i { color: var(--dim); }
+.vs-ar { position: relative; width: 26px; height: 10px; }
+.vs-ar::before { content: ""; position: absolute; left: 0; top: 4px; width: 20px; height: 1.5px; background: var(--accent-ln); }
+.vs-ar::after {
+  content: ""; position: absolute; right: 0; top: 0.5px; width: 0; height: 0;
+  border-left: 8px solid var(--accent); border-top: 4.5px solid transparent; border-bottom: 4.5px solid transparent;
+}
+.vs-lb { grid-column: 1 / -1; margin-top: 10px; font-size: 13px; line-height: 1.6; color: var(--dimmer); }
+.vs-src { margin: 0 0 34px; text-align: center; font-size: 12.5px; }
+.vs-src a { color: var(--dim); text-decoration: none; border-bottom: 1px solid var(--accent-ln); }
+.vs-src a:hover { color: var(--accent-2); }
+
+/* ─── 4b KPI 卡对比小注 ─── */
+.knote {
+  display: block; margin: 8px auto 0; max-width: 22em;
+  font-size: 12px; line-height: 1.6; color: var(--dimmer);
+}
+
+/* ─── 2a 双主线大卡 ─── */
+.hhgrid-main { grid-template-columns: repeat(2, 1fr); margin-bottom: 26px; }
+.hhgrid-sub  { grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.hh-sublabel {
+  margin: 0 0 12px; text-align: center; font-size: 12px;
+  letter-spacing: .12em; color: var(--dimmer);
+}
+.hcard-lg { position: relative; padding: 14px 14px 18px; border-color: var(--accent-ln); }
+.hcard-lg .hc-shot { aspect-ratio: 16 / 9; }
+.hcard-lg .hc-t { margin-top: 16px; font-size: 20px; }
+.hcard-lg .hc-d { font-size: 13.5px; }
+.hcard-lg .hc-go { font-size: 13.5px; }
+.hc-badge {
+  position: absolute; left: 50%; top: -11px; transform: translateX(-50%);
+  padding: 3px 12px; border-radius: 999px; white-space: nowrap;
+  font-size: 11.5px; letter-spacing: .08em; font-weight: 600;
+  color: #1A1408; background: var(--accent);
+}
+.hhgrid-sub .hc-t { font-size: 13.5px; }
+.hhgrid-sub .hc-d { font-size: 11.5px; min-height: 3.4em; }
+.hhgrid-sub .hc-go { font-size: 11.5px; }
+
+/* ─── 2b 侧栏:两条主线加重,与辅线分组 ─── */
+@media (min-width: 1024px) {
+  .rail a[href="#console"], .rail a[href="#app"] {
+    font-weight: 700; font-size: 12.5px; color: var(--accent-2);
+  }
+  .rail a[href="#console"] i, .rail a[href="#app"] i { border-color: var(--accent); }
+  .rail a[href="#map"] { margin-bottom: 9px; }   /* 主线组之前的分隔 */
+  .rail a[href="#app"] { margin-bottom: 9px; }   /* 主线组之后的分隔 */
+}
+
+/* ─── 1a 侧栏滚动跟随(纯 CSS scroll-spy) ───
+   :target 点击高亮(v19 起)保留不动,两套并存;此处仅在支持滚动驱动动画时叠加。 */
+@supports (animation-timeline: view()) {
+  html {
+    timeline-scope: --s-home, --s-top, --s-map, --s-console, --s-app, --s-why, --s-data, --s-how;
+  }
+  /* 把"探测区"缩成视口顶部 68px 处的一条 1px 线(68px = 粘性导航高度 + 留白):
+     于是"当前章" = 这条线落在哪一章身上。相邻两章首尾相接,既不会空档也不会双亮。 */
+  #home, #top, #map, #console, #app, #why, #data, #how {
+    view-timeline-inset: 68px calc(100% - 69px);
+  }
+  #home    { view-timeline-name: --s-home; }
+  #top     { view-timeline-name: --s-top; }
+  #map     { view-timeline-name: --s-map; }
+  #console { view-timeline-name: --s-console; }
+  #app     { view-timeline-name: --s-app; }
+  #why     { view-timeline-name: --s-why; }
+  #data    { view-timeline-name: --s-data; }
+  #how     { view-timeline-name: --s-how; }
+
+  /* 区间内恒亮 + fill:none —— 区间外动画不生效,自然回落到基础灰样式。
+     不用 0%/100% 关灯的阶跃写法:章节高达上万 px 时,1% 也有上百 px,
+     会在章首造成一段"谁都不亮"的空档(实测 #console 30px 才占 0.27%)。
+     只变颜色,不产生任何位移。 */
+  @keyframes railOn  { from, to { color: var(--accent-2) } }
+  @keyframes railDot { from, to { background: var(--accent); border-color: var(--accent) } }
+
+  @media (min-width: 1024px) {
+    .rail a      { animation: railOn  linear none; animation-range: contain 0% contain 100%; }
+    .rail a i    { animation: railDot linear none; animation-range: contain 0% contain 100%; }
+    .rail a[href="#home"],    .rail a[href="#home"] i    { animation-timeline: --s-home; }
+    .rail a[href="#top"],     .rail a[href="#top"] i     { animation-timeline: --s-top; }
+    .rail a[href="#map"],     .rail a[href="#map"] i     { animation-timeline: --s-map; }
+    .rail a[href="#console"], .rail a[href="#console"] i { animation-timeline: --s-console; }
+    .rail a[href="#app"],     .rail a[href="#app"] i     { animation-timeline: --s-app; }
+    .rail a[href="#why"],     .rail a[href="#why"] i     { animation-timeline: --s-why; }
+    .rail a[href="#data"],    .rail a[href="#data"] i    { animation-timeline: --s-data; }
+    .rail a[href="#how"],     .rail a[href="#how"] i     { animation-timeline: --s-how; }
+    /* 两条主线在"未命中"时仍保持加重字重(颜色由动画接管) */
+    .rail a[href="#console"], .rail a[href="#app"] { font-weight: 700; }
+  }
+}
+
+/* ─── 窄屏 ─── */
+@media (max-width: 900px) {
+  .versus { grid-template-columns: 1fr; gap: 10px; }
+  .hhgrid-sub { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .hhgrid-main { grid-template-columns: 1fr; gap: 14px; margin-bottom: 22px; }
+  .hhgrid-sub { grid-template-columns: 1fr; }
+  .vsg { padding: 16px 12px 14px; }
+  .hcard-lg .hc-t { font-size: 17px; }
+}
+
+/* ─── 5a/5b 分层降噪:长段落首句可见,其余收进「展开细节」 ─── */
+.moredet { margin: 8px 0 18px; }
+.moredet > summary {
+  display: inline-flex; align-items: center; gap: 6px; cursor: pointer;
+  list-style: none; padding: 3px 12px 4px; border-radius: 999px;
+  font-size: 12.5px; color: var(--dim);
+  border: 1px solid var(--line); background: var(--card);
+}
+.moredet > summary::-webkit-details-marker { display: none; }
+.moredet > summary::marker { content: ""; }
+.moredet > summary::after { content: "＋"; font-size: 12px; color: var(--accent); }
+.moredet[open] > summary::after { content: "－"; }
+.moredet > summary:hover { color: var(--text); border-color: var(--accent-ln); }
+.moredet > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.moredet-b { padding: 12px 0 0; }
+.moredet-b p { margin: 0; color: var(--dim); }
