@@ -286,7 +286,7 @@ images/       截图目录:按清单文件名放图即自动显示;README.md 是
 
 | 入库文件名 | 内容 | 像素 | 体积 |
 |---|---|---|---|
-| `app-grab-hall-2.jpg` | 抢单大厅 · 单张可抢卡(定向邀请单) | 828×1688 | 235 KB |
+| `app-grab-hall-2.jpg` | 抢单大厅 · 别人的定向单**灰态**卡(v8.6,已回退;v22 重标) | 828×1688 | 235 KB |
 | `app-grab-hall-3.jpg` | 抢单详情页(报酬 / 拍摄地 / 进店 / 人数 / 距离 / 拍摄日天气) | 845×1688 | 166 KB |
 | `app-grey-explain.jpg` | 已结束灰卡 · 「已派出 / 已被安排 / 需★≥5.0」 | 821×1688 | 278 KB |
 | `app-grey-explain-2.jpg` | 灰卡详情 · 信息照给,按钮为「已被安排」 | 820×1688 | 275 KB |
@@ -1181,7 +1181,7 @@ E0-品牌LOGO 夹里没有图,转到生产仓库 `lvpai-console` **只读检索*
 | 项目介绍与概览 | `guest-delivery-page` 830×1688 | 竖屏 | `50% 42%` | 进度卡标题 + 六步的前三步 |
 | 全景与目录 | `console-app-mirror` 1600×900 | 横屏 | `50% 50%` | 双端并排,横图只裁左右 10%,居中即可 |
 | 运营总控台 | `console-orders-total` 1400×900 | 横屏 | `50% 46%` | 总控面板;横图仅裁掉 2.7% 高,位置影响很小 |
-| 榴档期 App | `app-grab-hall-2` 828×1688 | 竖屏 | `50% 58%` | 抢单大厅蓝卡整张(含报酬与定向邀请单) |
+| 榴档期 App | `app-grab-hall-2` 828×1688 | 竖屏 | `50% 58%` | 抢单大厅卡整张(含报酬与定向邀请单标)<br>**v22 已换图**:改挂 `app-grab-hall` 780×1688,裁切位 `50% 54%`,取「京都·清水寺 ¥680 抢」整张可抢卡 |
 
 > 竖屏截图在 16:10 框里只能露出约 **30.7%** 的画面高度(`0.49 ÷ 1.6`),
 > 所以竖图必须逐张定裁切位,取"信息最密的一段",而不是一律取顶部。
@@ -1418,3 +1418,329 @@ E0-品牌LOGO 夹里没有图,转到生产仓库 `lvpai-console` **只读检索*
 `prefers-reduced-motion: reduce`:图位 36 / 有图 33 / 空位 3 与常态**逐项相同**,
 七张章节卡、三组数字带、23 处展开细节全部在场,**侧栏滚动跟随仍然生效**(实测高亮 1 项),
 横滚 false ——**零信息丢失**。
+
+
+---
+
+# v22 · 抢单可见性口径与产品同步(v9.1 回退)+ 迭代闭环故事(2026-08-29)
+
+生产系统于 2026-08-29 部署 `v9.1-grab-targeted-visibility`(commit `424aaa0`):
+**定向单(含点名急单)改为仅被点名者可见**;纯星级急单、普通广播单、梯队单的可见性不变。
+站上多处仍以「定向单人人可见」为卖点,与产品事实相反,本轮据实修正。
+
+本轮所有新增事实的出处**全部来自 `lvpai-console` 的 git 对象**,该仓库全程只跑
+`git fetch`,零 checkout / 零 pull / 零改动。
+
+## 一、1c 事实基准出处表(逐条给 git 命令 + 文件:行号)
+
+| # | 事实 | git 命令 | 文件:行号 |
+|---|---|---|---|
+| F1 | v8.6「定向单全员可见」是有意设计,业主拍板,注释留档:「★v8.6 眼馋模式(用户拍板:定向单全员可见,激发斗志)——可见性与可抢性分离★」 | `git show cf2-baseline:server/src/routes/grab_portal.js` | `grab_portal.js:221`(cf2)/ `:223`(v9.1,**注释保留未删**) |
+| F2 | v8.6 同时废止 v7.1「梯队未解锁整行不返」 | 同上 | `grab_portal.js:222`、`:229`(cf2) |
+| F3 | 问题①:横幅不问可抢性,定向单/未解锁梯队单也弹出带「抢」按钮的横幅,「点了必被后端 403 硬闸拒」 | `git diff cf2-baseline..v9.1-grab-targeted-visibility -- frontend/public/glass-preview/index-planet.html` | v9.1 `index-planet.html:4852`–`:4855`(注释「★CF-2 3a 横幅漏口★…点了必被后端 403 硬闸拒」),新逻辑 `:4856`–`:4860` |
+| F3b | doGrab 硬闸对非候选一律 403(v9.1 未改) | `git show v9.1-grab-targeted-visibility:server/src/routes/grab_portal.js` | `grab_portal.js:57`–`:65` |
+| F3c | v8.6 灰态按钮文案「🎯 定向邀请单」+ 可点 toast | `git show cf2-baseline:frontend/public/glass-preview/index-planet.html` | `index-planet.html:4247`–`:4248` |
+| F4 | 问题②:已结束行仍对任何人下发 `invited_only`/`tier_locked`;P2-b 在 CASE 最前置 `status<>'open' → NULL` | `git show v9.1-…:server/src/routes/grab_portal.js` | 修前 cf2 CASE 块 `:184`–`:189`(`invited_only` 在 `:186`、`tier_locked` 在 `:187`,无状态前置);修后 v9.1 `:185` 新增 `WHEN go.status <> 'open' THEN NULL` |
+| F5 | 问题③:脱敏判据原为 `is_candidate`,未解锁候选读得到 `remarks/item_notes/meeting_point_custom`,「本地实测」确认 | 同上 | 修前 `:260`(cf2);修后 `:276`–`:278` |
+| F6 | P1 主修判据用 `include_ids` 非空而非 `is_urgent`——「急单有时是纯星级筛选(不点名)的,那种必须保持全城可见 + 星级不足者灰卡」 | 同上 | `grab_portal.js:237`–`:242`(注释 `:237`–`:240`,判据 `:241`–`:242`) |
+| F6b | 该业务分型出自业主:提交信息首行「用户裁决·方案B」 | `git log -1 424aaa0` | commit `424aaa0` 正文第 1 行 |
+| F7 | 零新增 JOIN / 零新增参数 / P 数组不变 | 同上 | `grab_portal.js:240` |
+| F8 | P3:已结束 7 天窗与排序改锚 `COALESCE(grabbed_at, stopped_at, created_at)` | 同上 | `grab_portal.js:252`–`:253` |
+| F9 | diff 体量 `+21 −3`(grab_portal.js)/ `+17 −3`(index-planet.html) | `git diff --numstat cf2-baseline..v9.1-grab-targeted-visibility` | 实测输出:`21 3 server/src/routes/grab_portal.js`、`17 3 frontend/…/index-planet.html` |
+| F10 | 双 token 六夹具修复前后矩阵、主库 86 表行数 + CHECKSUM 零差异 | `git log -1 --format=%B 424aaa0` | commit `424aaa0` 正文末段 |
+| F11 | 零数据库迁移:整次提交只碰 2 个文件 | `git show --name-only --format='' 424aaa0` | 输出仅 `index-planet.html`、`grab_portal.js`;`git diff --name-only cf2-baseline..v9.1 \| grep -i 'migrat\|\.sql'` = **0** |
+| F12 | 回滚锚:`cf2-baseline` 正是 `424aaa0` 的父提交 | `git rev-parse 424aaa0^` vs `git rev-parse cf2-baseline^{commit}` | 两者同为 `62011e75…` |
+| F13 | v8.6 计数只算可抢单(「眼馋单不触发『有 N 张你可抢』」) | `git log -1 --format='%h %ad %s' --date=short v8.6-grab-showcase` | commit `92e5c7e`(2026-08-05)标题即「…+ 计数只算可抢」;另见 `git show cf2-baseline:frontend/public/glass-preview/index-planet.html` `:1198`「★眼馋单不进 grabCount/首页横幅/徽标计数(只算 grabbable=true)★」 |
+
+## 二、1a 失真清单(全站关键词扫描 → 判定)
+
+扫描范围 `index.html` / `README.md` / `images/README.md` / `style.css`,含图注、`details` 内、灯箱 `alt`。
+
+**零命中的词**(扫描已执行,确认站上从来没有):`眼馋`、`全员可见`、`所有人可见`、
+`看得到抢不着`、`看得见抢不了`、`激发斗志`、`invited_only`;`人人可见` 改写前亦为 0 命中。
+
+| # | 位置 | 原文摘要 | 判定 |
+|---|---|---|---|
+| 1 | `index.html:1004` | 「梯队只体现为『没到点就看不见这个单』」 | **已失真须改** — v8.6 起梯队单改为可见灰卡「⏳ 未开放到你的档位」(F2/F3c),v9.1 未恢复 v7.1 |
+| 2 | `index.html:1011` | 定向邀请「只有被点名的人**收到**」 | **已失真须改(补全)** — 只讲了推送受众,未讲可见性;v9.1 后两者都收窄 |
+| 3 | `index.html:1026–1027` | 「没资格抢的单照样显示…点击给改进建议」 | **已失真须改** — 对定向单不再成立;且「点击给改进建议」是 v8.6 toast(F3c),旁观者已不可达 |
+| 4 | `index.html:1068` | 历史抢单图注「可见性与可抢性是分开的」 | **仍准确保留** — 讲的是「被抢走的单不消失、换成不可再抢状态留档」,与定向可见性无关,v9.1 未改此行为 |
+| 5 | `index.html:1007` | 折叠标题「…可见性分离…」 | **仍准确保留** — 对广播单/梯队单/已结束单仍成立 |
+| 6 | `index.html:1521` | 「抢不到的灰卡也照常看得见」 | **已失真须改(收窄)** |
+| 7 | `index.html:1579` | 「抢不了的单也照常显示为灰卡」 | **已失真须改(收窄)** |
+| 8 | `index.html:1582` | 「灰卡也看得见 / 抢不了的单照样显示」 | **已失真须改(收窄)** |
+| 9 | `index.html:1583` | 「评分决定谁先**看到** / 评分越高越早**看到**单」 | **已失真须改** — v8.6 后梯队是「更早**解锁**」,不是「更早看到」 |
+| 10 | `index.html:1665` | `🎯 抢单大厅` 板块标题 | **仍准确保留** — 🎯 在 App 里是抢单大厅的板块图标,不是定向单标记(F13 同源) |
+| 11 | `index.html:1675` | 纯 CSS 示意灰卡 `🎯 定向邀请单` | **历史事实·加回退标注** — 与 F3c 逐字一致;按 2c 保留作 before,并入前后对照 |
+| 12 | `index.html:1682` | 图 8 提示「灰卡可点开看完整详情…」 | **已失真须改(收窄)** |
+| 13 | `index.html:1685` | 图 8 图注「可抢是蓝卡,没资格是灰卡」 | **已失真须改** — 改为 v8.6 → v9.1 前后对照 |
+| 14 | `index.html:1690` 三 | 「抢不了的单照常显示为灰卡…」 | **已失真须改(收窄)** |
+| 15 | `index.html:1690` 四 | 「好评的人优先**看到**单 / 更早**看到**单」 | **已失真须改** — 同 #9 |
+| 16 | `index.html:1595`/`1626` | `shot-req`「需同时出现可抢卡与灰卡」 | **仍准确保留** — 灰卡(星级不足/梯队/已结束)仍在;且该文案只在图缺失时显示,现全部有图 |
+| 17 | `index.html:1640–1660` | `app-grey-explain` 两图 alt 与图注 | **仍准确保留** — 已结束灰卡 +「需★≥5.0」,v9.1 未改(P2-b 只清 `not_grabbable_reason`,`rating_min` 芯片与「已被安排」按钮均另有来源) |
+| 18 | `README.md:256`/`265`/`366`/`1344`/`1345` | 「没到点就看不见」「专属邀约」「激励素材」 | **历史事实·加回退标注** — 全部位于 v16/v18 轮次的**变更记录表**,记的是「当时改掉了什么」;改写会伪造变更日志,故逐字保留,勘误见下节 |
+| 19 | `README.md:289`/`1184`,`images/README.md:117`/`237`/`238`/`366` | 把 `app-grab-hall-2/-3` 描述成「可抢卡 / 蓝卡 / 定向邀请单」 | **已失真须改** — 实图是**灰态卡**,见下节 1b |
+| 20 | `images/README.md:77` | 「评分决定谁先看到」 | **已失真须改** — 随 #9 改名同步 |
+
+### 2b 对 README 旧结论的两处勘误(只在此记录,不改历史表原文)
+
+- `README.md:265` / `:366` 记「『提升评分可获得更多专属邀约』该弹层文案在 App 源码里零命中」。
+  **这条结论现在不成立**:该文案逐字存在于
+  `git show cf2-baseline:frontend/public/glass-preview/index-planet.html` 的 **`:4247`**
+  (`toast: '本单为定向邀请单,提升评分可获得更多专属邀约'`),由 v8.6(2026-08-05)引入。
+  当时的 grep 结论对不上,原因未查证,如实记录。站上正文该句自 v16.0 起确为 0 残留,**不需改站**。
+- `README.md:256` 记的口径「梯队只体现为『没到点就看不见这个单』」源自 v7.1,已被 v8.6 废止(F2),
+  v9.1 也未恢复。**站上对应文案本轮已改**(见下表 E1)。
+
+## 三、1b 图位清点与处置(★截图文件一个都没删★)
+
+图号 0–9 与 36 个图位全部过了一遍;含定向单视觉的只有下列几处。
+
+| 图位 | 载体 | 实图内容(逐张开图核过) | 处置 |
+|---|---|---|---|
+| 图 8 | **纯 CSS 示意** | 亮卡「京都 ¥680 抢」+ 灰卡「🎯 定向邀请单」 | **改为 v8.6 / v9.1 前后对照两栏**:左栏原样保留作历史 before,右栏新增现态(⏳ 未开放到你的档位 + 一块虚线位说明「原先那张点名给别人的定向单整行不再下发」);角标由 `2` 改 `1`(F13:v8.6 计数只算可抢单,原示意与 v8.6 自身规则也不符) |
+| lb-25 第 2 张 | `app-grab-hall-2.jpg` | 版本号 **v2026.08.05.0**;东京·浅草寺 ¥350,按钮是灰色「🎯 定向邀请单」——**不是可抢卡** | **保留文件,改 alt + 图注**,标为「v8.6 时期,已回退」并并入故事 |
+| lb-25 第 3 张 | `app-grab-hall-3.jpg` | 抢单详情 v8.05.0,底部按钮灰色「🎯 定向邀请单」——旁观者点开别人定向单的详情页 | **保留文件,改 alt + 图注**,同上 |
+| lb-25 第 1 张 | `app-grab-hall.jpg` | 版本号 v2026.07.29.0;京都·清水寺 ¥680,按钮是可抢的「抢」 | 保留,图注补版本号 |
+| lb-40 两张 | `app-grey-explain(-2).jpg` | 已结束「已派出 / 已被安排」+「需★≥5.0」;详情页集合点为 `meeting_points` 字典记录(**非**自由文本 `meeting_point_custom`) | **不改** — v9.1 未改这两处行为;脱敏收口只清三个自由文本字段,不含字典集合点 |
+| `#home` 榴档期 App **大卡** | 原挂 `app-grab-hall-2.jpg` | 即上面那张 v8.6 已回退的灰态卡 | **换成 `app-grab-hall.jpg`**(可抢卡,更贴卡片文案「接活」),裁切位 `50% 58%` → `50% 54%`。★原文件一个字节没删,lb-25 仍在用★。该图 `alt=""` `aria-hidden`,纯装饰,不涉文案 |
+
+> 判断依据:三张 grab-hall 截图与两张 grey-explain 截图均逐张打开核过画面,
+> 版本号水印(左上角 `v2026.xx.xx.0`)是判定年代的直接证据。
+
+## 四、2a 改写前后对照全表
+
+| # | 位置 | 改前 | 改后 |
+|---|---|---|---|
+| E1 | `#console` 梯队图注 | 梯队只体现为「没到点就看不见这个单」。 | 梯队在摄影师那边只体现为一张写着「⏳ 未开放到你的档位」的灰卡:看得见,到点才能抢。 |
+| E2 | `#console`「定向邀请」 | …广播池不参与,只有被点名的人收到。 | …广播池不参与,**只有被点名的人收到推送,也只有被点名的人在大厅里看得到这一单**。 |
+| E3 | `#console`「可见性与可抢性分离」 | 没资格抢的单**照样显示**,只变灰卡并说明原因…点击给改进建议。全隐藏则大厅空空如也… | 广播单里够不上门槛的那些**照样显示**,只变灰卡并标出门槛…全隐藏则大厅空空如也…这条对定向单不适用——被点名给别人的单,整行不下发。 |
+| E4 | `#app` 引子折叠 | 抢单大厅把报酬放在卡片正面,**抢不到**的灰卡也照常看得见。 | …**门槛没够上**的灰卡也照常看得见。 |
+| E5 | `#a-hall` 折叠 | 抢不了的单也照常显示为灰卡,门槛写在卡上。 | 门槛没够上的单也照常显示为灰卡,门槛写在卡上;**被点名给别人的定向单则不进大厅**。 |
+| E6 | `#a-hall` 要点 | 灰卡也看得见 / **抢不了的单**照样显示 | 灰卡也看得见 / **门槛没够上的单**照样显示 |
+| E7 | `#a-hall` 要点 | **评分决定谁先看到** / 评分越高越早**看到单** | **评分决定谁先抢到** / 评分越高越早**解锁** |
+| E8 | lb-25 两张 `alt` + 图注 | 「抢单大厅 · 可抢卡特写」/「抢单大厅 · 抢单详情页」;图注「整页抢单大厅 → 单张可抢卡 → 抢单详情页」 | 「别人的定向单灰态卡(v8.6 时期,已回退)」/「定向单详情页 · 底部为定向邀请单灰态(v8.6 时期,已回退)」;图注补版本号 v2026.07.29.0 / v2026.08.05.0 与「已在 2026-08-29 回退」 |
+| E9 | 图 8 | 单台手机示意,含「🎯 定向邀请单」灰卡;图注「可抢是蓝卡,没资格是灰卡」 | **两台手机前后对照**(v8.6 已回退 / v9.1 现态);图注改为对照说明 |
+| E10 | 十二格「三 · 可见性与可抢性分离」 | 抢不了的单照常显示为灰卡…看得见才会想争取。 | 门槛没够上的单(星级不足、梯队没到点)和已结束的单照常显示为灰卡…**被点名给别人的定向单不在此列:2026-08-29 起整行不下发**。 |
+| E11 | 十二格「四 · 评分梯队」 | 好评的人优先**看到单** / 评分高的人更早**看到单** | 好评的人优先**轮到** / 评分高的人更早**解锁**,没到点的人看到的是「⏳ 未开放到你的档位」灰卡;…那种单**只有被点名的人看得到** |
+| H1 | `#home` App 大卡 | `app-grab-hall-2.jpg` + `object-position: 50% 58%` | `app-grab-hall.jpg` + `50% 54%`(原文件保留在库、lb-25 仍在用) |
+| I1–I5 | `images/README.md` | 「可抢卡(定向邀请单)」「抢单详情页」「评分决定谁先看到」等 | 全部重标为灰态卡 / 定向单详情页 / v8.6 已回退 / 改名同步 |
+
+## 五、2b 迭代闭环故事块
+
+**位置**:`#app` → `#a-hall`(二 · 抢单大厅),紧接改写后的图 8 前后对照之下、
+「抢单大厅的三条机制」折叠之上。**未新增章节,8 屏结构不变。**
+
+**可见正文 3 句**(不足 3 句上限):
+
+> 「定向单也人人可见」是 v8.6 有意做的设计,业主拍板,理由连同决定一起写进了服务端注释。
+> 它在生产里跑了二十四天,暴露出三类问题:旁观者会被弹出一个点了必然被拒的「抢」按钮、
+> 已结束的单仍在对所有人下发定向标记、梯队还没解锁的候选人已经读得到客人备注。
+> v9.1 只收窄可见性判据这一处,抢单硬闸与推送受众一行未动。
+
+其余四段进「展开细节」:①它本来是有意的(F1/F2);②生产里看到三件事(F3/F4/F5);
+③外科式回退与 `include_ids` 判据(F6/F6b/F7/F11);④六夹具验证与回滚锚(F10/F11/F12)。
+末尾一行小字把出处指回本表。
+
+**「二十四天」的算法**:v8.6 提交日 2026-08-05(`git log -1 v8.6-grab-showcase`)→
+v9.1 提交日 2026-08-29(`git log -1 424aaa0`),24 天。
+
+**按铁律主动砍掉的一句**:执行令里的「生产 health 实证」在 `lvpai-console` 的 git 对象里
+**没有出处**(`424aaa0` 只改 2 个代码文件,无部署回显、无 health 记录)。
+本轮不写这句;「免迁移」改写成可验证的「整次提交只碰两个文件,没有任何数据库迁移」(F11)。
+
+## 六、4a 预期先算 → 4b 无头实测
+
+本轮**唯一的结构性增量**是故事块带来的 1 处「展开细节」(23 → 24)与随之 +1 的 `<details>` 总数;
+屏数、图位、有图数、空位数、灯箱、锚点、数字带、大卡、字体全部不变。
+
+无头浏览器:Chromium(Playwright)。两视口 **1280×900** 与 **真 390×844**
+(`deviceScaleFactor:3` + `isMobile` + `hasTouch` + iPhone UA);两轮各再跑一遍
+`reducedMotion:'reduce'`。每轮都先 `details.open = true` 全展开再测。
+
+| 项 | 口径 | v21(HEAD ad0538f) | v22 预期 | v22 实测 1280 | v22 实测 390 |
+|---|---|---|---|---|---|
+| 屏数 | `nav.rail a` 章节数 | 8 | 8 | **8** | **8** |
+| `<script>` | `document.querySelectorAll('script').length` | 0 | 0 | **0** | **0** |
+| 运行时外链 | 非 `file:`/`data:` 的网络请求数 | 0 | 0 | **0** | **0** |
+| (参考)可点外链 | `a[href^=http]` 去重 | 1(App Store,2 处) | 不变 | 1 | 1 |
+| 字体 | `fonts/` 目录文件数 | 2(`num.woff2`+`OFL.txt`) | 2 | **2** | **2** |
+| 数字带 | `ul.stats, p.statline` | 3 | 3 | **3** | **3** |
+| 大卡 | `.hcard-lg` | 2 | 2 | **2** | **2** |
+| 灯箱图位 | `input.lb-toggle` | 36 | 36 | **36** | **36** |
+| 有图 / 空位 | 图位中加载成功 / 走 CSS 兜底 | 33 / 3 | 33 / 3 | **33 / 3** | **33 / 3** |
+| 唯一图名引用 | `images/*.png|jpg` 去后缀去重 | 39 | 39 | **39** | **39** |
+| 实际加载图片文件 | `naturalWidth>0` 去重 | 34 | 34 | **34** | **34** |
+| `<details>` 总数 | — | 56 | 57 **(+1)** | **57** | **57** |
+| 「展开细节」 | `details.moredet` | 23 | 24 **(+1)** | **24** | **24** |
+| 破图 | 无兜底、实际画出 broken 图标 | 0 | 0 | **0** | **0** |
+| 横滚 | `scrollWidth > clientWidth` | false | false | **false** | **false** |
+| 失效锚点 | `a[href^=#]` 无对应 `id` | 0 | 0 | **0** | **0** |
+| 侧栏滚动跟随 | 探测线对准各章中点,恰好本章点亮 | 8/8 | 8/8 | **8/8** | n/a(`.rail` 窄屏 `display:none`,与 v21 同) |
+| 减动信息差 | 常态正文字数 − 减动正文字数 | **195** | 195(不变) | **195** | **195** |
+| 展开后正文字数 | `body.innerText` 去空白 | 15829 | +故事块 | **17314**(+1485) | 17241 |
+
+### 空位与「破图 0」的说明
+
+36 个灯箱图位里有 **3 个空位**(`console-orders-list` / `app-income-bill` / `app-magic-link`),
+另有 2 张**可选轮播补位**缺图(`guest-delivery-page-2` / `guest-photo-select-2`,所在图位的第 1 张都在)。
+这 5 处**在 v21 与 v22 中逐个相同**(同一脚本对两版快照跑出同一份名单),都由既有 `onerror`
+兜底成 CSS 占位块,浏览器不会画出 broken 图标 —— 故实测 `破图 = 0`。
+
+### reduced-motion 零信息丢失的证明方式
+
+只数字数会得出「减动比常态少 195 字」,容易误读成信息丢失。实际做法是**把 v21 与 v22 各自的差值对比**:
+
+```
+v21 常态 15829 / 减动 15634  → 差 195
+v22 常态 17314 / 减动 17119  → 差 195      ★两者逐字相等★
+```
+
+这 195 字是 v21 就设计好的机制:两个演示影片在减动下整体换成 `.fm-static` 静态分镜
+(①②③④ 四步 + 「传统:每一步都要问人;本系统:一条链接自助走完」的结论句),
+逐帧对白换成压缩表述,结论与步骤一条不少。**v22 新增的 `.iterbox` 与 `.ph-2up` 全部是静态样式,
+零动画零过渡**,因此差值一字未变。另单独逐句复核 v22 新增文案在减动下的在场情况:
+
+| 新增文案 | 常态 | 减动 |
+|---|---|---|
+| 「一次「上线 → 观察 → 回退」」 | 1 | 1 |
+| 「已回退」/「现态」 | 1 / 2 | 1 / 2 |
+| 「整行不再下发」 | 1 | 1 |
+| 「点名给别人的定向单」 | 4 | 4 |
+| 「没点名给我的定向单」 | 1 | 1 |
+| 「门槛没够上」 | 4 | 4 |
+| 「评分决定谁先抢到」 | 1 | 1 |
+| 「未开放到你的档位」 | 3 | 3 |
+
+前后对比截图存于 `/tmp/v22/`:`BEFORE-*` 取自 HEAD(v21)快照,`AFTER-*` 取自本轮工作区,
+覆盖 `#a-hall` 整章、图 8、lb-25 图注、三条机制折叠、`#home` App 大卡,桌面与手机各一套。
+
+## 七、3a「待生产库核验」数字的只读 SQL 清单(本轮不执行)
+
+`#data` 章现有 6 个数字带「待生产库核验后补全」标注。下列 SQL **全部只读**(纯 `SELECT`,
+零 `INSERT/UPDATE/DELETE/DDL`),供之后在 VPS 上粘贴执行。**本轮不执行、不动站上的待核验标注** ——
+标注要等真跑过、数字对上了才摘。表结构取自 `lvpai-console` 远端对象
+(`git show origin/main:init.sql`、`git show origin/main:migrations/118_create_grab_tables.sql`)。
+
+> 共同约定:抢单口径一律排除软删(`go.deleted_at IS NULL`);窗口用 JST。
+> 每条都先给「站上现值」,便于跑完直接比对。
+
+```sql
+-- ── ① 抢单成交率:站上现值 74.7% ──────────────────────────────
+--    口径:被摄影师主动接走的抢单任务数 ÷ 已发起的抢单任务总数
+--    待定项:分母是否剔除「已取消(cancelled)」与「中途改手动指派」的任务 —— 故一次把三种分母都算出来
+SELECT
+  SUM(status = 'grabbed')                                    AS 分子_已被抢走,
+  COUNT(*)                                                   AS 分母A_全部已发起,
+  SUM(status <> 'cancelled')                                 AS 分母B_剔除已取消,
+  SUM(status IN ('grabbed','expired'))                       AS 分母C_仅抢走与超时,
+  ROUND(100 * SUM(status='grabbed') / NULLIF(COUNT(*),0), 1)                 AS 率A_pct,
+  ROUND(100 * SUM(status='grabbed') / NULLIF(SUM(status<>'cancelled'),0), 1) AS 率B_pct,
+  ROUND(100 * SUM(status='grabbed') / NULLIF(SUM(status IN ('grabbed','expired')),0), 1) AS 率C_pct
+FROM grab_offers
+WHERE deleted_at IS NULL
+  AND created_at >= '2026-05-01 00:00:00' AND created_at < '2026-09-01 00:00:00';
+
+-- ── ② 接单时长中位数:站上现值 2.0 分钟 ────────────────────────
+--    口径:每个成交任务的 (grabbed_at − created_at),对全部成交任务取中位数
+--    待定项:统计窗口起止;循环再推的场次如何计入(本 SQL 按「发起时刻」锚,再推不重置)
+SELECT
+  COUNT(*) AS 成交任务数,
+  ROUND(AVG(mins), 2) AS 均值_分钟_参考,
+  ROUND(MAX(CASE WHEN rn <= (cnt + 1) DIV 2 THEN mins END), 2) AS 中位数_分钟
+FROM (
+  SELECT TIMESTAMPDIFF(SECOND, created_at, grabbed_at) / 60.0 AS mins,
+         ROW_NUMBER() OVER (ORDER BY TIMESTAMPDIFF(SECOND, created_at, grabbed_at)) AS rn,
+         COUNT(*)    OVER ()                                                        AS cnt
+  FROM grab_offers
+  WHERE deleted_at IS NULL AND status = 'grabbed' AND grabbed_at IS NOT NULL
+    AND created_at >= '2026-05-01' AND created_at < '2026-09-01'
+) t;
+
+-- ── ③ 一次推送即成交:站上现值 96.0% ───────────────────────────
+--    口径:首轮推送即成交的任务数 ÷ 成交任务数
+--    实现:grab_candidates.notified_at 是「滚动时间戳」(循环再推会覆盖),
+--          故「首轮即成交」= 抢到时刻早于任何一次再推(即该单候选的 notified_at 最大值 ≤ grabbed_at
+--          且发起到抢到的间隔 < 一个再推周期 grab_repush_interval_min,默认 30 分钟)
+--    待定项:分母取「成交任务」还是「全部已发起」;再推场次的界定 —— 两个分母都给
+SELECT
+  SUM(one_shot)                                              AS 分子_首轮即成交,
+  COUNT(*)                                                   AS 分母A_成交任务,
+  (SELECT COUNT(*) FROM grab_offers
+    WHERE deleted_at IS NULL
+      AND created_at >= '2026-05-01' AND created_at < '2026-09-01') AS 分母B_全部已发起,
+  ROUND(100 * SUM(one_shot) / NULLIF(COUNT(*),0), 1)         AS 率A_pct
+FROM (
+  SELECT go.id,
+         (TIMESTAMPDIFF(MINUTE, go.created_at, go.grabbed_at)
+            < COALESCE((SELECT CAST(setting_value AS UNSIGNED) FROM system_settings
+                         WHERE setting_key = 'grab_repush_interval_min'), 30)) AS one_shot
+  FROM grab_offers go
+  WHERE go.deleted_at IS NULL AND go.status = 'grabbed' AND go.grabbed_at IS NOT NULL
+    AND go.created_at >= '2026-05-01' AND go.created_at < '2026-09-01'
+) x;
+
+-- ── ④ 抢单承接占比:站上现值 32.9%(上线后头两个月)────────────
+--    口径:同期由抢单方式成交的派单数 ÷ 同期全部派单数(含手动指派)
+--    待定项:窗口的精确起止日 —— 先把抢单功能首单日查出来,再据此定窗
+SELECT MIN(created_at) AS 抢单功能首单日_据此定窗 FROM grab_offers WHERE deleted_at IS NULL;
+
+--    定窗后跑这条(把两处 :start / :end 换成上面查到的首日与首日+2个月):
+SELECT
+  SUM(oi.id IN (SELECT item_id FROM grab_offers
+                 WHERE deleted_at IS NULL AND status = 'grabbed'))          AS 分子_抢单成交派单数,
+  COUNT(*)                                                                  AS 分母_全部派单数,
+  ROUND(100 * SUM(oi.id IN (SELECT item_id FROM grab_offers
+                 WHERE deleted_at IS NULL AND status = 'grabbed'))
+            / NULLIF(COUNT(*),0), 1)                                        AS 承接占比_pct
+FROM order_items oi
+JOIN orders o ON o.id = oi.order_id AND o.deleted_at IS NULL
+WHERE oi.deleted_at IS NULL
+  AND oi.photographer_id IS NOT NULL          -- 已派出的行才算「派单」
+  AND oi.created_at >= :start AND oi.created_at < :end;
+
+-- ── ⑤ 累计处理订单:站上现值 481 笔 ────────────────────────────
+--    口径:订单表中的订单记录总数,覆盖 OTA 与自营双渠道
+--    待定项:是否包含已取消 / 已退款 —— orders.status 无「已取消」态(6 态见 init.sql),
+--            故用 deleted_at 与 payment_status 分别切一刀,三个口径一起给
+SELECT
+  COUNT(*)                                                   AS 口径A_含软删全部,
+  SUM(deleted_at IS NULL)                                    AS 口径B_排除软删,
+  SUM(deleted_at IS NULL AND status = '已完结')               AS 口径C_仅已完结,
+  SUM(deleted_at IS NULL AND channel = 'self')               AS 其中_自营,
+  SUM(deleted_at IS NULL AND channel <> 'self')              AS 其中_OTA平台
+FROM orders;
+
+--    渠道分布(核对「双渠道」表述):
+SELECT channel, COUNT(*) AS 单数 FROM orders WHERE deleted_at IS NULL
+GROUP BY channel ORDER BY 单数 DESC;
+
+-- ── ⑥ 覆盖城市与地区:站上现值 9 地 ────────────────────────────
+--    口径:拍摄地点表中去重后的城市 / 地区数
+--    待定项:是否含已停用地点(is_active = 0)—— 两个口径都给;
+--            并列出实际城市名,核对站上那九项(京都/东京/大阪/奈良/福冈/镰仓/富士山/札幌/小樽)
+SELECT
+  COUNT(DISTINCT city)                                          AS 口径A_含停用,
+  COUNT(DISTINCT CASE WHEN is_active = 1 THEN city END)         AS 口径B_仅启用
+FROM meeting_points WHERE deleted_at IS NULL;
+
+SELECT city, SUM(is_active = 1) AS 启用点位, COUNT(*) AS 全部点位
+FROM meeting_points WHERE deleted_at IS NULL
+GROUP BY city ORDER BY 全部点位 DESC;
+
+--    交叉核对:实际有订单发生的拍摄地(orders.shoot_location 是自由文本,只作参照)
+SELECT region, COUNT(*) AS 单数 FROM orders WHERE deleted_at IS NULL
+GROUP BY region ORDER BY 单数 DESC;
+```
+
+**只读性自检**:上述代码块内 `INSERT` / `UPDATE` / `DELETE` / `DROP` / `ALTER` / `TRUNCATE`
+/ `CREATE` 出现次数 **均为 0**,全部语句以 `SELECT` 开头。
+
+## 八、3b 登记「本轮不做」
+
+`lvpai-console/docs` 内的简历 / 一页纸 / 面试稿 / 功能价值全清单存在**同类失真**
+(仍按「定向单人人可见」的旧口径描述抢单大厅),编号 **D-1 ~ D-13**,
+按可写范围约束**本轮不动**(该仓库本轮零改动),留待下一轮在 `lvpai-console` 内处理。
+相关文件可由 `git show origin/main:docs/...` 只读定位,起点是
+`62011e7 docs: 简历/一页纸/面试稿优势化改写(与网站口径统一)`——
+该提交正是 `cf2-baseline`,即本次回退的父提交,其「与网站口径统一」指的是**改写前**的网站口径。

@@ -826,6 +826,38 @@ summary:hover .mhint { color: var(--accent-2); border-color: var(--accent); back
 .gc-btn.off { background: rgba(255,255,255,.06); color: var(--dimmer); }
 .ph-hint { font-size: 12px; color: var(--dimmer); text-align: center; margin: 12px 0 4px; line-height: 1.5; }
 
+/* ── v22 图 8「v8.6 → v9.1」前后对照:两台手机并排,窄屏自动纵向堆叠 ──
+   ★全部静态样式,零动画零过渡 → prefers-reduced-motion: reduce 下与常态逐字相同★ */
+.phonewrap.ph-2up { flex-wrap: wrap; gap: 24px 22px; align-items: flex-start; }
+.ph-2up .phcol { flex: 1 1 290px; max-width: 330px; min-width: 0; }
+.ph-2up .phone { max-width: none; }
+.ph-era {
+  font-size: 12px; font-weight: 600; line-height: 1.4;
+  margin: 0 0 10px; padding: 3px 11px; border-radius: 20px;
+  display: inline-block; border: 1px solid var(--line);
+  color: var(--dim); background: var(--card);
+}
+.ph-era.old { color: var(--warn); border-color: var(--warn-ln); }
+.ph-era.now { color: var(--accent-2); border-color: var(--accent-ln); }
+.gc-tag.tier { color: var(--dim); border-color: var(--line); }
+.gslot {
+  border: 1px dashed var(--line); border-radius: 10px;
+  padding: 16px 13px; margin: 0 0 12px; text-align: center;
+  font-size: 12px; color: var(--dimmer); line-height: 1.65;
+}
+
+/* ── v22 迭代闭环故事块 ── */
+.iterbox {
+  border: 1px solid var(--line); border-left: 2px solid var(--accent-ln);
+  border-radius: var(--r-sm); background: var(--card);
+  padding: 18px 20px 14px; margin: 26px 0 4px;
+}
+.iterbox > h4 { font-size: 15px; font-weight: 600; margin: 0 0 9px; letter-spacing: .01em; }
+.iterbox > p { margin: 0; color: var(--dim); line-height: 1.85; font-size: 14.5px; }
+.iterbox .moredet { margin-top: 12px; }
+.iterbox .ib-src { font-size: 12.5px; color: var(--dimmer); }
+@media (max-width: 640px) { .iterbox { padding: 15px 15px 12px; } }
+
 /* ─── 十二项差异化 · 图标 + 短句网格(可展开) ─── */
 .diffs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; align-items: start; }
 .dfx { background: var(--card); border: 1px solid var(--line); border-radius: 11px; transition: border-color .18s; }
@@ -3334,7 +3366,7 @@ a.jstep .st-ar { transform: rotate(-45deg); margin-top: -4px; }
 .hcard[href="#top"]     .hc-shot img { object-position: 50% 42%; }
 .hcard[href="#map"]     .hc-shot img { object-position: 50% 50%; }
 .hcard[href="#console"] .hc-shot img { object-position: 50% 46%; }
-.hcard[href="#app"]     .hc-shot img { object-position: 50% 58%; }
+.hcard[href="#app"]     .hc-shot img { object-position: 50% 54%; }   /* v22 换图 app-grab-hall(780×1688):16/9 窗口露出 26.0% 画面高,54% 正好框住「京都·清水寺 ¥680 抢」整张可抢卡 */
 
 /* ─── 2a 章头三件套统一:眉题 → 大标题 → 一行副题,整组居中 ─── */
 section > .wrap > .kicker,

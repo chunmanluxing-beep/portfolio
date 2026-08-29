@@ -52,7 +52,7 @@
       </a>
       <a class="hcard hcard-lg" href="#app">
         <span class="hc-badge">核心主线 · 二</span>
-        <span class="hc-shot"><img src="images/app-grab-hall-2.jpg" alt="" aria-hidden="true" loading="lazy"></span>
+        <span class="hc-shot"><img src="images/app-grab-hall.jpg" alt="" aria-hidden="true" loading="lazy"></span>
         <b class="hc-t">榴档期 App</b>
         <span class="hc-d">摄影师手机上的那一端:报空档、接活、传照片、查收入。</span>
         <span class="hc-go">进入 →</span>
@@ -1001,14 +1001,14 @@
         <label class="lb-back" for="lb-39"><img src="images/console-tier-setting.png" alt="阶梯发布梯队配置(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"></label>
       </div>
     </figure>
-      <p class="dg-cap">上图:评分梯队「阶梯发布」的配置界面,位于运营总控台的发起抢单弹窗内。摄影师端没有这个界面——梯队只体现为「没到点就看不见这个单」。</p>
+      <p class="dg-cap">上图:评分梯队「阶梯发布」的配置界面,位于运营总控台的发起抢单弹窗内。摄影师端没有这个界面——梯队在摄影师那边只体现为一张写着「⏳ 未开放到你的档位」的灰卡:看得见,到点才能抢。</p>
 
       <details class="more">
       <summary><span class="fold-t">另外六条机制</span><span class="fold-n">定向邀请 · 急单通道 · 循环再推 · 寿命锚定 · 可见性分离 · 联动下架</span><span class="mplus" aria-hidden="true"></span></summary>
       <div class="mech">
       <article class="mc">
         <h4>定向邀请</h4>
-        <p>客人指名或需要特定风格时可定向发单:广播池不参与,只有被点名的人收到。能绕过评分与城市,但在职、无档期冲突两道硬闸仍生效;<b>谁没入选必须逐条说明原因</b>,绝不静默丢弃。</p>
+        <p>客人指名或需要特定风格时可定向发单:广播池不参与,<b>只有被点名的人收到推送,也只有被点名的人在大厅里看得到这一单</b>。能绕过评分与城市,但在职、无档期冲突两道硬闸仍生效;<b>谁没入选必须逐条说明原因</b>,绝不静默丢弃。</p>
       </article>
       <article class="mc">
         <h4>急单快速通道</h4>
@@ -1024,7 +1024,7 @@
       </article>
       <article class="mc">
         <h4>可见性与可抢性分离</h4>
-        <p>没资格抢的单<b>照样显示</b>,只变灰卡并说明原因,报酬、城市、日期不遮挡,点击给改进建议。全隐藏则大厅空空如也,<b>真实业务量对供给侧完全不可见</b>。</p>
+        <p>广播单里够不上门槛的那些<b>照样显示</b>,只变灰卡并标出门槛,报酬、城市、日期不遮挡。全隐藏则大厅空空如也,<b>真实业务量对供给侧完全不可见</b>。这条对定向单不适用——被点名给别人的单,整行不下发。</p>
       </article>
       <article class="mc">
         <h4>三方联动自动下架</h4>
@@ -1518,7 +1518,7 @@
     <h2>📱 榴档期 App</h2>
     <p class="lead">钱先写在卡片上,谁先点谁接走——上线两个月接走了三分之一的活。</p>
     <p class="dek">同类排班接单工具默认任务由管理端分配,工具只负责通知与记录,摄影师始终是被安排的一方。</p>
-          <details class="moredet"><summary>展开细节</summary><div class="moredet-b"><p>这套 App 反过来:<b>填了档期才有接单资格</b>,抢单大厅把报酬放在卡片正面,抢不到的灰卡也照常看得见。</p></div></details>
+          <details class="moredet"><summary>展开细节</summary><div class="moredet-b"><p>这套 App 反过来:<b>填了档期才有接单资格</b>,抢单大厅把报酬放在卡片正面,门槛没够上的灰卡也照常看得见。</p></div></details>
 
     <figure class="shotwrap shotwrap-in shot-portrait shotdeck">
       <input type="checkbox" id="lb-43" class="lb-toggle" aria-hidden="true">
@@ -1576,11 +1576,11 @@
     <div class="blk" id="a-hall">
       <h3>二 · 抢单大厅</h3>
       <p>报酬、城市、日期、时长、集合点全部前置,点击即抢;</p>
-          <details class="moredet"><summary>展开细节</summary><div class="moredet-b"><p>抢不了的单也照常显示为灰卡,门槛写在卡上。</p></div></details>
+          <details class="moredet"><summary>展开细节</summary><div class="moredet-b"><p>门槛没够上的单也照常显示为灰卡,门槛写在卡上;被点名给别人的定向单则不进大厅。</p></div></details>
       <ul class="feat">
         <li><b>抢单大厅</b><i>报酬前置、点击即抢,系统保证只有一人成功。</i></li>
-        <li><b>灰卡也看得见</b><i>抢不了的单照样显示,点开还能看完整详情。</i></li>
-        <li><b>评分决定谁先看到</b><i>评分越高越早看到单,最多分 6 档放号。</i></li>
+        <li><b>灰卡也看得见</b><i>门槛没够上的单照样显示,点开还能看完整详情。</i></li>
+        <li><b>评分决定谁先抢到</b><i>评分越高越早解锁,最多分 6 档放号。</i></li>
       </ul>
 
       <figure class="shotwrap shot-portrait">
@@ -1608,10 +1608,10 @@
       <label class="lb-zoom" for="lb-25" title="点击放大">
         <img class="shotimg deck-s deck-s1" src="images/app-grab-hall.png" alt="抢单大厅列表"
              onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.parentElement.style.display='none';this.closest('figure').querySelector('.shot').style.display='flex';}">
-        <img class="shotimg deck-s deck-s2" src="images/app-grab-hall-2.png" alt="抢单大厅 · 可抢卡特写"
+        <img class="shotimg deck-s deck-s2" src="images/app-grab-hall-2.png" alt="抢单大厅 · 别人的定向单灰态卡(v8.6 时期,已回退)"
              onload="this.closest('figure').classList.add('deck-multi','deck-has2')"
              onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.dataset.miss=1;}">
-        <img class="shotimg deck-s deck-s3" src="images/app-grab-hall-3.png" alt="抢单大厅 · 抢单详情页"
+        <img class="shotimg deck-s deck-s3" src="images/app-grab-hall-3.png" alt="定向单详情页 · 底部为定向邀请单灰态(v8.6 时期,已回退)"
              onload="this.closest('figure').classList.add('deck-multi','deck-has3')"
              onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.dataset.miss=1;}">
         <span class="lb-tip" aria-hidden="true">⤢ 点击放大</span>
@@ -1627,10 +1627,10 @@
             </div>
       <div class="lb-overlay">
         <label class="lb-close" for="lb-25" aria-label="关闭大图">✕</label>
-        <label class="lb-back" for="lb-25"><img class="deck-b deck-b1" src="images/app-grab-hall.png" alt="抢单大厅列表(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"><img class="deck-b deck-b2" src="images/app-grab-hall-2.png" alt="抢单大厅 · 可抢卡特写(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"><img class="deck-b deck-b3" src="images/app-grab-hall-3.png" alt="抢单大厅 · 抢单详情页(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"></label>
+        <label class="lb-back" for="lb-25"><img class="deck-b deck-b1" src="images/app-grab-hall.png" alt="抢单大厅列表(放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"><img class="deck-b deck-b2" src="images/app-grab-hall-2.png" alt="抢单大厅 · 别人的定向单灰态卡(v8.6 时期,已回退;放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"><img class="deck-b deck-b3" src="images/app-grab-hall-3.png" alt="定向单详情页 · 底部为定向邀请单灰态(v8.6 时期,已回退;放大查看)" loading="lazy" onerror="if(!this.dataset.r){this.dataset.r=1;this.src=this.src.replace(/\.png$/,'.jpg');}else{this.style.display='none';}"></label>
       </div>
     </figure>
-      <p class="dg-cap">上图可左右切换:整页抢单大厅 → 单张可抢卡 → 抢单详情页(报酬、拍摄地、进店时间、人数、直线距离、拍摄日天气一屏看全)。</p>
+      <p class="dg-cap">上图可左右切换,三张都是真机截图:整页抢单大厅(左上角版本号 <b>v2026.07.29.0</b>)→ 一张<b>没点名给我的定向单</b> → 点开后的详情页(报酬、拍摄地、进店时间、人数、直线距离、拍摄日天气一屏看全)。后两张拍摄于 <b>v2026.08.05.0</b>,底部按钮正是当时的「🎯 定向邀请单」灰态——<b>这个界面已在 2026-08-29 回退</b>:这样的单现在对没被点名的人整行不出现。详情页本身的信息密度没有变,门槛不足与已结束的灰卡照旧点得开。</p>
 
       <figure class="shotwrap shotwrap-in shot-portrait shotdeck">
       <input type="checkbox" id="lb-40" class="lb-toggle" aria-hidden="true">
@@ -1660,9 +1660,11 @@
       <p class="dg-cap">上图可左右切换:已结束的灰卡照常显示报酬与城市,并标出「需★≥5.0」的评分门槛;点开详情信息一样给全,只是按钮变成「已被安排」。</p>
 
       <figure class="fig">
-      <div class="phonewrap">
-        <div class="phone">
-          <div class="ph-bar"><span class="ph-title">🎯 抢单大厅</span><span class="ph-badge">2</span></div>
+      <div class="phonewrap ph-2up">
+        <div class="phcol">
+          <p class="ph-era old">v8.6(2026-08-05)· 已回退</p>
+          <div class="phone">
+          <div class="ph-bar"><span class="ph-title">🎯 抢单大厅</span><span class="ph-badge">1</span></div>
 
           <div class="gcard live">
             <div class="gc-top"><span class="gc-city">京都</span><span class="gc-date">08月14日 10:00</span></div>
@@ -1679,15 +1681,53 @@
             <div class="gc-btn off">暂不可抢</div>
           </div>
 
-          <p class="ph-hint">灰卡可点开看完整详情,报酬与城市照常可见,只是不能抢</p>
+          <p class="ph-hint">点名给别人的单也摆在这里,点得到、抢不着</p>
+          </div>
+        </div>
+        <div class="phcol">
+          <p class="ph-era now">v9.1(2026-08-29)· 现态</p>
+          <div class="phone">
+          <div class="ph-bar"><span class="ph-title">🎯 抢单大厅</span><span class="ph-badge">1</span></div>
+
+          <div class="gcard live">
+            <div class="gc-top"><span class="gc-city">京都</span><span class="gc-date">08月14日 10:00</span></div>
+            <div class="gc-pay">报酬 ¥680</div>
+            <div class="gc-meta">拍摄 120 分钟 ｜ 集合点:祇园四条站</div>
+            <div class="gc-btn">抢</div>
+          </div>
+
+          <div class="gcard grey">
+            <div class="gc-tag tier">⏳ 未开放到你的档位</div>
+            <div class="gc-top"><span class="gc-city">大阪</span><span class="gc-date">08月16日 09:00</span></div>
+            <div class="gc-pay">报酬 ¥720</div>
+            <div class="gc-meta">拍摄 90 分钟 ｜ 集合点:心斋桥</div>
+            <div class="gc-btn off">暂不可抢</div>
+          </div>
+
+          <p class="gslot">原先那张点名给别人的定向单<br>整行不再下发</p>
+
+          <p class="ph-hint">留下的灰卡都还能靠自己够到:到点解锁、把星级提上去</p>
+          </div>
         </div>
       </div>
-      <figcaption><b>图 8 · 抢单大厅界面示意</b>:报酬前置;可抢是蓝卡,没资格是灰卡,但报酬与城市照常可见——看得见才会想争取。</figcaption>
+      <figcaption><b>图 8 · 抢单大厅界面示意(v8.6 → v9.1 前后对照)</b>:报酬一直前置,可抢的是亮卡。左边是 2026-08-05 的做法——点名给别人的定向单也摆在所有人面前;右边是 2026-08-29 回退后的现态——定向单只有被点名的人看得到,留在大厅里的灰卡换成<b>梯队没到点</b>、<b>星级还不够</b>这类靠自己就能够到的门槛。</figcaption>
     </figure>
+
+      <div class="iterbox">
+        <h4>一次「上线 → 观察 → 回退」</h4>
+        <p>「定向单也人人可见」是 v8.6 有意做的设计,业主拍板,理由连同决定一起写进了服务端注释。它在生产里跑了二十四天,暴露出三类问题:旁观者会被弹出一个点了必然被拒的「抢」按钮、已结束的单仍在对所有人下发定向标记、梯队还没解锁的候选人已经读得到客人备注。v9.1 只收窄可见性判据这一处,抢单硬闸与推送受众一行未动。</p>
+        <details class="moredet"><summary>展开细节</summary><div class="moredet-b">
+          <p><b>它本来是有意的,不是漏改。</b>v8.6 正式废止了此前「梯队没解锁就整行不返回」的做法,让定向单与梯队单都进大厅、只用灰态表达抢不了。这个决定和它的理由至今留在服务端注释里,回退时也没有删掉——留着才看得出当初是怎么想的。</p>
+          <p><b>生产里看到三件事。</b>其一,首页的新单横幅不问可抢性,定向单和还没解锁的梯队单照样弹出带「抢」按钮的横幅,点下去必然被服务端硬闸挡回;让人去点一个注定失败的按钮,本身就是骚扰。其二,已经结束的单仍然带着「定向邀请单」这个标记发给城里所有人,这是本不该外流的信息。其三,自由文本(客人备注、拍摄事项、自定义集合点)的脱敏判据只看「是不是候选人」,于是梯队还没轮到的候选人也读得到——这一条是本地实测撞出来的,不是推断。</p>
+          <p><b>回退是外科式的。</b>判据用「点名名单非空」,而不是「是不是急单」——急单里有一种是纯按星级筛的、并不点名,那种必须继续全城可见、星级不足的人看到灰卡。这条业务分型是业主补充的,从代码里推不出来。改动落在已有的连接上:不新增连接、不新增查询参数、不动抢单硬闸、不动推送受众;整次提交只碰两个文件,没有任何数据库迁移。</p>
+          <p><b>验证与回滚锚。</b>先在独立测试库、两个账号(一个被点名、一个没被点名)、六组数据上跑修复前后对照:两张定向单对没被点名的人整行消失,他硬发抢单请求仍被挡回;三张非定向单的返回与修复前逐字不变;一张九天前发布、昨天才被抢走的单在修复后重新回到已结束灰区;三个自由文本字段在未解锁候选和已结束单的非抢到者那里都为空,抢到者本人仍看得到。主库 86 张表的行数与校验和前后零差异。上一个提交打了标签作回滚锚,回退只需切回去。</p>
+          <p class="ib-src">上述事实的出处逐条列在仓库 <b>README</b> 的 v22 章「1c 事实基准出处表」,每条给到 git 命令与文件行号。</p>
+        </div></details>
+      </div>
 
       <details class="more">
         <summary><span class="fold-t">抢单大厅的三条机制</span><span class="fold-n">公平性由系统保证 · 可见性与可抢性分离 · 评分梯队</span><span class="mplus" aria-hidden="true"></span></summary>
-        <div class="foldbody"><div class="advs"><article class="adv"><h4>二 · 抢单大厅:公平性由系统保证</h4><p>报酬、城市、日期、时长、集合点全部前置,点击即抢;多人同抢恰好一人成功,输的人立即收到提示。</p><p class="wo">回群里喊"我接",时间戳只精确到秒,"先到先得"成空话,不满会转向平台。</p></article><article class="adv"><h4>三 · 可见性与可抢性分离</h4><p>抢不了的单照常显示为灰卡,报酬与城市不遮挡,并标出这单的门槛(如「需★≥5.0」);<b>点开还能看到这个订单的完整详情</b>——拍摄地、时间、拍摄时长、进店时间、人数、集合点、距离都在,只是底部按钮是「已被安排」而不是「抢」。看得见才会想争取。</p><p class="wo">大厅空空如也,摄影师会以为平台没有单。</p></article><article class="adv"><h4>四 · 评分梯队:好评的人优先看到单</h4><p>评分高的人更早看到单(最多 6 档分层);客人指名或需要特定风格时可定向邀请。</p><p class="wo">接单只拼手速,与服务质量无关,好摄影师没理由维持好评。</p></article></div></div>
+        <div class="foldbody"><div class="advs"><article class="adv"><h4>二 · 抢单大厅:公平性由系统保证</h4><p>报酬、城市、日期、时长、集合点全部前置,点击即抢;多人同抢恰好一人成功,输的人立即收到提示。</p><p class="wo">回群里喊"我接",时间戳只精确到秒,"先到先得"成空话,不满会转向平台。</p></article><article class="adv"><h4>三 · 可见性与可抢性分离</h4><p>门槛没够上的单(星级不足、梯队没到点)和已结束的单照常显示为灰卡,报酬与城市不遮挡,并标出这单的门槛(如「需★≥5.0」);<b>点开还能看到这个订单的完整详情</b>——拍摄地、时间、拍摄时长、进店时间、人数、集合点、距离都在,只是底部按钮是「已被安排」而不是「抢」。看得见的都还能靠自己争取。被点名给别人的定向单不在此列:2026-08-29 起整行不下发。</p><p class="wo">大厅空空如也,摄影师会以为平台没有单。</p></article><article class="adv"><h4>四 · 评分梯队:好评的人优先轮到</h4><p>评分高的人更早解锁,没到点的人看到的是「⏳ 未开放到你的档位」灰卡(最多 6 档分层);客人指名或需要特定风格时可定向邀请,那种单只有被点名的人看得到。</p><p class="wo">接单只拼手速,与服务质量无关,好摄影师没理由维持好评。</p></article></div></div>
       </details>
     </div>
 
