@@ -527,6 +527,21 @@ v18-B 把全站从十一屏重排成七屏,图位的**物理位置全换了屏**
 
 ---
 
+## v26b 变更(2026-08-30)
+
+- **新增 3 个文件、覆盖 1 个,零删除**:
+  `app-income-bill.jpg`(124 KB,新)、`app-magic-link.jpg`(154 KB,新)、
+  `guest-delivery-live.jpg`(197 KB,新)、`app-work-review.jpg`(130 KB,覆盖同名旧图)。
+  目录文件数 34 → **37**,体积 6.01 → **6.34 MB**。
+- **`guest-delivery-page.jpg` 保留未删**——虽然 `#c-deliver` 轮播首页的引用已交给
+  `guest-delivery-live`,但它仍被 `#top` 两部演示影片引用(受保护),必须留在库里。
+- **隐私审图拦下 3 张,未入库**:
+  `console-orders-list`(客户姓名/国际电话/OTA 单号全部明文)、
+  `guest-photo-select-2` 与 `guest-delivery-page-2`(均含完整免登录交付链接
+  `https://liulianbot.top/delivery/<32位令牌>` 明文)。补码后重投即可。
+- 桌面原件全程只读:未移动、未改名、未删除;入库副本经 `sips` 等比压缩,只压不裁。
+- iCloud `dataless` 阻断本轮用 `/usr/bin/brctl download` 逐个触发后解除。
+
 ## v26 变更(2026-08-30)
 
 - **`images/` 目录本轮零删除、零改动、零新增**,34 个截图文件一个没动。
