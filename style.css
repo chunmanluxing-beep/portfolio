@@ -3710,116 +3710,74 @@ section { padding: clamp(88px, 10vh, 136px) 0; }
 .hc-shot.hc-miss img { display: none; }
 
 /* ═══════════════════════════════════════════════════════════════════════
-   v29 · 首页五张章节卡的纯 CSS 示意动画
-   承载:五个 .hc-ph 缺图槽内的内联 SVG(零 <text>、零新增资源、零脚本)
+   v30 · 首页五张章节卡的真截图微影片(推翻 v29 纯矢量示意动画)
+   范式沿用站上两部演示影片(.film-slot / .fm-stage):
+     真截图图层 + 极缓慢推近与平移 + 交叉淡化 + 暗角遮罩
+   素材:images/hc-<卡名>-<序号>.jpg —— 由仓库内已过隐私审图的真实界面截图
+         本地裁剪派生,每卡两张,只呈现信息密集区
    自动顶替:images/home-card-*.{png,jpg} 一旦存在,onerror 不触发 →
-             .hc-shot 不带 .hc-miss → .hc-ph 保持 display:none → 动画自动隐藏
-   令牌复用:色仅取 --accent / --accent-2 / --accent-ln / --line / --dimmer;
-             线宽 1.6 / 圆角沿 .hc-shot 的 9px;缓动统一 cubic-bezier(.22,.61,.36,1)
-   动效纪律:只动 transform 与 opacity;单轮 8–12s;五卡 delay 错峰 ≥1.6s
+             .hc-shot 不带 .hc-miss → .hc-ph 保持 display:none → 微影片自动隐藏
+   令牌复用:色仅取 --bg-deep / --line;圆角沿 .hc-shot 的 9px;
+             时长与缓动沿 .fm-stage 的 14s + linear
+   动效纪律:只动 transform 与 opacity;每层单轮 14s;五卡错峰 2.4s
+   交叉淡化:两层相差半轮,淡出淡入曲线互为镜像,同一时刻不透明度之和恒为 1
    ═══════════════════════════════════════════════════════════════════════ */
-.hc-ph { padding: 0; }                       /* 让 SVG 铺满缺图槽 */
-.hcv { display: block; width: 100%; height: 100%; }
-.hcv path, .hcv rect, .hcv circle { vector-effect: non-scaling-stroke; }
-.hcv .hcv-st path   { fill: none; stroke: var(--line); stroke-width: 1.6; stroke-linecap: round; }
-.hcv .hcv-st circle { fill: none; stroke: var(--line); stroke-width: 1.6; }
-.hcv .hcv-st rect   { fill: none; stroke: var(--line); stroke-width: 1.6; }
-.hcv-hub  { fill: var(--accent-bg); stroke: var(--accent-ln); stroke-width: 1.6; }
-.hcv-in, .hcv-out, .hcv-run, .hcv-up, .hcv-dn { fill: var(--accent); }
-.hcv-nd   { fill: var(--accent); opacity: 0; }
-.hcv-wr   { fill: none; stroke: var(--accent-ln); stroke-width: 1.6; opacity: 0; }
-.hcv-bar  { fill: var(--accent-bg); stroke: var(--accent-ln); stroke-width: 1.6;
-            transform-box: fill-box; transform-origin: 50% 100%; }
-.hcv-tick { fill: none; stroke: var(--accent-2); stroke-width: 2.2;
-            stroke-linecap: round; stroke-linejoin: round;
-            transform-box: fill-box; transform-origin: 50% 50%; }
-.hcv-lk   { fill: var(--accent-bg); stroke: var(--accent-ln); stroke-width: 1.6; }
-.hcv-br   { fill: none; stroke: var(--accent-2); stroke-width: 2; stroke-linecap: round; }
-
-/* ── 静止基线(= reduced-motion 下的首帧,读起来是一张完整示意图)── */
-.hcv-in, .hcv-out { opacity: .9; }
-.hcv-run { opacity: 1; }
-.hcv-up, .hcv-dn { opacity: 1; }
-.hcv-bar { opacity: .95; }
-.hcv-tick { opacity: 1; }
-.hcv-lk  { opacity: 1; }
-
-@media (prefers-reduced-motion: no-preference) {
-  /* 卡一 · 汇入枢纽再分发 —— 10s */
-  @keyframes hcTopIn  { 0%{transform:translateX(0);opacity:0}  6%{opacity:.95}
-                        34%{transform:translateX(44px);opacity:.95} 40%{transform:translateX(46px);opacity:0} 100%{opacity:0} }
-  @keyframes hcTopOut { 0%,40%{transform:translateX(0);opacity:0} 46%{opacity:.95}
-                        76%{transform:translateX(40px);opacity:.95} 82%,100%{transform:translateX(42px);opacity:0} }
-  @keyframes hcHub    { 0%,32%{transform:scale(1)} 40%{transform:scale(1.06)} 50%,100%{transform:scale(1)} }
-  .hcv-top .hcv-in  { animation: hcTopIn  10s cubic-bezier(.22,.61,.36,1) infinite; }
-  .hcv-top .hcv-out { animation: hcTopOut 10s cubic-bezier(.22,.61,.36,1) infinite; }
-  .hcv-top .hcv-hub { transform-box: fill-box; transform-origin: 50% 50%;
-                      animation: hcHub 10s cubic-bezier(.22,.61,.36,1) infinite; }
-  .hcv-top .i2 { animation-delay: .18s; } .hcv-top .i3 { animation-delay: .36s; } .hcv-top .i4 { animation-delay: .54s; }
-  .hcv-top .o2 { animation-delay: .16s; } .hcv-top .o3 { animation-delay: .32s; }
-
-  /* 卡二 · 沿主干线逐节点推进 —— 11s,delay 1.6s */
-  @keyframes hcRun { 0%{transform:translateX(0)} 8%{transform:translateX(0)}
-                     20%{transform:translateX(21px)} 32%{transform:translateX(42px)}
-                     44%{transform:translateX(63px)} 56%{transform:translateX(84px)}
-                     68%{transform:translateX(105px)} 80%,100%{transform:translateX(124px)} }
-  @keyframes hcNode { 0%,4%{opacity:0} 10%{opacity:1} 88%{opacity:1} 96%,100%{opacity:0} }
-  .hcv-map .hcv-run { animation: hcRun 11s cubic-bezier(.22,.61,.36,1) infinite; animation-delay: 1.6s; }
-  .hcv-map .hcv-nd  { animation: hcNode 11s linear infinite; }
-  .hcv-map .n1{animation-delay:1.6s}   .hcv-map .n2{animation-delay:2.92s} .hcv-map .n3{animation-delay:4.24s}
-  .hcv-map .n4{animation-delay:5.56s}  .hcv-map .n5{animation-delay:6.88s} .hcv-map .n6{animation-delay:8.2s}
-  .hcv-map .n7{animation-delay:9.52s}
-
-  /* 卡三 · 上行等待、下行直穿 —— 9s,delay 3.2s */
-  @keyframes hcUp  { 0%{transform:translateX(0)} 14%{transform:translateX(0)} 22%{transform:translateX(30px)}
-                     36%{transform:translateX(30px)} 44%{transform:translateX(60px)} 58%{transform:translateX(60px)}
-                     66%{transform:translateX(90px)} 80%{transform:translateX(90px)} 92%,100%{transform:translateX(120px)} }
-  @keyframes hcDn  { 0%{transform:translateX(0);opacity:0} 6%{opacity:1}
-                     72%{transform:translateX(120px);opacity:1} 80%,100%{transform:translateX(120px);opacity:0} }
-  @keyframes hcWait{ 0%,10%{transform:translateX(0) scale(.6);opacity:0} 16%{opacity:.9}
-                     22%{transform:translateX(0) scale(1);opacity:0}
-                     32%{transform:translateX(30px) scale(.6);opacity:0} 38%{opacity:.9}
-                     44%{transform:translateX(30px) scale(1);opacity:0}
-                     54%{transform:translateX(60px) scale(.6);opacity:0} 60%{opacity:.9}
-                     66%{transform:translateX(60px) scale(1);opacity:0}
-                     76%{transform:translateX(90px) scale(.6);opacity:0} 82%{opacity:.9}
-                     88%,100%{transform:translateX(90px) scale(1);opacity:0} }
-  .hcv-why .hcv-up { animation: hcUp   9s cubic-bezier(.22,.61,.36,1) infinite; animation-delay: 3.2s; }
-  .hcv-why .hcv-dn { animation: hcDn   9s cubic-bezier(.22,.61,.36,1) infinite; animation-delay: 3.2s; }
-  .hcv-why .hcv-wr { transform-box: fill-box; transform-origin: 50% 50%;
-                     animation: hcWait 9s linear infinite; animation-delay: 3.2s; }
-
-  /* 卡四 · 柱体依次生长,末尾落勾 —— 8.5s,delay 4.8s */
-  @keyframes hcBar  { 0%,6%{transform:scaleY(.06);opacity:.55} 26%{transform:scaleY(1);opacity:.95}
-                      84%{transform:scaleY(1);opacity:.95} 96%,100%{transform:scaleY(.06);opacity:.55} }
-  @keyframes hcTick { 0%,56%{transform:scale(.5);opacity:0} 66%{transform:scale(1.08);opacity:1}
-                      72%{transform:scale(1);opacity:1} 88%{opacity:1} 96%,100%{transform:scale(.5);opacity:0} }
-  .hcv-data .hcv-bar  { animation: hcBar 8.5s cubic-bezier(.22,.61,.36,1) infinite; animation-delay: 4.8s; }
-  .hcv-data .b2{animation-delay:5.02s} .hcv-data .b3{animation-delay:5.24s}
-  .hcv-data .b4{animation-delay:5.46s} .hcv-data .b5{animation-delay:5.68s}
-  .hcv-data .hcv-tick { animation: hcTick 8.5s cubic-bezier(.22,.61,.36,1) infinite; animation-delay: 4.8s; }
-
-  /* 卡五 · 检查链依次亮起,末端合拢 —— 9.5s,delay 6.4s */
-  @keyframes hcLink { 0%,8%{opacity:.22;transform:scale(.94)} 22%{opacity:1;transform:scale(1)}
-                      82%{opacity:1;transform:scale(1)} 94%,100%{opacity:.22;transform:scale(.94)} }
-  @keyframes hcBrL  { 0%,62%{transform:translateX(0);opacity:0} 70%{opacity:1}
-                      80%{transform:translateX(5px);opacity:1} 92%,100%{transform:translateX(5px);opacity:0} }
-  @keyframes hcBrR  { 0%,62%{transform:translateX(0);opacity:0} 70%{opacity:1}
-                      80%{transform:translateX(-5px);opacity:1} 92%,100%{transform:translateX(-5px);opacity:0} }
-  .hcv-how .hcv-lk { transform-box: fill-box; transform-origin: 50% 50%;
-                     animation: hcLink 9.5s cubic-bezier(.22,.61,.36,1) infinite; animation-delay: 6.4s; }
-  .hcv-how .k2{animation-delay:6.68s} .hcv-how .k3{animation-delay:6.96s}
-  .hcv-how .k4{animation-delay:7.24s} .hcv-how .k5{animation-delay:7.52s}
-  .hcv-how .br-l { animation: hcBrL 9.5s cubic-bezier(.22,.61,.36,1) infinite; animation-delay: 6.4s; }
-  .hcv-how .br-r { animation: hcBrR 9.5s cubic-bezier(.22,.61,.36,1) infinite; animation-delay: 6.4s; }
-
-  .hc-ph { will-change: transform; }        /* 仅容器一层 */
+.hc-ph { padding: 0; }                       /* 让影片铺满缺图槽 */
+.hcf {
+  --hcd: 14s;
+  overflow: hidden; contain: paint;
+  border: 1px solid var(--line); background: var(--bg-deep);
+}
+.hcf-l { position: absolute; inset: 0; display: block; opacity: 0; }
+.hcf-l.f1 { opacity: 1; }                    /* 静止基线 = reduced-motion 首帧 */
+.hcard .hc-shot .hcf-l img {
+  display: block; width: 100%; height: 100%;
+  object-fit: cover; object-position: 50% 50%;
+}
+.hcf-vig {                                   /* 顶部渐变遮罩 + 四周暗角 */
+  position: absolute; inset: 0; display: block; z-index: 2; pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(10,8,5,.58), rgba(10,8,5,0) 36%),
+    radial-gradient(116% 116% at 50% 46%, rgba(10,8,5,0) 32%, rgba(10,8,5,.72) 100%);
 }
 
-/* ── 窄屏简化:降低幅度、减少同时在动的元素,不隐藏整段动画 ── */
+/* 每卡两层的推近方向各异(位移量均 ≤2.4%,scale 1.06 下留有余量不露边) */
+.hcf-top  .f1 { --tx: -1.6%; --ty: -1.0%; }  .hcf-top  .f2 { --tx:  1.4%; --ty:  1.2%; }
+.hcf-map  .f1 { --tx:  0.0%; --ty: -2.2%; }  .hcf-map  .f2 { --tx:  0.0%; --ty:  2.2%; }
+.hcf-why  .f1 { --tx: -2.0%; --ty:  0.6%; }  .hcf-why  .f2 { --tx:  1.8%; --ty: -0.8%; }
+.hcf-data .f1 { --tx:  1.8%; --ty: -1.2%; }  .hcf-data .f2 { --tx: -1.6%; --ty: -1.4%; }
+.hcf-how  .f1 { --tx: -1.2%; --ty:  1.8%; }  .hcf-how  .f2 { --tx:  1.6%; --ty:  1.0%; }
+
+/* 五卡错峰:第一层 d1,第二层 d1 − 7s(半轮,与另一层严格互补) */
+.hcf-top  { --d1:  0.0s; --d2:  -7.0s; }
+.hcf-map  { --d1: -2.4s; --d2:  -9.4s; }
+.hcf-why  { --d1: -4.8s; --d2: -11.8s; }
+.hcf-data { --d1: -7.2s; --d2: -14.2s; }
+.hcf-how  { --d1: -9.6s; --d2: -16.6s; }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* 一轮 = 出画期推近 + 隐蔽期归位;两层相差半轮,淡出淡入窗口严格重叠 */
+  @keyframes hcfKen {
+    0%    { opacity: 1;   transform: scale(1.000) translate(0, 0); }
+    46%   { opacity: 1; }
+    47.2% { opacity: .86; }
+    48%   { opacity: .5; }                 /* 交叉点:两层各半,只停留一瞬 */
+    48.8% { opacity: .14; }
+    50%   { opacity: 0;   transform: scale(1.060) translate(var(--tx, 0%), var(--ty, 0%)); }
+    56%   { opacity: 0;   transform: scale(1.000) translate(0, 0); }
+    96%   { opacity: 0;   transform: scale(1.000) translate(0, 0); }
+    97.2% { opacity: .14; }
+    98%   { opacity: .5; }
+    98.8% { opacity: .86; }
+    100%  { opacity: 1;   transform: scale(1.000) translate(0, 0); }
+  }
+  .hcf .f1 { animation: hcfKen var(--hcd) linear infinite; animation-delay: var(--d1); }
+  .hcf .f2 { animation: hcfKen var(--hcd) linear infinite; animation-delay: var(--d2); }
+  .hcf-l { will-change: transform, opacity; }
+}
+
+/* ── 窄屏简化:放慢一档、去掉平移只留推近,不隐藏整段影片 ── */
 @media (max-width: 640px) {
-  .hcv-map .n2, .hcv-map .n4, .hcv-map .n6 { animation: none; opacity: 0; }
-  .hcv-why .hcv-wr { animation: none; opacity: 0; }
-  .hcv-data .b2, .hcv-data .b4 { animation-delay: 4.8s; }
-  .hcv-how .k2, .hcv-how .k4 { animation-delay: 6.4s; }
+  .hcf { --hcd: 16s; }
+  .hcf .hcf-l { --tx: 0%; --ty: 0%; }
 }
