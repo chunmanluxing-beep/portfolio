@@ -3781,3 +3781,142 @@ section { padding: clamp(88px, 10vh, 136px) 0; }
   .hcf { --hcd: 16s; }
   .hcf .hcf-l { --tx: 0%; --ty: 0%; }
 }
+
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   v31 · 手机版布局优化(普查驱动;全部落在窄屏分支内,≥769px 一行不受影响)
+   普查口径:360×800 / 390×844 / 430×932,真机 UA·DPR3·isMobile·hasTouch,
+             details 全收与全开各测一遍。详见 README v31 章的普查全表。
+   本轮零 HTML 改动、零新增资源、零脚本、零文案变动。
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+
+  /* ── ① 触控尺寸:把 <44×44 的可点控件补足到 ≥44×44 ── */
+
+  /* 轮播翻页点 26×26 → 44×44(实测 32 个,最多 6 页;超宽时沿用既有 flex-wrap) */
+  .car-nav { gap: 8px; margin-top: 12px; }
+  .car-nav label {
+    min-width: 44px; height: 44px; line-height: 42px; border-radius: 22px;
+    padding: 0 10px; font-size: 14px;
+  }
+
+  /* details 摘要行:最矮的一类实测 31.3px */
+  summary { min-height: 44px; }
+
+  /* 顶栏:品牌块高 28px、最窄链接宽 31.3px */
+  .navhome { min-height: 44px; }
+  .topnav ul { gap: 10px; }
+  .topnav a { padding: 11px 10px; min-width: 44px; }
+
+  /* 独立成行/句尾的功能性链接:内联盒高 16–18px → 44px
+     (句子内部的 .storelink 属 WCAG 2.5.8 内联例外,不动,见 README) */
+  footer .contact a, .pointto a, .st-more a {
+    display: inline-block; padding: 13px 0; line-height: 18px;
+  }
+
+  /* 灯箱开图键:label 为 inline 盒包 block 图,自身盒实测仅 2px 高 */
+  .lb-zoom { display: block; }
+
+  /* ── ③ 正文字号回到 ≥15px ──
+     窄屏原有的 768px 分支把大量正文压到 12–14.5px;这里逐类抬回 15px。
+     只抬"叙述性正文",辅助信息(图注/来源/图例/影片内部微件)另行处理。 */
+  .mc p, .dfx .mdet p, .adv p, .aic p, .rule p, .tn p, .append p,
+  .iterbox > p, .buildnote p, .whoprob p,
+  .case p:not(.lbl):not(.idx),
+  .qa-a, .kd-a, .st-body > p, .sf-panel > p, .fm-panel > p,
+  .pts li, .md-pts li, .aic ul li, .vs-serial li,
+  .screenlead, .case-pain, .case-res, .pointto, .pointto.pt-next, .aiend,
+  .mr-note, .st-desc, .kb-txt, .sf-fact,
+  .r-pain, .r-gain, .md-lead, .vs-title,
+  .dek, .dek.small, .hh-tag, .fs-sub, .hc-d, .grouptitle {
+    font-size: 15px;
+  }
+  .hhgrid-sub .hc-d { font-size: 15px; min-height: 0; }
+  .hcard-lg .hc-d   { font-size: 15px; }
+
+  /* 辅助信息不并入正文档位,只从 12px 抬到 13px,保住视觉层级 */
+  .figcap, .kpi-cal > summary, .mhint, .modhint, .dg-cap, .films-note,
+  .kd-formula, .kd-todo, .khint, .kb-note, .odp-steps li {
+    font-size: 13px;
+  }
+
+  /* ── ⑤ 灯箱:窄屏改为 1:1 原尺寸可拖动查看 ──
+     实测 v30 灯箱在 390 下只放大 1.03–1.35 倍,放大后画面仍缩 3.4–4.4 倍,
+     等于"点了等于没点"。改为原尺寸 + 可滚动容器,截图内容真正可读。 */
+  .lb-overlay {
+    padding: 0; overflow: auto; overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    align-items: flex-start; justify-content: flex-start;
+  }
+  .lb-back {
+    width: max-content; height: max-content; min-width: 100%; min-height: 100%;
+    align-items: flex-start; justify-content: flex-start;
+    padding: 56px 12px 56px;
+  }
+  .lb-back img {
+    max-width: none; max-height: none; width: auto; height: auto;
+    border-radius: 6px;
+  }
+  .lb-close {
+    position: fixed; top: 10px; right: 10px; z-index: 210;
+    width: 46px; height: 46px; line-height: 44px;
+    background: rgba(8,7,5,.9);
+  }
+  /* 滚动提示由 CSS 生成:不进 DOM 文本,全展开字数不受影响 */
+  .lb-overlay::after {
+    content: "拖动查看原图 · 点 ✕ 关闭";
+    position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%);
+    z-index: 210; padding: 7px 14px; border-radius: 999px;
+    font-size: 12px; line-height: 1.4; color: var(--dim);
+    background: rgba(8,7,5,.9); border: 1px solid var(--line);
+    pointer-events: none;
+  }
+
+  /* ── ⑥ 窄屏章节导航:顶栏已是 sticky 且可横滑,补两处缺口 ── */
+
+  /* 缺口一:横滑无提示(实测内容宽 536px,可视宽仅 234–304px) */
+  .navwrap { position: relative; }
+  .navwrap::after {
+    content: ""; position: absolute; right: 0; top: 0; bottom: 0; width: 36px;
+    pointer-events: none;
+    background: linear-gradient(90deg, rgba(11,13,18,0), rgba(11,13,18,.94));
+  }
+  .topnav ul { scroll-snap-type: x proximity; scroll-padding-left: 12px; }
+  .topnav li { scroll-snap-align: start; }
+
+  /* 缺口二:当前章不可辨(实测 topnav_current_marker=false)。
+     顶栏排在各章之前,兄弟选择器够不着,故用滚动驱动时间线 +
+     timeline-scope 提升作用域。不支持的浏览器上静默降级为 v30 现状。 */
+  body {
+    timeline-scope: --m-top, --m-map, --m-console, --m-app, --m-why, --m-data, --m-how;
+  }
+  #top { view-timeline-name: --m-top; }
+  #map { view-timeline-name: --m-map; }
+  #console { view-timeline-name: --m-console; }
+  #app { view-timeline-name: --m-app; }
+  #why { view-timeline-name: --m-why; }
+  #data { view-timeline-name: --m-data; }
+  #how { view-timeline-name: --m-how; }
+  @keyframes navOn { from, to { color: var(--accent-2); border-bottom-color: var(--accent); } }
+  .topnav a[href="#top"], .topnav a[href="#map"], .topnav a[href="#console"],
+  .topnav a[href="#app"], .topnav a[href="#why"], .topnav a[href="#data"],
+  .topnav a[href="#how"] { animation: navOn linear none; animation-range: contain 0% contain 100%; }
+  .topnav a[href="#top"]     { animation-timeline: --m-top; }
+  .topnav a[href="#map"]     { animation-timeline: --m-map; }
+  .topnav a[href="#console"] { animation-timeline: --m-console; }
+  .topnav a[href="#app"]     { animation-timeline: --m-app; }
+  .topnav a[href="#why"]     { animation-timeline: --m-why; }
+  .topnav a[href="#data"]    { animation-timeline: --m-data; }
+  .topnav a[href="#how"]     { animation-timeline: --m-how; }
+}
+
+/* ── ⑤ 缩略图可读性:窄屏回收容器内边距,把有效画幅让给图 ── */
+@media (max-width: 640px) {
+  .wrap  { padding-left: 14px; padding-right: 14px; }
+  .blk   { padding-left: 10px; }
+  .kdet  { padding-left: 10px; padding-right: 10px; }
+  .kpis .kdet { padding-left: 8px; padding-right: 8px; }
+  .pg-por .shotimg { max-height: 72vh; }
+}
