@@ -3920,3 +3920,261 @@ section { padding: clamp(88px, 10vh, 136px) 0; }
   .kpis .kdet { padding-left: 8px; padding-right: 8px; }
   .pg-por .shotimg { max-height: 72vh; }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   v31 · 对比图并排 + 纵向瘦身(业主真机裁决驱动)
+   ① 所有「左右对照」语义的块在 ≤768px 恢复并排,不再上下堆叠;
+      栏内靠字号/内边距/间距等比缩小换取「一屏看全」,一个字不删。
+      对照块内的图注性文字下限 11px;块外正文仍 ≥15px(v31 上一段的成果)。
+   ② 纵向瘦身:压缩区块内边距、连接层高度、竖图取景高度。
+   ③ 数值与单位 white-space: nowrap,杜绝「23 分钟」被折成两行。
+   全部落在窄屏分支内,≥769px 一行不受影响。
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+
+  /* ───────── ① 对照块恢复并排 ───────── */
+
+  /* 图 4 · 建单流程对比(左传统 / 右系统) */
+  .build { grid-template-columns: 1fr 1fr; gap: 7px; }
+  .bd-col { padding: 7px 6px; }
+  .bd-title { font-size: 11px; margin: 0 0 5px; line-height: 1.35; }
+  .bd-steps li { font-size: 11px; line-height: 1.35; padding: 4px 5px; margin-bottom: 3px; gap: 4px; }
+  .bs-n { width: 15px; height: 15px; line-height: 14px; font-size: 9.5px; flex: 0 0 15px; }
+  .bs-b b { font-size: 11px; line-height: 1.35; }
+  .bs-b i { font-size: 10.5px; line-height: 1.28; margin-top: 1px; }
+  .bs-tool, .bs-flag { font-size: 9.5px; padding: 1px 5px; }
+  .bs-rep { font-size: 9.5px; margin-top: 3px; line-height: 1.3; padding: 2px 6px; }
+  .bd-sum { font-size: 10.5px; padding: 5px; margin-top: 5px; line-height: 1.35; }
+  .bd-delta { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+  .bdd { padding: 8px 9px; }
+  .bdd b { font-size: 15px; white-space: nowrap; margin-bottom: 2px; }
+  .bdd span { font-size: 10.5px; line-height: 1.4; }
+
+  /* 图 5 · 派单模式对比(左串行 / 右并行) */
+  .vs { grid-template-columns: 1fr 1fr; gap: 7px; }
+  .vs-col { padding: 11px 8px; }
+  .vs-title { font-size: 11.5px; margin: 0 0 9px; }
+  .vs-actor { font-size: 11px; padding: 5px 7px; margin-bottom: 9px; }
+  /* ol 从未被重置(全站只重置了 ul):UA 默认的列表标记与 40px 缩进要清掉 */
+  .vs-serial { list-style: none; margin: 0; padding: 0; }
+  .vs-serial li { font-size: 11px; gap: 3px 4px; margin-bottom: 6px; flex-wrap: wrap; }
+  .vs-serial .t { flex: 0 0 auto; white-space: nowrap; }
+  .vs-serial .line { min-width: 5px; }
+  .vs-serial .p { padding: 2px 4px; font-size: 10.5px; min-width: 0; }
+  .vs-serial .res { font-size: 10px; flex: 0 1 auto; min-width: 0; }
+  .vs-fan { height: 14px; }
+  .vs-parallel { gap: 3px; }
+  .vs-parallel .p { font-size: 10.5px; padding: 5px 0; }
+  .vs-win { font-size: 11px; }
+  .vs-foot { font-size: 11px; line-height: 1.5; }
+  .vs-crawl { left: 3px; width: 5px; height: 5px; }
+
+  /* 图 9 · 人工介入次数对比(七环节恢复横排,两行才能上下对照) */
+  .hd-row { padding: 11px 9px; }
+  .hd-head { margin: 0 0 9px; gap: 7px; }
+  .hd-name { font-size: 11.5px; }
+  .hd-total, .lg { font-size: 10.5px; }
+  .hd-track { grid-template-columns: repeat(7, 1fr); gap: 3px; }
+  .hd-cell { display: block; text-align: center; padding: 6px 1px; }
+  .hd-stage { flex: none; display: block; font-size: 10px; margin: 0 0 6px; }
+  .hd-dots { justify-content: center; gap: 3px; min-height: 7px; }
+  .hd-dots i { width: 6px; height: 6px; }
+  .hd-auto { margin-top: 5px; font-size: 10px; }
+
+  /* #why · 环节对照表(表头 3 格 + 4 行 × 3 格 = 十二格):传统 / 本系统 并排 */
+  .cmp-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+    padding: 10px 11px; margin-bottom: 8px;
+  }
+  .cmp-row .ph1 { grid-column: 1 / -1; font-size: 12.5px; margin-bottom: 2px; }
+  .cmp-row .ph2, .cmp-row .ph3 { font-size: 11px; line-height: 1.55; }
+  .cmp-row .ph2::before { font-size: 10px; margin-bottom: 2px; }
+  .cmp-row .ph3::before { font-size: 10px; margin: 0 0 2px; }
+
+  /* 图 1 · 双端界面并排(总控台 | 中缝 | App 三栏恢复) */
+  .mr-row { grid-template-columns: 1fr 40px 1fr; gap: 5px; margin-bottom: 5px; border: none; border-radius: 0; overflow: visible; }
+  .mrc { padding: 7px 8px; font-size: 11px; line-height: 1.5; border: 1px solid var(--line-soft); border-radius: 7px; }
+  .mrc.ops::before, .mrc.app::before { font-size: 10px; }
+  .mrc.app { text-align: center; }
+  .mrc.mid { flex-direction: column; flex-wrap: nowrap; gap: 3px; padding: 4px 1px; background: transparent; }
+  .mrc.mid em { font-size: 9.5px; font-style: normal; line-height: 1.2; }
+  .mrc.mid .mid-note { font-size: 9px; line-height: 1.25; text-align: center;
+                       width: 100%; align-self: stretch; box-sizing: border-box; }
+  .mrc.mid .mrline { width: 100%; }
+  .mrc.mid.blocked::before { width: 100%; }
+  .mr-tags i { font-size: 10.5px; }
+
+  /* 图 0 · 系统全景:两源并排、两端并排(纵向立刻减半) */
+  .sf-row-src, .sf-row-ends { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .sf-src { padding: 8px 8px; font-size: 11.5px; line-height: 1.4; }
+  .sf-src i { font-size: 10.5px; margin-top: 4px; }
+  .sf-end { padding: 9px 8px 8px; line-height: 1.4; }
+  .sf-end i, .sf-end em, .sf-base { font-size: 10.5px; }
+  .sf-conv { height: 34px; }
+  .cv-mid { height: 34px; }
+  .cv-lab { top: 8px; font-size: 10.5px; padding: 2px 7px; }
+  .sf-hub { padding: 9px 9px; }
+  .sf-hub b { margin: 5px 0 3px; font-size: 14px; }
+  .sf-hub .sfico { width: 34px; height: 34px; }
+  .sf-dist { padding: 6px 0; gap: 5px; }
+  .ln-lab { font-size: 10.5px; padding: 5px 9px; }
+  .sf-into { height: 18px; }
+  .sf-dist { gap: 4px; padding: 4px 0; }
+  .sf-panel { padding: 10px; }
+
+  /* 图 6 · 抢单流转动线:六节点由竖排改三列两行 */
+  .pipe { flex-direction: row; flex-wrap: wrap; gap: 4px 0; }
+  .pp { flex: 1 1 28%; min-height: 0; padding: 10px 6px; }
+  .pp b { font-size: 11.5px; margin-bottom: 5px; }
+  .pn { width: 18px; height: 18px; font-size: 10.5px; margin-bottom: 5px; }
+  .pm { font-size: 10px; margin-bottom: 4px; }
+  .pp i { font-size: 10.5px; line-height: 1.4; }
+  .pa { flex: 0 0 8px; }
+
+  /* 栏内防溢出:窄栏里的 flex 子项一律允许收缩与换行,内容不越界压到邻栏 */
+  .vs-col, .bd-col, .mrc, .cmp-row > span, .hd-cell, .pp, .sf-src, .sf-end { min-width: 0; }
+  .vs-col *, .bd-col *, .cmp-row > span, .mrc, .mrc *, .hd-cell *, .pp *,
+  .sf-src *, .sf-end *, .au *, .rule * { overflow-wrap: anywhere; min-width: 0; }
+  .bd-steps li { flex-wrap: wrap; }
+
+  /* ───────── ③ 数值与单位不折行 ───────── */
+  .nb, .vs-serial .t, .vs-old, .vs-new, .bignum, .hd-total, .num, .bd-sum b,
+  .kb-txt, .pb .bignum, .statline b { white-space: nowrap; }
+  .vs-old, .vs-new { white-space: normal; }
+  .vs-old b, .vs-old i, .vs-new b, .vs-new i { white-space: nowrap; }
+
+  /* ───────── ② 纵向瘦身 ───────── */
+  section { padding: 44px 0; }
+  .blk { margin-bottom: 22px; }
+  .fig { margin: 14px 0 8px; }
+  figcaption { margin-top: 8px; }
+  .shotbox { margin: 12px 0 4px; }
+  .car-nav { margin-top: 8px; }
+  .figcap { margin-top: 6px; }
+  .pg-por .shotimg { max-height: 52vh; }
+  ul.stats { gap: 10px; }
+  .kpi > summary { padding: 14px 12px 22px; }
+  .kdet { padding-top: 2px; padding-bottom: 14px; }
+  .hhgrid, .hhgrid-sub, .hhgrid-main { gap: 12px; }
+  .hcard { padding: 10px 10px 12px; }
+  .hc-t { margin: 9px 0 4px; }
+  .autos { gap: 8px; }
+  .au { padding: 10px 12px 10px 34px; }
+  .rules { gap: 10px; }
+  .rule { padding: 14px 13px; }
+  .qa3 { gap: 10px; }
+  .cmp { margin-bottom: 14px; }
+  .hands { gap: 9px; }
+  .films { gap: 12px; }
+  .film-slot { padding: 10px; }
+  .dg { padding: 12px 10px; }
+  .stepfig { margin-top: 9px; padding: 9px; }
+  .more .foldbody { padding: 14px; }
+  .iterbox { padding: 13px 13px 11px; }
+  .proofbar { margin-bottom: 16px; }
+  .versus { gap: 10px; }
+  .hero-journey.hj-slim { padding: 10px 12px 9px; }
+  .kpt-row { padding: 11px; }
+  .kptable { margin-bottom: 14px; }
+
+  /* ── 行距收紧(只压行距,不改字号、不删字)── */
+  body { line-height: 1.68; }
+  .mc p, .dfx .mdet p, .adv p, .aic p, .rule p, .tn p, .append p,
+  .iterbox > p, .buildnote p, .whoprob p, .case p:not(.lbl):not(.idx),
+  .qa-a, .kd-a, .st-body > p, .sf-panel > p, .fm-panel > p,
+  .pts li, .md-pts li, .aic ul li, .lead, .intro, .dek, .hh-tag,
+  .hc-d, .caprow span, .au, .figcap { line-height: 1.62; }
+  .pts { gap: 7px; }
+  .pts li { padding-left: 12px; }
+
+  /* KPI 卡:数字与说明收紧 */
+  ul.stats { gap: 9px; }
+  .kpi > summary { padding: 12px 12px 20px; }
+  .num { font-size: 30px; }
+  .cap { margin-top: 4px; }
+  .knote { margin-top: 6px; }
+  .kdet { padding: 2px 10px 12px; }
+  .kd-q { margin: 6px 0 4px; }
+  .kd-a { margin-bottom: 8px; }
+  .kpibar { margin-top: 8px; }
+  .kb-row { margin-bottom: 5px; }
+  .kpi-cal { margin-top: 8px; }
+
+  /* 总控台其余能力清单 */
+  .caplist { gap: 8px; }
+  .caprow { padding: 10px 11px; }
+
+  /* 图 0 折叠面板收紧 */
+  .sf-panel { padding: 9px; }
+  .sf-panel > p { margin-bottom: 6px; line-height: 1.5; }
+  .sf-fact { margin: 6px 0 0; }
+  .st-more { margin-top: 6px; }
+  .stepfig { margin-top: 7px; padding: 8px; gap: 6px; }
+  .sf-det > summary { margin-bottom: 0; }
+
+  /* #how 三条规则两栏 */
+  .rules { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .rule { padding: 12px 11px; }
+  .rule h4 { font-size: 13.5px; margin-bottom: 7px; }
+
+  /* 竖屏截图再收一档(灯箱已可 1:1 原尺寸查看) */
+  .pg-por .shotimg { max-height: 44vh; }
+
+  /* 能力清单:缩略图限高,文字与图不再各占一大段 */
+  .cap-shots .shotimg { max-height: 132px; width: auto; }
+  .cap-shots { gap: 6px; }
+  .cap-t b { font-size: 13.5px; margin-bottom: 3px; }
+
+  /* 口径表两栏 */
+  .kpt-row { grid-template-columns: 1fr 1fr; gap: 5px 8px; padding: 10px; }
+  .kpt-row > :first-child { grid-column: 1 / -1; }
+
+  /* 三问卡两栏 */
+  .qa3 { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .qa { padding: 12px 11px; }
+
+  /* 镜像视图行再收一档 */
+  .mrc { padding: 6px 7px; }
+  .mr-row { margin-bottom: 4px; }
+
+  section { padding: 36px 0; }
+
+  /* KPI 折叠卡内文再收一档(只压行距与间距) */
+  .kd-a, .st-body > p, .sf-panel > p, .pts li { line-height: 1.55; }
+  .kd-a { margin-bottom: 7px; }
+  .kb-note { margin-top: 5px; }
+  .kpi-cal > summary { padding: 9px 10px; }
+  .kdet { padding: 2px 9px 10px; }
+  .knote { margin-top: 5px; padding: 6px 9px; }
+  .cap { line-height: 1.5; }
+  .cap i { line-height: 1.4; }
+
+  /* 口径表与镜像行 */
+  .kptable { margin-bottom: 12px; }
+  h2 { margin-bottom: 10px; }
+  h3 { margin: 20px 0 10px; }
+  .lead, .dek { margin-bottom: 14px; }
+
+  /* 折叠面板内的微示意图与 KPI 头部再收一档 */
+  .stepfig { margin-top: 6px; padding: 6px; gap: 4px; }
+  .jfbox { font-size: 10px; padding: 3px 6px; }
+  .jfar { width: 14px; }
+  .kpi > summary { padding: 10px 10px 16px; }
+  .num { font-size: 28px; }
+  .kpibar { margin-top: 7px; }
+  .kb-track { height: 16px; }
+  .sf-det > summary { line-height: 1.35; }
+  .foldbody { padding: 12px; }
+  .more > summary { padding: 10px 34px 10px 12px; }
+}
+
+/* 首页五张章节卡改两列:卡片宽度与桌面同级(≈175px),纵向省掉两行 */
+@media (max-width: 640px) {
+  .hhgrid-sub { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .hhgrid-sub .hcard { padding: 9px 9px 11px; }
+  .hhgrid-sub .hc-t { font-size: 14px; margin: 8px 0 3px; }
+  .hhgrid-sub .hc-d { font-size: 12.5px; }
+  .hhgrid-sub .hc-go { font-size: 12.5px; }
+}
