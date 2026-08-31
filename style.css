@@ -4178,3 +4178,129 @@ section { padding: clamp(88px, 10vh, 136px) 0; }
   .hhgrid-sub .hc-d { font-size: 12.5px; }
   .hhgrid-sub .hc-go { font-size: 12.5px; }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   v32 · 窄屏可读性彻查(竖排面条清零 / 触控命中区正解 / 三列对照表重排)
+   业主真机复检四条:①三列被挤成竖排单字面条且出现空撑;②翻页点被放大成巨球;
+   ③站内有未样式化的蓝色下划线链接;④卡片内文字与展开图标挤压。
+   本段只动布局与样式,不动一个字;v31 的"左右并排"成果原样保留。
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── ③ 链接样式统一(本轮唯一的全局改动,桌面同样生效)──
+   正文里未加 class 的 <a> 一直落在浏览器默认样式上(蓝字 + 下划线),
+   与站点链接样式不符。这里沿用站上既有的链接观感(--accent + 底边细线),
+   不新增任何色值。 */
+main a:not([class]):not(.rail a):not(.pb a) {
+  color: var(--accent); text-decoration: none;
+  border-bottom: 1px solid var(--accent-ln);
+}
+main a:not([class]):not(.rail a):not(.pb a):hover { color: var(--accent-2); border-bottom-color: var(--accent); }
+a.hero-journey { color: inherit; }
+
+@media (max-width: 768px) {
+
+  /* ── ② 触控:视觉尺寸回到 v30 观感,命中区改用透明伪元素扩展 ──
+     v31 用"放大可见元素"达标是错的;这里一律改成"看着还是原来那么大,
+     手指能点到的范围扩到 ≥44×44"。 */
+
+  /* 轮播翻页点:44×44 巨球 → 10px 小圆点 + 44×44 透明命中区(点距 44,互不重叠) */
+  .car-nav { gap: 38px; margin-top: 14px; }
+  .car-nav label {
+    position: relative; min-width: 0; width: 10px; height: 10px;
+    padding: 0; font-size: 0; line-height: 0; border-radius: 50%;
+  }
+  .car-nav label::after {                      /* 固定尺寸居中命中盒,不受盒模型影响 */
+    content: ""; position: absolute; left: 50%; top: 50%;
+    width: 48px; height: 48px; transform: translate(-50%, -50%);
+  }
+
+  /* details 摘要行:撤销 min-height 撑高 */
+  summary { min-height: 0; }
+  .moredet > summary { position: relative; }
+  .moredet > summary::before {
+    content: ""; position: absolute; left: -8px; right: -8px;
+    top: 50%; height: 48px; transform: translateY(-50%);
+  }
+
+  /* 顶栏:撤销撑高与加宽 */
+  .navhome { min-height: 0; position: relative; }
+  .navhome::after {
+    content: ""; position: absolute; left: -8px; right: -8px;
+    top: 50%; height: 48px; transform: translateY(-50%);
+  }
+  .topnav ul { gap: 16px; }
+  .topnav a { padding: 11px 2px; min-width: 0; position: relative; }
+  .topnav a::before {
+    content: ""; position: absolute; left: -8px; right: -8px; top: 0; bottom: 0;
+  }
+
+  /* 句尾功能链接:撤销 inline-block + 纵向 padding */
+  footer .contact a, .pointto a, .st-more a { display: inline; padding: 0; line-height: inherit; }
+  footer .contact a::before, .pointto a::before, .st-more a::before {
+    content: ""; position: absolute; left: -8px; right: -8px;
+    top: 50%; height: 48px; transform: translateY(-50%);
+  }
+
+  /* ── ① 图 1 双端对照表:三列 → 两列 + 顶部横排徽章 ──
+     中间那列在 40px 宽度下把「同步 / 同步·前置 / 实时判定」压成竖排单字,
+     还把左右两格拉高成空撑盒。改为:关系标签升格成整行顶部的横排徽章
+     (nowrap,绝不折行),说明文字在徽章下整行铺开;左右两端仍并排。 */
+  .mr-row {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "mid mid" "ops app";
+    gap: 3px 6px; margin-bottom: 9px;
+  }
+  .mrc.ops { grid-area: ops; }
+  .mrc.app { grid-area: app; }
+  .mrc.mid {
+    grid-area: mid; flex-direction: row; flex-wrap: wrap;
+    align-items: center; justify-content: center; gap: 3px 7px;
+    padding: 0 0 3px; border: none; background: transparent; text-align: center;
+  }
+  .mrc.mid em {
+    white-space: nowrap; font-size: 10.5px; padding: 1px 9px; line-height: 1.6;
+  }
+  .mrc.mid .mrline { flex: 0 0 22px; width: 22px; height: 1px; }
+  .mrc.mid .mid-note {
+    flex: 1 1 100%; width: auto; font-size: 10.5px; line-height: 1.5; text-align: center;
+  }
+  .mrc.mid.blocked::before { flex: 0 0 22px; width: 22px; }
+  .mrc.mid.blocked::after { position: static; transform: none; }
+  /* 两端格改为内容自适应高度,消除被同行拉高的空撑 */
+  .mrc.ops, .mrc.app { align-self: start; justify-content: flex-start; }
+
+  /* ── 其余"窄到读不顺"的列一并处置(彻查所得)── */
+
+  /* 十二格:两格顶部对齐,短的一格不再被长的一格拉出空撑 */
+  .cmp-row > span { align-self: start; }
+
+  /* 图 4 步骤卡:正文占满首行把标签挤到次行,标签保持自身宽度不被拉成空框 */
+  .bd-steps li .bs-b { flex: 1 1 calc(100% - 24px); }
+  .bd-steps li .bs-tool, .bd-steps li .bs-flag { flex: 0 0 auto; margin-top: 3px; }
+
+  /* ── 孤字成行:末行只剩一个字的短标签与正文,交给排版引擎均衡断行 ── */
+  main, footer { text-wrap: pretty; }   /* text-wrap 可继承:一次覆盖全部后代 */
+  .bs-rep, .bs-flag, .sf-fact, .jfnote, .vs-actor, .vs-win, .hd-total,
+  .mrc em, .pp b, .jfbox, .pm { text-wrap: balance; }
+
+  /* 短标签一律不折行 */
+  .pm { white-space: nowrap; }
+  .topnav a { white-space: nowrap; }
+
+  /* 折叠面板内的微流程图:窄栏横排会把标签压成窄条,改竖排流程(箭头随之转向) */
+  .sf-panel .stepfig { flex-direction: column; align-items: stretch; gap: 4px; }
+  .sf-panel .stepfig .jfbox { text-align: center; }
+  .sf-panel .stepfig .jfar { align-self: center; transform: rotate(90deg); }
+
+  /* ── ④ 卡片内文字与展开图标的间距 ──
+     v31 把 .more > summary 的右内边距从 46px 收到 34px,而 .mplus 固定
+     right:18px + 15px 宽 → 文字与图标只剩 1px。补回到 ≥8px。 */
+  .more > summary { padding: 13px 42px 13px 12px; }   /* v30 为 16px;此处 13px 仍比 v30 紧,仅把命中高度补过 44 */
+  .mod > summary, .dfx > summary, .case > summary { padding-right: 42px; }
+}
+
+/* 360 档:图 6 的六个节点由三列改两列,单格宽度回到 ≥90px */
+@media (max-width: 380px) {
+  .pipe .pp { flex: 1 1 44%; }
+}
