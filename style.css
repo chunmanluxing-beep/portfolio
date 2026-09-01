@@ -4304,3 +4304,149 @@ a.hero-journey { color: inherit; }
 @media (max-width: 380px) {
   .pipe .pp { flex: 1 1 44%; }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   v33 · 窄屏图表"同一平面"重排 + 轮播滑动翻页
+   业主准则:以观众视角做布局,相同的信息要处于同一平面 ——
+   同一张表的字段、同一组标签、对比的两方,必须在同一区块内紧凑呈现、尽量一屏看全。
+   v31/v32 成果(并排、命中区正解、面条清零)全部保留。
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* 结构容器中性化:<b class="mrc-k"> 只是把字段名圈出来,宽屏渲染与原裸文本一致 */
+.mrc-k { font: inherit; color: inherit; letter-spacing: inherit; }
+
+@media (max-width: 430px) {
+
+  /* ── 2a 图 1 双端对照表 → 紧凑行式 ──
+     第 1 行:字段名(左,绝对定位到行首)+ 关系徽章(右对齐、nowrap)
+     第 2 行:总控台值 ｜ App 值,各占半宽、同高
+     关系长说明脱离行内,绝对定位到整表底部作一条整行小字注释 */
+  .mirror { position: relative; padding-bottom: 44px; }
+  .mr-row {                       /* 不设 position:定位参照留给 .mirror,底注才能落到整表末尾 */
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "mid mid" "ops app";
+    gap: 3px 6px; margin-bottom: 6px;
+  }
+  .mrc.ops { position: relative; }
+  .mrc-k {                        /* 字段名上提到本行第 1 行的行首 */
+    position: absolute; left: 0; top: -17px; z-index: 1;
+    font-size: 10.5px; line-height: 1.5; color: var(--dimmer);
+    white-space: nowrap; margin: 0;
+  }
+  .mrc.mid {
+    grid-area: mid; flex-direction: row; flex-wrap: nowrap;
+    align-items: center; justify-content: flex-end;
+    gap: 5px; padding: 0; min-height: 16px;
+    border: none; background: transparent;
+  }
+  .mrc.mid .mrline { display: none; }
+  .mrc.mid em { white-space: nowrap; font-size: 10px; padding: 0 7px; line-height: 1.55; }
+  .mrc.mid.blocked::before { display: none; }
+  .mrc.mid.blocked::after { position: static; transform: none; font-size: 10px; padding: 0 4px; }
+  .mrc.mid .mid-note {                       /* 相对 .mirror 定位 → 落到整表底部 */
+    position: absolute; left: 0; right: 0; bottom: 2px; width: auto;
+    font-size: 10px; line-height: 1.45; text-align: left;
+  }
+  .mrc.ops { grid-area: ops; }
+  .mrc.app { grid-area: app; }
+  .mrc.ops, .mrc.app { align-self: stretch; padding: 5px 7px; }
+  .mrc.ops::before, .mrc.app::before { font-size: 9.5px; }
+  .mrc.ops i { margin-top: 0; font-size: 11px; }
+  .mrc.app.off { opacity: .6; background: none; }   /* 弱化"不可见"态,不占大空盒 */
+
+  /* ── 2b 图 0 系统全景 ── */
+  /* 四条流向标签合并为 2×2 紧凑 chip,不再各占整行 */
+  .sf-dist { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; padding: 6px 0; height: auto; }
+  .ln-lab { position: static; display: block; font-size: 10px; padding: 5px 8px; line-height: 1.4; }
+  /* 展开的端卡占整行 → 顶部角色说明区不再出现半宽窄文本框 */
+  .sf-row-src, .sf-row-ends { grid-template-columns: 1fr 1fr; gap: 7px; align-items: start; }
+  .sf-row-src > details[open], .sf-row-ends > details[open] { grid-column: 1 / -1; }
+  .sf-src, .sf-end { padding: 7px 7px; }
+  .sf-end i, .sf-end em, .sf-base { font-size: 10px; }
+  .sf-hub { padding: 8px; }
+  .sf-hub b { font-size: 13px; margin: 4px 0 3px; }
+  .sf-panel { padding: 8px; }
+  .sf-panel > p { margin-bottom: 5px; line-height: 1.5; }
+  .sf-panel .stepfig { margin-top: 5px; padding: 5px; gap: 3px; }
+  .sf-panel .jfbox { font-size: 9.5px; padding: 2px 5px; }
+  .sf-panel .sf-fact { margin-top: 5px; line-height: 1.4; }
+  .sf-panel .st-more { margin-top: 5px; }
+  .sf-det > summary { line-height: 1.35; }
+
+  /* ── 2c 轮播:窄屏改横向 scroll-snap 滑动条 ──
+     所有页并排放进条内,吸附翻页;每页宽 92%,露出下一张 8% 作"还有"提示;
+     图下注释在每页内部随页滑动;圆点在窄屏隐藏,换成 CSS 生成的滑动提示
+     (伪元素文字不进 DOM,全站字数不受影响)。桌面 ≥431px 一字不改。 */
+  .car > input.cr { display: none; }
+  .car > .car-win {
+    display: flex; gap: 8px;
+    overflow-x: auto; overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; padding-bottom: 2px;
+  }
+  .car > .car-win::-webkit-scrollbar { display: none; }
+  .car > .car-win::after {          /* 尾部占位:让最后一页也能吸附到左对齐 */
+    content: ""; flex: 0 0 8%; height: 1px;
+  }
+  .car > .car-win > .car-pg {
+    display: block; flex: 0 0 92%; min-width: 0;
+    scroll-snap-align: start; scroll-snap-stop: always;
+    position: relative;          /* 兜住页内绝对定位的 lb-toggle,否则它会逃出滚动条落到根元素上撑出页面横滚 */
+  }
+  .car > .car-nav { display: none; }
+  /* 能力清单里的轮播:max-content 列会与 92% 页宽互相撑宽 → 收成单列定宽 */
+  .caprow { grid-template-columns: 1fr; }
+  .cap-shots { min-width: 0; width: 100%; display: block; }
+  .cap-shots > .shotbox { min-width: 0; max-width: 100%; }
+  .car, .car > .car-win { min-width: 0; max-width: 100%; }
+
+  .car::after {
+    content: "◀ 左右滑动 ▶"; display: block; margin-top: 8px;
+    text-align: center; font-size: 10.5px; letter-spacing: .06em; color: var(--dimmer);
+  }
+
+  /* ── 2e 其余"同类不同平面 / 半宽窄框"一并重排 ── */
+  /* 三问卡、三条规则、四张角色卡:正文回到整行,不再被压成 39% 宽的窄条 */
+  .qa3   { grid-template-columns: 1fr; gap: 8px; }
+  .qa    { padding: 12px 12px; }
+  .rules { grid-template-columns: 1fr; gap: 8px; }
+  .roles { grid-template-columns: 1fr; gap: 8px; }
+  .role  { padding: 10px 11px; }
+  .role h4 { margin-bottom: 6px; font-size: 14px; }
+  .role .rolefig { margin: 6px 0; transform: scale(.85); transform-origin: left center; }
+  .r-pain, .r-gain { line-height: 1.5; margin-bottom: 4px; }
+  /* 口径表:数字与名称同行,口径说明整行铺开 */
+  .kpt-row {
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "n c" "f f";
+    gap: 4px 10px; padding: 10px;
+  }
+  .kpt-n { grid-area: n; } .kpt-c { grid-area: c; } .kpt-f { grid-area: f; }
+
+  /* 单元压高:目录节点 / 流转节点 / 证据条 / 对比行 / 端卡 / 要点行 */
+  a.jstep { padding: 5px 24px 5px 8px; row-gap: 1px; }
+  a.jstep > b { font-size: 12.5px; line-height: 1.35; }
+  a.jstep .st-desc { line-height: 1.3; }
+  .pp { padding: 5px 4px; min-height: 0; }
+  .pp b { font-size: 11px; margin-bottom: 3px; line-height: 1.3; }
+  .pp i { line-height: 1.28; }
+  .pn { width: 15px; height: 15px; font-size: 9.5px; margin-bottom: 3px; }
+  .pm { font-size: 9.5px; margin-bottom: 3px; }
+  .pb { padding: 5px 9px; }
+  .vsg { padding: 5px 7px; }
+  .vs-old .bignum, .vs-new .bignum { font-size: 20px; line-height: 1.05; }
+  .vs-old i, .vs-new i { font-size: 9.5px; }
+  .vs-ar { transform: scale(.8); }
+  .vs-lb { line-height: 1.35; }
+  .vs-serial li.loop { line-height: 1.3; margin-bottom: 4px; }
+  .vs-serial li.loop .bs-rep, .vs-serial li.loop i { line-height: 1.25; }
+  .pts li { line-height: 1.45; }
+  .pts { gap: 5px; }
+  .sf-end { padding: 5px 6px; line-height: 1.28; font-size: 10.5px; }
+  .sf-end b, .sf-end strong { line-height: 1.3; }
+  /* 模块统计条:说明文字整行,不留 67% 宽的半截框 */
+  .modstat { display: block; }
+  .ms-t { display: block; width: auto; }
+}
